@@ -1,38 +1,84 @@
-.App {
-  text-align: center;
+.gutter {
+  /* background-color: rgb(196, 169, 169); */
+  background-repeat: no-repeat;
+  background-position: 50%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.gutter.gutter-horizontal {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=");
+  cursor: col-resize;
+  /* background-color: white; */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.gutter.gutter-vertical {
+  cursor: row-resize;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.gutterNew {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: cal(100vh - 4rem);
+  width: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+.navbar {
+  transition: max-height 0.5s ease-out;
+  max-height: 600px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.font-style {
+  font-family: "Noto Sans", sans-serif;
+}
+
+.scroll {
+  overflow-y: scroll;
+}
+
+.scroll-hide {
+  overflow-y: hidden;
+}
+
+.tweet-text-area {
+  width: 100%;
+  resize: none;
+}
+
+.textarea-style {
+  resize: none;
+  caret-color: #35a6f6;
+}
+
+/* .height-draft{
+  height: calc(100vh - 2rem);
+} */
+
+.tweet-flow {
+  overflow-y: scroll;
+}
+
+.tweet-overflow::-webkit-scrollbar {
+  display: none;
+}
+
+.tweet-auto-flow {
+  overflow-y: scroll;
+}
+
+.tweet-auto-overflow::-webkit-scrollbar {
+  display: none;
+}
+
+.btnHover:hover {
+  box-shadow: 0px 0px 2px 2px rgba(201, 198, 198, 0.4);
+}
+
+.btnActive {
+  box-shadow: 0px 0px 2px 2px rgba(201, 198, 198, 0.4);
+}
+
+.float-hover:hover {
+  color: rgb(49, 127, 245);
+}
+
+.floatactive {
+  color: rgb(49, 127, 245);
 }
