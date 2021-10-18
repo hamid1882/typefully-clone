@@ -13,6 +13,7 @@ const DarkState = (props) => {
 
   const [btnText, setBtnText] = useState("Light Mode");
 
+
   const handleStyle = () => {
     if (style.color === "black") {
       setStyle({
@@ -32,8 +33,10 @@ const DarkState = (props) => {
   const handleCollapse = () => {
     if (collapse === "d-block") {
       setCollapse("d-none");
+      handleDraftCollapse();
     } else {
       setCollapse("d-block");
+      handleDraftCollapse();
     }
   };
 
@@ -45,15 +48,9 @@ const DarkState = (props) => {
     }
   };
 
-  // useEffect(() => {
-  //   scrollToBottom();
-  // }, []);
+  
 
-  // const scrollToEnd = useRef();
-
-  // const scrollToBottom = () => {
-  //   scrollToEnd.current.scrollIntoView({ behavior: "smooth" });
-  // };
+  
 
   return (
     <DarkContext.Provider

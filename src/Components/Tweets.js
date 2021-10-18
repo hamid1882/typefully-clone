@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import "../App.css";
 import ScrollToBottom from "react-scroll-to-bottom";
@@ -7,7 +7,7 @@ const Tweets = (props) => {
   return (
     <ScrollToBottom className="h-100 w-100 tweet-auto-flow tweet-auto-overflow">
       <div className={`d-flex mx-3`}>
-        <div style={props.style} className="w-100">
+        <div style={props.style} className="w-100 mb-5">
           <div>
             {props.input.split("\n\n\n").map((text) => {
               return (

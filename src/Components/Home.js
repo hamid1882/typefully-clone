@@ -6,26 +6,43 @@ import "../App.css";
 import Draft from "./Draft";
 import DarkContext from "../context/DarkContext";
 import TextareaMini from "./TextareaMini";
+import EmptyDraft from "./EmptyDraft";
 
 const Home = () => {
   const mode = useContext(DarkContext);
 
   const [input, setInput] = useState("");
-  const [addInput, setAddInput] = useState('');
+  const [addDraft, setaddDraft] = useState("");
+
+  const handleAddDraft = () => {
+    setaddDraft(
+      <div className="w-100 h-100">
+        <EmptyDraft input={input} />
+      </div>
+    );
+  };
 
   const handleChange = (e) => {
     e.preventDefault();
-      setInput(e.target.value)
+    handleAddDraft();
+    setInput(e.target.value);
   };
 
-  const handleAddTweet = (e) => {
-    e.preventDefault();
-    setInput(input+ '\n\n\n Write here')
-  }
+  const handleAddTweet = () => {
+    if (input === "New Tweet...") {
+      setInput(input);
+    } else {
+      setInput(input + "\n\n\nNew Tweet...");
+    }
+  };
 
   return (
     <div className="d-flex w-100">
-      <Draft />
+      <Draft
+        input={input}
+        addDraft={addDraft}
+        handleAddDraft={handleAddDraft}
+      />
       <Split
         direction="horizontal"
         minSize={[1000, 700]}
@@ -33,9 +50,18 @@ const Home = () => {
         className="d-none d-md-flex gutterNew"
         style={mode.style}
       >
-          <Textarea input={input} handleChange={handleChange} />
+        <Textarea
+          input={input}
+          handleChange={handleChange}
+          handleAddTweet={handleAddTweet}
+          handleAddDraft={handleAddDraft}
+        />
         <div>
-          <RightSideBar input={input} handleChange={handleChange} handleAddTweet={handleAddTweet} />
+          <RightSideBar
+            input={input}
+            handleChange={handleChange}
+            handleAddTweet={handleAddTweet}
+          />
         </div>
       </Split>
       <div className="w-100 d-md-none tweet-overflow">

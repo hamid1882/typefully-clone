@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import DarkContext from "../context/DarkContext";
 import ReactTooltip from "react-tooltip";
 import "../App.css";
-import SwitchMode from "./SwitchMode";
 
 const Editor = (props) => {
   const context = useContext(DarkContext);
@@ -20,14 +19,16 @@ const Editor = (props) => {
         >
           <button
             style={context.style}
+            onClick={props.handleAddDraft}
             className={`border-0 p-2 mx-1 ${context.collapse}`}
-            data-tip="New File"
+            data-tip="New Draft"
           >
             <i className={`fa fa-file fs-5 float-hover `}></i>
           </button>
           <button
             style={context.style}
-            data-tip="Update"
+            onClick={props.handleAddTweet}
+            data-tip="Add Tweet"
             className={`border-0 p-2 mx-1 ${context.collapse}`}
           >
             <i className="fa fa-plus-square fs-5 float-hover"></i>
@@ -56,9 +57,6 @@ const Editor = (props) => {
               ></i>
             )}
           </button>
-          <div className="d-md-none p-2 mx-1">
-            <SwitchMode onClick={context.handleStyle} />
-          </div>
         </div>
         <div className="d-md-none my-2 ">
           <button

@@ -9,6 +9,7 @@ const RightSideBar = (props) => {
   return (
     <div style={a.style} className="font-style height-draft overflow-hidden">
       <div
+      className="overflow-hidden"
         style={
           a.collapse === "d-block"
             ? { height: "calc(100vh - 6rem)" }

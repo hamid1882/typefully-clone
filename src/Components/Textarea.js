@@ -37,7 +37,7 @@ const Textarea = (props) => {
           </div>
         </div>
         <div className="d-flex justify-content-center my-xl-2">
-          <Floatingicons input={props.input} />
+          <Floatingicons input={props.input} handleAddTweet={props.handleAddTweet} handleAddDraft={props.handleAddDraft}/>
         </div>
       </div>
   );
