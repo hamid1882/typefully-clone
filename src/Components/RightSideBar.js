@@ -7,37 +7,38 @@ const RightSideBar = (props) => {
   const a = useContext(DarkContext);
 
   return (
-    <div style={a.style} className="font-style height-draft overflow-hidden">
-      <div
-      className="overflow-hidden"
-        style={
-          a.collapse === "d-block"
-            ? { height: "calc(100vh - 6rem)" }
-            : { height: "100vh" }
-        }
-        id="tweet-div"
-      >
-        <Tweets style={a.style} input={props.input} handleAddTweet={props.handleAddTweet} />
+    <div style={a.style} className="font-style">
+      <div style={a.collapse === 'd-block' ? { height: "calc(100vh - 8rem)" } : { height: "calc(100vh - 0.5rem)" }} id="tweet-div">
+        <Tweets
+          styleDark={a.styleDark}
+          style={a.style}
+          input={props.input}
+          handleAddTweet={props.handleAddTweet}
+        />
       </div>
       <div
         style={a.style}
-        className={`d-flex text-center justify-content-center py-2 pb-5 ${a.collapse}`}
+        className={`d-flex text-center justify-content-center ${a.collapse}`}
       >
         <button
           disabled={props.input === ""}
-          className="btn btn-warning rounded-pill mx-2 col text-white"
+          className="btn btn-warning rounded-pill col text-white"
         >
-          <i className="fa fa-clock"></i>
-          <span className="mx-2">Schedule</span>
+          <div className="d-flex justify-content-center align-items-center">
+            <i className="fa fa-clock fs-4"></i>
+            <span className="p-2 text-truncate">Schedule</span>
+          </div>
         </button>
         <button
           disabled={props.input === "" || props.input.length >= 280}
           className="btn btn-primary rounded-pill mx-2 col text-white"
         >
-          <i className="fa fa-paper-plane"></i>
-          <span className="mx-2">
-            {props.input.includes("\n\n\n") ? "Tweet All" : "Tweet"}
-          </span>
+          <div className="d-flex justify-content-center align-items-center">
+            <i className="fa fa-paper-plane fs-4"></i>
+            <span className="mx-2 text-truncate">
+              {props.input.includes("\n\n\n") ? "Tweet All" : "Tweet"}
+            </span>
+          </div>
         </button>
       </div>
     </div>

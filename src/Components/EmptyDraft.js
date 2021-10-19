@@ -6,32 +6,32 @@ const EmptyDraft = (props) => {
   const mode = useContext(DarkContext);
 
   return (
-    <div style={mode.style} className="d-flex border-bottom ">
+    <div style={mode.style} className="d-flex">
       <div
         className=""
         style={{
           width: "7px",
-          backgroundColor: "blue",
-          height: "100%",
+          backgroundColor: "#1da1f2",
           paddingBottom: "57px",
         }}
       ></div>
       <div
-        className="d-flex w-100"
+        style={mode.style}
+        className="d-flex w-100 navBorder"
         onMouseEnter={() => setIsShown(true)}
         onMouseLeave={() => setIsShown(false)}
       >
-        <fieldset disabled style={{ width: "100%" }}>
+        <fieldset disabled>
           <input
             // eslint-disable-next-line
-            style={({ cursor: "pointer" }, mode.style)}
+            style={({ cursor: "pointer" }, mode.styleDark)}
             value={props.input}
             type="text"
-            className="w-100 p-2 py-3 border-0 text-truncate"
+            className="w-100 p-2 py-3 border-0 text-truncate bg-transparent"
             placeholder="Empty draft..."
           />
         </fieldset>
-        <button className="btn shadow-none" style={mode.style}>
+        <button className="btn shadow-none border-0" style={mode.style}>
           {isShown && <i class="fas fa-times-circle"></i>}
         </button>
       </div>

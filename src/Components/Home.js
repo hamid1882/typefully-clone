@@ -16,7 +16,7 @@ const Home = () => {
 
   const handleAddDraft = () => {
     setaddDraft(
-      <div className="w-100 h-100">
+      <div className="w-100">
         <EmptyDraft input={input} />
       </div>
     );
@@ -37,7 +37,7 @@ const Home = () => {
   };
 
   return (
-    <div className="d-flex w-100">
+    <div className="d-flex h-100 ">
       <Draft
         input={input}
         addDraft={addDraft}
@@ -45,8 +45,9 @@ const Home = () => {
       />
       <Split
         direction="horizontal"
-        minSize={[1000, 700]}
+        minSize={[1000, 400]}
         sizes={[70, 30]}
+        gutterAlign="end"
         className="d-none d-md-flex gutterNew"
         style={mode.style}
       >
@@ -56,7 +57,7 @@ const Home = () => {
           handleAddTweet={handleAddTweet}
           handleAddDraft={handleAddDraft}
         />
-        <div>
+        <div style={{width: '20%'}}>
           <RightSideBar
             input={input}
             handleChange={handleChange}

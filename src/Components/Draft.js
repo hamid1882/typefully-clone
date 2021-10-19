@@ -6,21 +6,23 @@ import "../App.css";
 const Draft = (props) => {
   const mode = useContext(DarkContext);
 
-
   return (
-    <div style={mode.style} className="d-none d-lg-flex">
-      <div
-        className={`${mode.draftCollapse} font scroll `}
-        style={
-          mode.collapse === "d-block"
-            ? { height: "calc(100vh - 2rem)" }
-            : { height: "100vh" }
-        }
-      >
-        <div className="d-flex justify-content-center align-items-center m-1 overflow-hidden">
+    <div
+      style={
+        (mode.style,
+        mode.draftCollapse.transform === "translate(-280px)"
+          ? { width: "0%", transition: 'all 800ms ease-in-out' }
+          : { transition: 'all 800ms ease-in-out'} )}
+      className="transitionDraft d-none d-lg-block"
+    >
+      <div className={`font scroll h-100`} style={mode.draftCollapse}>
+        <div
+          style={mode.style}
+          className="d-flex justify-content-center align-items-center m-1 overflow-hidden"
+        >
           <button
-            style={mode.style}
-            className="mx-2 rounded px-2 py-1 border-0 col shadow-none outline-none"
+            style={mode.styleDark}
+            className="btnActive mx-2 rounded px-2 py-1 border-0 col shadow-none outline-none"
           >
             Drafts
           </button>
@@ -37,8 +39,12 @@ const Draft = (props) => {
             Tweeted
           </button>
         </div>
-        <div style={mode.style} className="p-2 border-bottom border-top">
-          <button style={mode.style} className="btn w-100 shadow-none" onClick={props.handleAddDraft}>
+        <div style={mode.style}>
+          <button
+            style={mode.style}
+            className="btn w-100 shadow-none p-3 border-0 border-top border-bottom rounded-0"
+            onClick={props.handleAddDraft}
+          >
             <i className="fa fa-plus mode.collapse"></i>
             <span className="mx-2">New Draft</span>
           </button>

@@ -1,21 +1,28 @@
-// import { useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import "../App.css";
 import ScrollToBottom from "react-scroll-to-bottom";
+import ReactTooltip from "react-tooltip";
 
 const Tweets = (props) => {
   return (
-    <ScrollToBottom className="h-100 w-100 tweet-auto-flow tweet-auto-overflow">
-      <div className={`d-flex mx-3`}>
+    <ScrollToBottom className="h-100 w-100 ">
+      <div className={`d-flex`}>
         <div style={props.style} className="w-100 mb-5">
           <div>
             {props.input.split("\n\n\n").map((text) => {
               return (
                 <>
-                  <div className="d-flex">
-                    <div style={props.style} className="p-2 mb-5">
+                  <div
+                    style={
+                      props.input === ""
+                        ? null
+                        : { backgroundColor: "rgba(29, 161, 242, 0.2)" }
+                    }
+                    className="d-flex"
+                  >
+                    <div className="text-center p-2 overflow-hidden">
                       <img
-                        style={{ width: "50px", height: "50px" }}
+                        style={{ width: "50px", height: "50px"}}
                         className="rounded-circle"
                         src="https://pbs.twimg.com/profile_images/1420523735472214017/uMRf2FIm_400x400.jpg"
                         alt="dp"
@@ -33,27 +40,24 @@ const Tweets = (props) => {
                         ></div>
                       )}
                     </div>
-                    <div>
-                      <div className="d-flex align-items-center">
-                        <h3 className="py-1 m-1 text-truncate">
+                    <div className="overflow-hidden w-100">
+                      <div className="d-flex align-items-center mx-1">
+                        <h3
+                          style={props.styleDark}
+                          className="py-1 m-1 text-truncate bg-transparent"
+                        >
                           Hamid Hussain
                         </h3>
-                        <span className="form-text text-truncate">
-                          @hussainhafeez5
-                        </span>
+                        <span className="form-text">@hussainhafeez5</span>
                       </div>
                       <fieldset disabled>
                         <TextareaAutosize
-                          style={props.style}
+                          style={props.styleDark}
                           minRows={1}
                           maxRows={15}
                           value={text}
                           placeholder="Your Tweet will appear here..."
-                          className={`tweet-text-area overflow-hidden resize-0 py-2 shadow-none form-control  ${
-                            props.input === ""
-                              ? props.style
-                              : "bg-info bg-opacity-10"
-                          } ${
+                          className={`bg-transparent tweet-text-area overflow-hidden resize-0 py-2 shadow-none form-control ${
                             text.length >= 280
                               ? "border border-danger"
                               : "border-0"
@@ -75,16 +79,21 @@ const Tweets = (props) => {
               );
             })}
           </div>
+          <ReactTooltip />
           <div
             className={`flex text-center align-items-center justify-content-center ${
               props.input === "" ? "invisible" : "visible"
             }`}
           >
-            <button className="btn" onClick={props.handleAddTweet}>
-              <i className="fa fa-plus text-secondary mx-2 fs-5 p-1"></i>
+            <button
+              data-tip="Add tweet or Just add two new lines to break the tweet "
+              className="btn"
+              onClick={props.handleAddTweet}
+            >
+              <i className="fa fa-plus text-secondary fs-5"></i>
             </button>
-            <button className="btn">
-              <i className="fa fa-star text-secondary mx-2 fs-5 p-1"></i>
+            <button data-tip="Spread the Word" className="btn">
+              <i className="fa fa-star text-secondary fs-5"></i>
             </button>
           </div>
         </div>

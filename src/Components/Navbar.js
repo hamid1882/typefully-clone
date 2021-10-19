@@ -7,26 +7,28 @@ import SettingModal from "./SettingModal";
 const Navbar = () => {
   const a = useContext(DarkContext);
   const location = useLocation();
-  console.log(location)
+  console.log(location);
   return (
     <nav
       style={a.style}
-      className={`navbar navbar-expand-lg shadow border-bottom ${a.collapse}`}
+      className={`navbar navbar-expand-lg navBorder ${a.collapse}`}
     >
       <div className="container-fluid">
         <button
           onClick={a.handleDraftCollapse}
-          style={a.style}
-          className=" btnHover border-0 px-2 py-1 rounded"
+          // eslint-disable-next-line
+          style={(a.style, a.styleDark)}
+          className="btnHover border-0 px-2 py-1 rounded bg-transparent shadow-none"
         >
-          <i className="fas fa-stream"></i>
+          <i className="fas fa-align-left fs-5"></i>
         </button>
         <div className="d-flex mx-auto align-items-center">
-
           <Link
             to="/"
-          className={`${location.pathname === '/' ? 'btnActive' : ''} btnHover mx-2 rounded px-2 py-1 border-0`}
-            style={a.style}
+            style={location.pathname === "/" ? a.styleDark  : a.style}
+            className={`${
+              location.pathname === "/" ? "btnActive" : ""
+            } fs-5 mx-2 rounded px-2 py-1 border-0`}
           >
             <i className="fas fa-pen ">
               <span className="mx-2 d-none d-md-inline-block">Write</span>
@@ -35,8 +37,10 @@ const Navbar = () => {
 
           <Link
             to="/user"
-            style={a.style}
-            className={`${location.pathname === '/user' ? 'btnActive' : ''} btnHover mx-2 rounded px-2 py-1 border-0`}
+            style={location.pathname === "/user" ? a.styleDark  : a.style}
+            className={`${
+              location.pathname === "/user" ? "btnActive" : ""
+            } fs-5 mx-2 rounded px-2 py-1 border-0`}
           >
             <i className="fas fa-calendar">
               <span className="mx-2 d-none d-md-inline-block">Queue</span>
@@ -45,7 +49,7 @@ const Navbar = () => {
 
           <button
             style={a.style}
-            className="btnHover mx-2 rounded px-2 py-1 border-0"
+            className="fs-5 mx-2 rounded px-2 py-1 border-0"
           >
             <i className="fas fa-chart-line">
               <span className="mx-2 d-none d-md-inline-block">Grow</span>
@@ -56,7 +60,7 @@ const Navbar = () => {
         <div className="d-flex">
           <button
             style={a.style}
-            className="btnHover mx-2 rounded px-2 py-1 border-0"
+            className="fs-5 mx-2 rounded px-2 py-1 border-0"
           >
             <i className="fas fa-bolt">
               <span className="mx-2 d-none d-md-inline-block">Upgrade</span>

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import DarkContext from "../context/DarkContext";
 import SwitchMode from "./SwitchMode";
+import "../App.css";
 
 const SettingModal = () => {
   const context = useContext(DarkContext);
@@ -8,8 +9,8 @@ const SettingModal = () => {
   return (
     <div style={context.style}>
       <button
-        style={context.style}
-        className="btn btnHover mx-2 rounded px-2 py-1 border-0"
+        style={context.styleDark}
+        className="btn fs-5 mx-2 rounded px-2 py-1 border-0 shadow-none bg-transparent navBorder"
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#staticBackdrop"
@@ -26,17 +27,20 @@ const SettingModal = () => {
         aria-labelledby="staticBackdropLabel"
         aria-hidden="true"
       >
-        <div className="container w-100">
+        <div className="container w-100 model">
           <div style={context.style} className="modal-dialog ">
             <div style={context.style} className="modal-content">
-              <div style={context.style} className="modal-header">
+              <div
+                style={context.styleDark}
+                className="modal-header bg-transparent"
+              >
                 <h5 className="modal-title" id="staticBackdropLabel">
                   Settings
                 </h5>
                 <button
-                  style={context.style}
+                  style={context.styleDark}
                   type="button"
-                  className="btn-close"
+                  className={`${context.styleDark.color === 'black' ? "btn-close" : "btn-close btn-close-white bg-transparent"}  rounded-circle shadow-none`}
                   data-bs-dismiss="modal"
                   aria-label="Close"
                 ></button>
@@ -46,7 +50,12 @@ const SettingModal = () => {
                 className="modal-body d-flex align-items-center mx-2 gap-2"
               >
                 {/* <h3>{context.btnText}</h3> */}
-                <SwitchMode btnText={context.btnText} onClick={context.handleStyle} />
+                <SwitchMode
+                  style={context.styleDark}
+                  btnText={context.btnText}
+                  onClick={context.handleStyle}
+                  handleDarkStyle={context.handleDarkStyle}
+                />
               </div>
             </div>
           </div>

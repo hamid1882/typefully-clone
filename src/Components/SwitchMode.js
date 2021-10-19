@@ -1,6 +1,10 @@
 import React from "react";
 
 const SwitchMode = (props) => {
+  const runFunction = () => {
+    props.onClick();
+    props.handleDarkStyle();
+  }
   return (
     <div className="d-flex gap-3 align-items-center mx-1">
       <h3>{props.btnText}</h3>
@@ -10,7 +14,7 @@ const SwitchMode = (props) => {
           type="checkbox"
           role="switch"
           id="flexSwitchCheckChecked"
-          onClick={props.onClick}
+          onClick={runFunction}
         />
       </div>
     </div>
