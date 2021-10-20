@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import DarkContext from "../context/DarkContext";
 
 const EmptyDraft = (props) => {

@@ -60,7 +60,7 @@
 
 .textarea-style {
   resize: none;
-  caret-color: #35a6f6;
+  caret-color: #802fff !important;
 }
 
 /* .height-draft{
@@ -103,5 +103,9 @@
 
 .transitionDraft {
   transition: all 800ms ease-in-out;
+}
+
+.kickOutline {
+  outline: 0;
 }
 
