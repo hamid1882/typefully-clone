@@ -11,8 +11,8 @@ const Draft = (props) => {
       style={
         (mode.style,
         mode.draftCollapse.transform === "translate(-280px)"
-          ? { width: "0%", transition: 'all 800ms ease-in-out' }
-          : { transition: 'all 800ms ease-in-out'} )}
+          ? { width: "5%", transition: 'all 2s easeIn' }
+          : { transition: 'all 2s easeIn'} )}
       className="transitionDraft d-none d-lg-block"
     >
       <div className={`font scroll h-100`} style={mode.draftCollapse}>

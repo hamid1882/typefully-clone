@@ -69,21 +69,20 @@ const DarkState = (props) => {
   // Draft collapse!
   const [draftCollapse, setdraftCollapse] = useState({
     display: "block",
-    transition: "all 500ms",
+    transition: "all 700ms",
     borderColor: "#ecf0f4",
-    transform: 'translate(0px)',
-
+    transform: 'translate(0px)'
   });
 
   const handleDraftCollapse = () => {
     if (draftCollapse.transform === "translate(-280px)") {
       setdraftCollapse({
         transform: 'translate(0)',
-        transition: "all 500ms",
+        transition: "all 700ms",
       });
     } else {
       setdraftCollapse({
-        transition: "all 500ms",
+        transition: "all 2000ms",
         transform: 'translate(-280px)',
 
       });

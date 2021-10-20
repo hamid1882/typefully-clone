@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import RightSideBar from "./RightSideBar";
 import Textarea from "./Textarea";
 import Split from "react-split";
@@ -10,16 +10,30 @@ import EmptyDraft from "./EmptyDraft";
 
 const Home = () => {
   const mode = useContext(DarkContext);
+  const initialCount = localStorage.getItem('counter') ?
+  localStorage.getItem('counter') : '';
 
-  const [input, setInput] = useState("");
+  // const clearCount = localStorage.removeItem('counter') ?
+  // localStorage.removeItem('counter') : '';
+
+  const [input, setInput] = useState(initialCount);
   const [addDraft, setaddDraft] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem('counter', [input]);
+  }, [input])
 
   const handleAddDraft = () => {
     setaddDraft(
       <div className="w-100">
-        <EmptyDraft input={input} />
+        <EmptyDraft
+          input={input}
+          addDraft={addDraft}
+          handleAddDraft={handleAddDraft}
+        />
       </div>
     );
+    setInput('');
   };
 
   const handleChange = (e) => {
@@ -32,7 +46,7 @@ const Home = () => {
     if (input === "New Tweet...") {
       setInput(input);
     } else {
-      setInput(input + "\n\n\nNew Tweet...");
+      setInput(input + "\n\n\nNew Tweet");
     }
   };
 
@@ -57,7 +71,7 @@ const Home = () => {
           handleAddTweet={handleAddTweet}
           handleAddDraft={handleAddDraft}
         />
-        <div style={{width: '20%'}}>
+        <div style={{ width: "20%" }}>
           <RightSideBar
             input={input}
             handleChange={handleChange}

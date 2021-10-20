@@ -10,13 +10,13 @@ const Editor = (props) => {
     <>
       <div
         style={context.style}
-        className="rounded-pill border overflow-hidden"
+        className="overflow-hidden"
       >
         <ReactTooltip />
         <div
           // eslint-disable-next-line
-          style={(context.style, { borderColor: "#2b343b" })}
-          className="col d-flex justify-content-end align-items-center overflow-hidden mx-2"
+          style={(context.style)}
+          className="col d-flex rounded-pill border justify-content-end align-items-center overflow-hidden mx-2"
         >
           <button
             style={context.style}

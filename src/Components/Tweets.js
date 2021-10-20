@@ -14,7 +14,7 @@ const Tweets = (props) => {
                 <>
                   <div
                     style={
-                      props.input === ""
+                      text === ""
                         ? null
                         : { backgroundColor: "rgba(29, 161, 242, 0.2)" }
                     }

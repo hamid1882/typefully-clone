@@ -25,7 +25,7 @@ const Navbar = () => {
         <div className="d-flex mx-auto align-items-center">
           <Link
             to="/"
-            style={location.pathname === "/" ? a.styleDark  : a.style}
+            style={location.pathname === "/" ? a.styleDark : a.style}
             className={`${
               location.pathname === "/" ? "btnActive" : ""
             } fs-5 mx-2 rounded px-2 py-1 border-0`}
@@ -37,7 +37,7 @@ const Navbar = () => {
 
           <Link
             to="/user"
-            style={location.pathname === "/user" ? a.styleDark  : a.style}
+            style={location.pathname === "/user" ? a.styleDark : a.style}
             className={`${
               location.pathname === "/user" ? "btnActive" : ""
             } fs-5 mx-2 rounded px-2 py-1 border-0`}
@@ -47,14 +47,15 @@ const Navbar = () => {
             </i>
           </Link>
 
-          <button
+          <Link
+            to="/grow"
             style={a.style}
             className="fs-5 mx-2 rounded px-2 py-1 border-0"
           >
             <i className="fas fa-chart-line">
               <span className="mx-2 d-none d-md-inline-block">Grow</span>
             </i>
-          </button>
+          </Link>
           <div className="d-none d-md-block"></div>
         </div>
         <div className="d-flex">
