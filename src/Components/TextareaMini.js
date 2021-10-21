@@ -15,10 +15,10 @@ const TextareaMini = (props) => {
         }
       >
         <textarea
-          style={context.style}
+          style={context.styleDark}
           value={props.input}
           onChange={props.handleChange}
-        className={`textarea-style form-control outline-0 ${context.style.color === 'white' ? 'shadow-none' : 'shadow'} border-0 w-100 h-100 p-5`}
+        className={`textarea-style bg-transparent form-control outline-0 ${context.style.color === 'white' ? 'shadow-none' : 'shadow'} border-0 w-100 h-100 p-5`}
           placeholder="Write here."
           id="floatingTextarea"
         ></textarea>

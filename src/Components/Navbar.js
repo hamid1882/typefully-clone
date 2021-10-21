@@ -7,7 +7,7 @@ import SettingModal from "./SettingModal";
 const Navbar = () => {
   const a = useContext(DarkContext);
   const location = useLocation();
-  
+
   return (
     <nav
       style={a.style}

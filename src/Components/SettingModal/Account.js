@@ -54,7 +54,7 @@ const Account = (props) => {
         />
         <button
           style={props.contextDarkStyle}
-          className="btn p-2 w-25 bg-transparent d-flex gap-2 justify-content-center align-items-center text-center border rounded"
+          className="d-none d-md-flex btn p-2 w-25 bg-transparent d-flex gap-2 justify-content-center align-items-center text-center border rounded"
         >
           <i className="fa fa-map-marker-alt fs-5"></i>
           <span className="fs-5">Detect</span>
@@ -63,12 +63,12 @@ const Account = (props) => {
 
 
       <div className="d-flex gap-2 justify-content-between fs-5 my-2 align-items-center p-2">
-        <div style={props.contextDarkStyle} className="d-flex bg-transparent gap-2 justify-content-start align-items-center">
-          <i className="fa fa-envelope"></i>
+        <div style={props.contextDarkStyle} className="d-flex col bg-transparent gap-2 justify-content-start align-items-center">
+          <i className="fa fa-envelope d-none d-md-block"></i>
           <span>Get major updates via email</span>
         </div>
         <div>
-          <div className="form-check form-switch">
+          <div className="form-check form-switch col">
             <input
               className="form-check-input p-2 m-2"
               type="checkbox"

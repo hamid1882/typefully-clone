@@ -78,15 +78,15 @@ const DarkState = (props) => {
   });
 
   const handleDraftCollapse = () => {
-    if (draftCollapse.transform === "translate(-280px)") {
+    if (draftCollapse.transform === "translate(-500px)") {
       setdraftCollapse({
         transform: "translate(0)",
         transition: "all 700ms",
       });
     } else {
       setdraftCollapse({
-        transition: "all 2000ms",
-        transform: "translate(-280px)",
+        transition: "all 1000ms",
+        transform: "translate(-500px)",
       });
     }
   };

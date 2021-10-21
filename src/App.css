@@ -45,6 +45,7 @@
 
 .scroll {
   overflow-y: scroll;
+  scrollbar-color: light;
 }
 
 .scroll-hide {
@@ -59,6 +60,10 @@
 .textarea-style {
   resize: none;
   caret-color: #802fff !important;
+}
+
+.textColor {
+  color: #802fff;
 }
 
 /* .height-draft{
@@ -117,5 +122,5 @@
 }
 
 .heightSchedule {
-  height: 25vh;
+  height: 250px;
 }
