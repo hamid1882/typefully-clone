@@ -2,13 +2,21 @@ import React, { useContext } from "react";
 import Tweets from "./Tweets";
 import "../App.css";
 import DarkContext from "../context/DarkContext";
+import Schedule from "./Schedule";
 
 const RightSideBar = (props) => {
   const a = useContext(DarkContext);
 
   return (
     <div style={a.style} className="font-style">
-      <div style={a.collapse === 'd-block' ? { height: "calc(100vh - 8rem)" } : { height: "calc(100vh - 0.5rem)" }} id="tweet-div">
+      <div
+        style={
+          a.collapse === "d-block"
+            ? { height: "calc(100vh - 8rem)" }
+            : { height: "calc(100vh - 0.5rem)" }
+        }
+        id="tweet-div"
+      >
         <Tweets
           styleDark={a.styleDark}
           style={a.style}
@@ -22,13 +30,17 @@ const RightSideBar = (props) => {
       >
         <button
           disabled={props.input === ""}
-          className="btn btn-warning rounded-pill col text-white"
+          type='button'
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          className="btn btn-warning rounded-pill col text-white shadow-none"
         >
           <div className="d-flex justify-content-center align-items-center">
             <i className="fa fa-clock fs-4"></i>
             <span className="p-2 text-truncate">Schedule</span>
           </div>
         </button>
+        <Schedule />
         <button
           disabled={props.input === "" || props.input.length >= 280}
           className="btn btn-primary rounded-pill mx-2 col text-white"

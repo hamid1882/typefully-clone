@@ -115,3 +115,7 @@
 .autoScrollHeight {
   height: calc(100% - 11.5%);
 }
+
+.heightSchedule {
+  height: 25vh;
+}
