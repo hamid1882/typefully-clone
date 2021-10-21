@@ -7,7 +7,7 @@ import SettingModal from "./SettingModal";
 const Navbar = () => {
   const a = useContext(DarkContext);
   const location = useLocation();
-  console.log(location);
+  
   return (
     <nav
       style={a.style}
@@ -28,7 +28,7 @@ const Navbar = () => {
             style={location.pathname === "/" ? a.styleDark : a.style}
             className={`${
               location.pathname === "/" ? "btnActive" : ""
-            } fs-5 mx-2 rounded px-2 py-1 border-0`}
+            } fs-5 mx-2 rounded px-2 py-1 border-0 d-flex align-items-center`}
           >
             <i className="fas fa-pen ">
               <span className="mx-2 d-none d-md-inline-block">Write</span>
@@ -40,22 +40,21 @@ const Navbar = () => {
             style={location.pathname === "/user" ? a.styleDark : a.style}
             className={`${
               location.pathname === "/user" ? "btnActive" : ""
-            } fs-5 mx-2 rounded px-2 py-1 border-0`}
+            } fs-5 mx-2 rounded px-2 py-1 border-0 d-flex align-items-center`}
           >
             <i className="fas fa-calendar">
               <span className="mx-2 d-none d-md-inline-block">Queue</span>
             </i>
           </Link>
 
-          <Link
-            to="/grow"
+          <button
             style={a.style}
-            className="fs-5 mx-2 rounded px-2 py-1 border-0"
+            className="fs-5 mx-2 rounded px-2 py-1 border-0 d-flex align-items-center"
           >
             <i className="fas fa-chart-line">
               <span className="mx-2 d-none d-md-inline-block">Grow</span>
             </i>
-          </Link>
+          </button>
           <div className="d-none d-md-block"></div>
         </div>
         <div className="d-flex">

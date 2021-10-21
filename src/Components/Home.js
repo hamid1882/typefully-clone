@@ -6,34 +6,23 @@ import "../App.css";
 import Draft from "./Draft";
 import DarkContext from "../context/DarkContext";
 import TextareaMini from "./TextareaMini";
-import EmptyDraft from "./EmptyDraft";
 
 const Home = () => {
   const mode = useContext(DarkContext);
-  const initialCount = localStorage.getItem('counter') ?
-  localStorage.getItem('counter') : '';
+  const initialCount = localStorage.getItem("counter")
+    ? localStorage.getItem("counter")
+    : "";
 
-  // const clearCount = localStorage.removeItem('counter') ?
-  // localStorage.removeItem('counter') : '';
 
   const [input, setInput] = useState(initialCount);
   const [addDraft, setaddDraft] = useState("");
 
   useEffect(() => {
-    localStorage.setItem('counter', [input]);
-  }, [input])
+    localStorage.setItem("counter", [input]);
+  }, [input]);
 
   const handleAddDraft = () => {
-    setaddDraft(
-      <div className="w-100">
-        <EmptyDraft
-          input={input}
-          addDraft={addDraft}
-          handleAddDraft={handleAddDraft}
-        />
-      </div>
-    );
-    setInput('');
+    setaddDraft(addDraft);
   };
 
   const handleChange = (e) => {
@@ -55,6 +44,7 @@ const Home = () => {
       <Draft
         input={input}
         addDraft={addDraft}
+        setaddDraft={setaddDraft}
         handleAddDraft={handleAddDraft}
       />
       <Split

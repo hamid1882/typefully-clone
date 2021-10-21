@@ -32,9 +32,10 @@ const DarkState = (props) => {
 
   // Dark Style
   const [styleDark, setStyleDark] = useState({
-    backgroundColor: '#e7ebef',
+    backgroundColor: "#e7ebef",
     color: "black",
-    transition: "all 500ms"
+    transition: "all 500ms",
+    borderColor: "#ecf0f4",
   });
 
   const handleDarkStyle = () => {
@@ -43,12 +44,14 @@ const DarkState = (props) => {
         backgroundColor: "#2c333a",
         color: "white",
         transition: "all 500ms",
-      })
+        borderColor: "#2b343b",
+      });
     } else {
       setStyleDark({
         backgroundColor: "#e7ebef",
         color: "black",
         transition: "all 500ms",
+        borderColor: "#ecf0f4",
       });
     }
   };
@@ -71,20 +74,19 @@ const DarkState = (props) => {
     display: "block",
     transition: "all 700ms",
     borderColor: "#ecf0f4",
-    transform: 'translate(0px)'
+    transform: "translate(0px)",
   });
 
   const handleDraftCollapse = () => {
     if (draftCollapse.transform === "translate(-280px)") {
       setdraftCollapse({
-        transform: 'translate(0)',
+        transform: "translate(0)",
         transition: "all 700ms",
       });
     } else {
       setdraftCollapse({
         transition: "all 2000ms",
-        transform: 'translate(-280px)',
-
+        transform: "translate(-280px)",
       });
     }
   };
@@ -100,7 +102,7 @@ const DarkState = (props) => {
         draftCollapse,
         handleDraftCollapse,
         styleDark,
-        handleDarkStyle
+        handleDarkStyle,
       }}
     >
       {props.children}

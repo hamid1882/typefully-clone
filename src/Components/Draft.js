@@ -1,10 +1,19 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import DarkContext from "../context/DarkContext";
+import EmptyDraft from './EmptyDraft'
 
 import "../App.css";
 
 const Draft = (props) => {
   const mode = useContext(DarkContext);
+  const [draftCheck, setdraftCheck] = useState(false);
+
+  const handleDraftCheck = () => {
+    setdraftCheck(true)
+    if(draftCheck === true) {
+      props.handleAddDraft()
+    }
+  }
 
   return (
     <div
@@ -43,13 +52,14 @@ const Draft = (props) => {
           <button
             style={mode.style}
             className="btn w-100 shadow-none p-3 border-0 border-top border-bottom rounded-0"
-            onClick={props.handleAddDraft}
+            onClick={handleDraftCheck}
           >
             <i className="fa fa-plus mode.collapse"></i>
             <span className="mx-2">New Draft</span>
           </button>
-        </div>
-        {props.addDraft}
+
+        </div>{draftCheck &&
+        <EmptyDraft input={props.input} />}
       </div>
     </div>
   );

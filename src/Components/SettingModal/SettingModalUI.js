@@ -3,7 +3,6 @@ import DarkContext from "../../context/DarkContext";
 import About from "./About";
 import Account from "./Account";
 import Look from './Look';
-import Affiliate from "./Affiliate";
 import Buttons from "./Buttons";
 import DownloadApp from "./DownloadApp";
 import Editing from "./Editing";
@@ -17,7 +16,7 @@ const SettingModalUI = () => {
   };
 
   return (
-    <div className="container d-flex border rounded vh-100">
+    <div style={{height: 'calc(100vh - 5rem)'}} className="container d-flex shadow rounded">
       <Buttons toggleTab={toggleTab} handleToggleTab={handleToggleTab} />
       {/* Modal */}
 
@@ -37,9 +36,6 @@ const SettingModalUI = () => {
         {/* App download here */}
         <DownloadApp toggleTab={toggleTab} handleToggleTab={handleToggleTab} contextStyle={context.style} contextDarkStyle={context.styleDark} />
         
-
-        {/* Affiliate*/}
-        <Affiliate toggleTab={toggleTab} handleToggleTab={handleToggleTab} contextStyle={context.style} contextDarkStyle={context.styleDark} />
         
 
         {/* About */}

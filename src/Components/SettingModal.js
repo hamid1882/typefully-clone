@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import DarkContext from "../context/DarkContext";
-import SwitchMode from "./SwitchMode";
 import "../App.css";
+import SettingModalUI from "./SettingModal/SettingModalUI";
 
 const SettingModal = () => {
   const context = useContext(DarkContext);
@@ -10,7 +10,7 @@ const SettingModal = () => {
     <div style={context.style}>
       <button
         style={context.styleDark}
-        className="btn fs-5 mx-2 rounded px-2 py-1 border-0 shadow-none bg-transparent navBorder"
+        className="btn fs-5 mx-2 rounded-3 px-2 py-1 border-0 shadow-none bg-transparent navBorder"
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#staticBackdrop"
@@ -27,9 +27,9 @@ const SettingModal = () => {
         aria-labelledby="staticBackdropLabel"
         aria-hidden="true"
       >
-        <div className="container w-100 model">
-          <div style={context.style} className="modal-dialog ">
-            <div style={context.style} className="modal-content">
+        <div className="container w-100 model rounded-3">
+          <div style={context.style} className="modalWidth modal-dialog rounded-3 shadow">
+            <div style={context.style} className="modalWidth modal-content bg-transparent">
               <div
                 style={context.styleDark}
                 className="modal-header bg-transparent"
@@ -45,18 +45,8 @@ const SettingModal = () => {
                   aria-label="Close"
                 ></button>
               </div>
-              <div
-                style={context.style}
-                className="modal-body d-flex align-items-center mx-2 gap-2"
-              >
                 {/* <h3>{context.btnText}</h3> */}
-                <SwitchMode
-                  style={context.styleDark}
-                  btnText={context.btnText}
-                  onClick={context.handleStyle}
-                  handleDarkStyle={context.handleDarkStyle}
-                />
-              </div>
+                <SettingModalUI />
             </div>
           </div>
         </div>

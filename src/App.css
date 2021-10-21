@@ -1,6 +1,4 @@
 * {
-  font-family:-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
-  "Helvetica Neue";
   overflow: hidden;
   
 }
@@ -109,3 +107,11 @@
   outline: 0;
 }
 
+.modalWidth {
+  width: 100%;
+  max-width: 100%;
+}
+
+.autoScrollHeight {
+  height: calc(100% - 11.5%);
+}

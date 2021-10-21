@@ -43,14 +43,6 @@ const Buttons = (props) => {
         style={props.toggleTab === 5 ? context.styleDark : context.style}
         className="btn border-0 shadow-none w-100 my-2 d-flex align-items-center gap-2 fs-5"
       >
-        <i className="fas fa-dollar-sign"></i>
-        <span className="d-none d-md-block">Affiliate</span>
-      </button>
-      <button
-        onClick={() => props.handleToggleTab(6)}
-        style={props.toggleTab === 6 ? context.styleDark : context.style}
-        className="btn border-0 shadow-none w-100 my-2 d-flex align-items-center gap-2 fs-5"
-      >
         <i className="fas fa-heart"></i>
         <span className="d-none d-md-block">About</span>
       </button>

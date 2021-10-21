@@ -29,16 +29,32 @@ const About = (props) => {
     }
   };
 
+  // const theme = useColorScheme();
+  // console.log(theme.scheme);
+
+  // const handleSystemMode = () => {
+  //   handleDisplayMode(3);
+  //   if (theme.scheme === "light") {
+  //     if (context.btnText === "Night Mode") {
+  //       context.handleStyle();
+  //       context.handleDarkStyle();
+  //     }
+  //   } else if (theme.scheme === "dark") {
+  //     if (context.btnText === "Light Mode") {
+  //       context.handleStyle();
+  //       context.handleDarkStyle();
+  //     }
+  //   }
+  // };
+
   return (
     <div
-      className={`${
-        props.toggleTab === 2 ? "d-block" : "d-none"
-      } h-100 px-2`}
+      className={`${props.toggleTab === 2 ? "d-block" : "d-none"} h-100 px-2`}
     >
       <h1 style={props.contextDarkStyle} className="bg-transparent">
         Look
       </h1>
-      <div>
+      <div className="my-4">
         <h3 style={props.contextDarkStyle} className="bg-transparent">
           Dark Mode
         </h3>
