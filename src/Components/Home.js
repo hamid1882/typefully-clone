@@ -1,25 +1,20 @@
 import { useContext } from "react";
 import Split from "react-split";
-import RightSideBar from "./RightSideBar";
+import RightSideBar,{SchduleButton, TweetButton} from "./RightSideBar";
 import Textarea from "./Textarea";
 import Draft from "./Draft";
 import TextareaMini from "./TextareaMini";
-import { darkContext, mainContext } from "../Context";
+import { darkContext } from "../Context";
+import Schedule from "./Schedule";
 
 
 const Home = () => {
   const mode = useContext(darkContext);
-  const main = useContext(mainContext);
 
   return (
     <div style={mode.style}>
       <div className="d-flex h-100 ">
-        <Draft
-          input={main.input}
-          addDraft={main.addDraft}
-          setaddDraft={main.setaddDraft}
-          handleAddDraft={main.handleAddDraft}
-        />
+        <Draft />
         <Split
           direction="horizontal"
           minSize={[1000, 400]}
@@ -28,20 +23,17 @@ const Home = () => {
           className="d-none d-md-flex gutterNew"
           style={mode.style}
         >
-          <Textarea
-            input={main.input}
-            handleChange={main.handleChange}
-            handleAddDraft={main.handleAddDraft}
-          />
+          <Textarea/>
           <div style={{ width: "20%" }}>
-            <RightSideBar
-              input={main.input}
-              handleChange={main.handleChange}
-            />
+            <RightSideBar>
+              <SchduleButton />
+              <Schedule />
+              <TweetButton />
+            </RightSideBar>
           </div>
         </Split>
         <div className="w-100 d-md-none tweet-overflow">
-          <TextareaMini input={main.input} handleChange={main.handleChange} />
+          <TextareaMini />
         </div>
       </div>
     </div>
