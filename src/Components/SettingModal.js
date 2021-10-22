@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import DarkContext from "../context/DarkContext";
+import DarkContext from "../Context/DarkContext";
 import "../App.css";
 import SettingModalUI from "./SettingModal/SettingModalUI";
 

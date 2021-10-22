@@ -3,7 +3,7 @@ import TextareaAutosize from "react-textarea-autosize";
 import "../App.css";
 import ScrollToBottom from "react-scroll-to-bottom";
 import ReactTooltip from "react-tooltip";
-import MainContext from "../context/MainContext"
+import MainContext from "../Context/MainContext"
 
 const Tweets = (props) => {
   const main = useContext(MainContext);

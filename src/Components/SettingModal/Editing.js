@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import MainContext from "../../context/MainContext";
+import MainContext from "../../Context/MainContext";
 
 const Editing = (props) => {
   const [selectEmoji, setselectEmoji] = useState(1);

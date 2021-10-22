@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import DarkContext from "../context/DarkContext";
+import DarkContext from "../Context/DarkContext";
 import EmptyDraft from "./EmptyDraft";
 
 import "../App.css";

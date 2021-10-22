@@ -1,7 +1,7 @@
 import { useRef, useEffect, useContext } from "react";
 import Floatingicons from "./Floatingicons";
-import DarkContext from "../context/DarkContext";
-import MainContext from "../context/MainContext";
+import DarkContext from "../Context/DarkContext";
+import MainContext from "../Context/MainContext";
 import "../App.css";
 
 import "../App.css";

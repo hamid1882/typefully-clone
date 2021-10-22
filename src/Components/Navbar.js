@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
-import DarkContext from "../context/DarkContext";
+import DarkContext from "../Context/DarkContext";
 import "../App.css";
 import SettingModal from "./SettingModal";
 

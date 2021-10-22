@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
-import DarkContext from "../context/DarkContext";
-import MainContext from "../context/MainContext";
+import DarkContext from "../Context/DarkContext";
+import MainContext from "../Context/MainContext";
 
 const EmptyDraft = (props) => {
   const [isShown, setIsShown] = useState(false);

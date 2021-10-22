@@ -4,8 +4,8 @@ import Textarea from "./Textarea";
 import Split from "react-split";
 import "../App.css";
 import Draft from "./Draft";
-import DarkContext from "../context/DarkContext";
-import MainContext from '../context/MainContext';
+import DarkContext from "../Context/DarkContext";
+import MainContext from '../Context/MainContext';
 import TextareaMini from "./TextareaMini";
 
 const Home = () => {

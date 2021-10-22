@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Home from "./Components/Home";
-import DarkContext from "./context/DarkContext";
+import DarkContext from "./Context/DarkContext";
 import Queue from "./Components/Queue";
-import MainState from "./context/MainState";
+import MainState from "./Context/MainState";
 
 function App() {
   const mode = useContext(DarkContext);

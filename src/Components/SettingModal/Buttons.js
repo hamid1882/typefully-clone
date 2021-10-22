@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import DarkContext from "../../context/DarkContext";
+import DarkContext from "../../Context/DarkContext";
 import './SettingCSS.css'
 
 const Buttons = (props) => {

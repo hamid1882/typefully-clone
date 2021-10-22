@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Tweets from "./Tweets";
 import "../App.css";
-import DarkContext from "../context/DarkContext";
+import DarkContext from "../Context/DarkContext";
 import Schedule from "./Schedule";
 
 const RightSideBar = (props) => {

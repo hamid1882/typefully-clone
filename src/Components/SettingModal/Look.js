@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import DarkContext from "../../context/DarkContext";
+import DarkContext from "../../Context/DarkContext";
 
 const About = (props) => {
   const context = useContext(DarkContext);

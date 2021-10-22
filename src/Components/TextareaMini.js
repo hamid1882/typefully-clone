@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Floatingicons from "./Floatingicons";
-import DarkContext from "../context/DarkContext";
+import DarkContext from "../Context/DarkContext";
 import '../App.css'
 
 const TextareaMini = (props) => {
