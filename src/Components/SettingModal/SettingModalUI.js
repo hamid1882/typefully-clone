@@ -1,16 +1,15 @@
 import { useContext, useState } from "react";
-import DarkContext from "../../Context/DarkContext";
 import About from "./About";
 import Account from "./Account";
 import Look from "./Look";
 import Buttons from "./Buttons";
 import DownloadApp from "./DownloadApp";
 import Editing from "./Editing";
-import '../../App.css'
+import { darkContext } from "../../Context";
 
 const SettingModalUI = () => {
   const [toggleTab, settoggleTab] = useState(1);
-  const context = useContext(DarkContext);
+  const context = useContext(darkContext);
 
   const handleToggleTab = (index) => {
     settoggleTab(index);

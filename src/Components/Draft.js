@@ -1,11 +1,9 @@
 import { useContext, useState } from "react";
-import DarkContext from "../Context/DarkContext";
+import { darkContext } from "../Context";
 import EmptyDraft from "./EmptyDraft";
 
-import "../App.css";
-
 const Draft = (props) => {
-  const mode = useContext(DarkContext);
+  const mode = useContext(darkContext);
   const [draftCheck, setdraftCheck] = useState(false);
   const [countDraft, setcountDraft] = useState(1);
 

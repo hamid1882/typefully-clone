@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
-import DarkContext from "../Context/DarkContext";
 import ReactTooltip from "react-tooltip";
-import "../App.css";
+import { darkContext } from "../Context";
 
 const Editor = (props) => {
-  const context = useContext(DarkContext);
+  const context = useContext(darkContext);
 
   return (
     <>

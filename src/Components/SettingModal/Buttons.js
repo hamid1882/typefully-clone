@@ -1,9 +1,8 @@
 import {useContext} from "react";
-import DarkContext from "../../Context/DarkContext";
-import './SettingCSS.css'
+import { darkContext } from "../../Context";
 
 const Buttons = (props) => {
-  const context = useContext(DarkContext);
+  const context = useContext(darkContext);
   return (
     <div className="m-3 p-1 w-25">
       <button

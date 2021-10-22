@@ -1,14 +1,10 @@
 import { useRef, useEffect, useContext } from "react";
+import { darkContext, mainContext } from "../Context";
 import Floatingicons from "./Floatingicons";
-import DarkContext from "../Context/DarkContext";
-import MainContext from "../Context/MainContext";
-import "../App.css";
-
-import "../App.css";
 
 const Textarea = (props) => {
-  const mode = useContext(DarkContext);
-  const main = useContext(MainContext);
+  const mode = useContext(darkContext);
+  const main = useContext(mainContext);
   const inputRef = useRef();
 
   useEffect(() => {

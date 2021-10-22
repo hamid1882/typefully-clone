@@ -1,10 +1,9 @@
 import { useContext } from "react";
-import DarkContext from "../Context/DarkContext";
-import "../App.css";
+import { darkContext } from "../Context";
 import SettingModalUI from "./SettingModal/SettingModalUI";
 
 const SettingModal = () => {
-  const context = useContext(DarkContext);
+  const context = useContext(darkContext);
 
   return (
     <div style={context.style}>

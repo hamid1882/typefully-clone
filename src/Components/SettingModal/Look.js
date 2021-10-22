@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
-import DarkContext from "../../Context/DarkContext";
+import { darkContext } from "../../Context";
 
 const About = (props) => {
-  const context = useContext(DarkContext);
+  const context = useContext(darkContext);
 
   const [modeCount, setmodeCount] = useState(1);
 
@@ -29,23 +29,6 @@ const About = (props) => {
     }
   };
 
-  // const theme = useColorScheme();
-  // console.log(theme.scheme);
-
-  // const handleSystemMode = () => {
-  //   handleDisplayMode(3);
-  //   if (theme.scheme === "light") {
-  //     if (context.btnText === "Night Mode") {
-  //       context.handleStyle();
-  //       context.handleDarkStyle();
-  //     }
-  //   } else if (theme.scheme === "dark") {
-  //     if (context.btnText === "Light Mode") {
-  //       context.handleStyle();
-  //       context.handleDarkStyle();
-  //     }
-  //   }
-  // };
 
   return (
     <div

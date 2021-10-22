@@ -1,10 +1,9 @@
 import { useContext } from "react";
-import DarkContext from "../Context/DarkContext";
-import "../App.css";
+import { darkContext } from "../Context";
 import QueueNew from "./QueueNew";
 
 const Schedule = () => {
-  const context = useContext(DarkContext);
+  const context = useContext(darkContext);
 
   return (
     <>

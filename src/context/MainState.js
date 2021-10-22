@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import MainContext from "./MainContext";
+import { mainContext as MainContext } from ".";
 
 const MainState = (props) => {
   // local storage

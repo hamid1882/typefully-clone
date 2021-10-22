@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
 import Tweets from "./Tweets";
-import "../App.css";
-import DarkContext from "../Context/DarkContext";
 import Schedule from "./Schedule";
+import { darkContext } from "../Context";
 
 const RightSideBar = (props) => {
-  const a = useContext(DarkContext);
+  const a = useContext(darkContext);
 
   return (
     <div style={a.style} className="font-style">
