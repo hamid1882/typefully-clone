@@ -1,11 +1,11 @@
 import { useState, useContext } from "react";
 import DarkContext from "../context/DarkContext";
+import MainContext from "../context/MainContext";
 
 const EmptyDraft = (props) => {
-
   const [isShown, setIsShown] = useState(false);
   const mode = useContext(DarkContext);
-
+  const main = useContext(MainContext);
 
   return (
     <div style={mode.style}>
@@ -19,7 +19,7 @@ const EmptyDraft = (props) => {
                   width: "4px",
                   backgroundColor: "#1da1f2",
                   paddingBottom: "57px",
-                  boxSizing: "border-box"
+                  boxSizing: "border-box",
                 }}
               ></div>
             ) : (
@@ -28,7 +28,7 @@ const EmptyDraft = (props) => {
                   width: "4px",
                   backgroundColor: "#802fff",
                   paddingBottom: "57px",
-                  boxSizing: "border-box"
+                  boxSizing: "border-box",
                 }}
               ></div>
             )}
@@ -41,20 +41,22 @@ const EmptyDraft = (props) => {
               <fieldset className="w-100" disabled>
                 <input
                   // eslint-disable-next-line
-                  style={({ cursor: "pointer"}, mode.styleDark)}
+                  style={({ cursor: "pointer" }, mode.styleDark)}
                   value={data}
                   type="text"
-                  className="w-100 p-2 py-3 border-0 text-truncate bg-transparent"
+                  className={`w-100 p-2 py-3 border-0 text-truncate bg-transparent ${
+                    main.textCount === 1
+                      ? "textDirectionLeft"
+                      : "textDirectionRight"
+                  }`}
                   placeholder="Empty draft..."
                 />
               </fieldset>
-              {isShown && <button
-                
-                className="btn shadow-none border-0"
-                style={mode.style}
-              >
-                <i class="fas fa-times-circle"></i>
-              </button>}
+              {isShown && (
+                <button className="btn shadow-none border-0" style={mode.style}>
+                  <i class="fas fa-times-circle"></i>
+                </button>
+              )}
             </div>
           </div>
         );

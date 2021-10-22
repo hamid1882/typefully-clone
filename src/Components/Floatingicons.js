@@ -17,7 +17,6 @@ const Editor = (props) => {
         >
           <button
             style={context.style}
-            onClick={props.handleAddDraft}
             className={`border-0 p-2 mx-1 ${context.collapse}`}
             data-tip="New Draft"
           >

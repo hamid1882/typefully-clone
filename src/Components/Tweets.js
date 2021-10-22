@@ -1,9 +1,13 @@
+import { useContext } from 'react'
 import TextareaAutosize from "react-textarea-autosize";
 import "../App.css";
 import ScrollToBottom from "react-scroll-to-bottom";
 import ReactTooltip from "react-tooltip";
+import MainContext from "../context/MainContext"
 
 const Tweets = (props) => {
+  const main = useContext(MainContext);
+
   return (
     <ScrollToBottom className="h-100 w-100 ">
       <div className={`d-flex`}>
@@ -61,7 +65,7 @@ const Tweets = (props) => {
                             text.length >= 280
                               ? "border border-danger"
                               : "border-0"
-                          }`}
+                          } ${main.textCount === 1 ? 'textDirectionLeft' : "textDirectionRight"}`}
                         />
                       </fieldset>
                       <p

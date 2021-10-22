@@ -6,9 +6,9 @@ import DarkState from "./context/DarkState";
 
 ReactDOM.render(
   <React.StrictMode>
-    <DarkState>
-      <App />
-    </DarkState>
+      <DarkState>
+        <App />
+      </DarkState>
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -1,16 +1,19 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import MainContext from "../../context/MainContext";
 
 const Editing = (props) => {
   const [selectEmoji, setselectEmoji] = useState(1);
-  const [textCount, settextCount] = useState(1);
+  // const [textCount, settextCount] = useState(1);
 
   const handleEmojiCount = (index) => {
     setselectEmoji(index);
   };
 
-  const handleTextCount = (index) => {
-    settextCount(index);
-  }
+  const main = useContext(MainContext);
+
+  // const handleTextCount = (index) => {
+  //   settextCount(index);
+  // }
 
   return (
     <div>
@@ -98,6 +101,7 @@ const Editing = (props) => {
             <div>Show Scrollbars</div>
             <div className="form-check form-switch fs-4">
               <input
+                onClick={main.handleScrollBar}
                 className="form-check-input p-2 m-2"
                 type="checkbox"
                 role="switch"
@@ -115,15 +119,23 @@ const Editing = (props) => {
               className="d-flex border rounded-pill p-1"
             >
               <button
-                onClick={() => handleTextCount(1)}
-                style={textCount === 1 ? props.contextDarkStyle : props.contextStyle}
+                onClick={() => main.handleTextCount(1)}
+                style={
+                  main.textCount === 1
+                    ? props.contextDarkStyle
+                    : props.contextStyle
+                }
                 className="btn col border-0 shadow-none rounded-pill"
               >
                 Left to Right
               </button>
               <button
-                onClick={() => handleTextCount(2)}
-                style={textCount === 2 ? props.contextDarkStyle : props.contextStyle}
+                onClick={() => main.handleTextCount(2)}
+                style={
+                  main.textCount === 2
+                    ? props.contextDarkStyle
+                    : props.contextStyle
+                }
                 className="btn col border-0 shadow-none rounded-pill"
               >
                 Right to Left

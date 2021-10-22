@@ -1,6 +1,6 @@
 * {
+  font-family: roboto;
   overflow: hidden;
-  
 }
 
 .gutter {
@@ -30,14 +30,6 @@
   max-height: 600px;
 }
 
-/* .font-style {
-  font-family: "Noto Sans", sans-serif;
-} */
-
-/* .font-style {
-  font-family: "Noto Sans",-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
-} */
 
 .navBorder {
   border-bottom: 1px solid #6e8291;
@@ -62,13 +54,17 @@
   caret-color: #802fff !important;
 }
 
+.textDirectionRight {
+  direction: rtl;
+}
+
+.textDirectionLeft {
+  direction: ltr;
+}
+
 .textColor {
   color: #802fff;
 }
-
-/* .height-draft{
-  height: calc(100vh - 2rem);
-} */
 
 .tweet-flow {
   overflow-y: scroll;
@@ -87,13 +83,6 @@
   display: none;
 }
 
-/* .btnHover:hover {
-  box-shadow: 0px 0px 2px 2px rgba(201, 198, 198, 0.4);
-}
-
-.btnActive {
-  box-shadow: 0px 0px 2px 2px rgba(201, 198, 198, 0.4);
-} */
 
 .float-hover:hover {
   color: rgb(49, 127, 245);

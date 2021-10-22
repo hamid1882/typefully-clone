@@ -59,28 +59,29 @@ const DarkState = (props) => {
   // Collapse !
   const [collapse, setCollapse] = useState("d-block");
 
+  
   const handleCollapse = () => {
     if (collapse === "d-block") {
       setCollapse("d-none");
-      handleDraftCollapse();
+      check && handleDraftCollapse()
     } else {
       setCollapse("d-block");
-      handleDraftCollapse();
+      check && handleDraftCollapse()
     }
   };
-
+  
   // Draft collapse!
   const [draftCollapse, setdraftCollapse] = useState({
-    display: "block",
     transition: "all 700ms",
     borderColor: "#ecf0f4",
     transform: "translate(0px)",
   });
+  const check =  draftCollapse.transform === 'translate(0px)';
 
   const handleDraftCollapse = () => {
     if (draftCollapse.transform === "translate(-500px)") {
       setdraftCollapse({
-        transform: "translate(0)",
+        transform: "translate(0px)",
         transition: "all 700ms",
       });
     } else {

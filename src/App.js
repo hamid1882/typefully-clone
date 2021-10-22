@@ -4,18 +4,18 @@ import Navbar from "./Components/Navbar";
 import Home from "./Components/Home";
 import DarkContext from "./context/DarkContext";
 import Queue from "./Components/Queue";
+import MainState from "./context/MainState";
 
 function App() {
   const mode = useContext(DarkContext);
 
-
   return (
-    <>
+    <MainState>
       <Router>
         <Navbar />
         <Switch>
           <Route exact path="/">
-            <div style={mode.style}>
+            <div style={mode.style}> 
               <Home />
             </div>
           </Route>
@@ -26,7 +26,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
-    </>
+    </MainState>
   );
 }
 
