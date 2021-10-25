@@ -1,12 +1,11 @@
 import { useContext } from 'react'
 import TextareaAutosize from "react-textarea-autosize";
-import "../App.css";
 import ScrollToBottom from "react-scroll-to-bottom";
 import ReactTooltip from "react-tooltip";
-import MainContext from "../context/MainContext"
+import { mainContext } from '../Context'
 
 const Tweets = (props) => {
-  const main = useContext(MainContext);
+  const main = useContext( mainContext );
 
   return (
     <ScrollToBottom className="h-100 w-100 ">

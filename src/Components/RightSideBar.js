@@ -1,35 +1,35 @@
 import React, { useContext } from "react";
 import Tweets from "./Tweets";
-import "../App.css";
-import DarkContext from "../context/DarkContext";
 import Schedule from "./Schedule";
+import { darkContext, mainContext } from "../Context";
 
-const RightSideBar = (props) => {
-  const a = useContext(DarkContext);
+const RightSideBar = () => {
+  const {style, collapse, styleDark } = useContext(darkContext);
+  const { input, handleAddTweet, checkLimit, tweetAllCheck } = useContext(mainContext)
 
   return (
-    <div style={a.style} className="font-style">
+    <div style={style} className="font-style">
       <div
         style={
-          a.collapse === "d-block"
+          collapse === "d-block"
             ? { height: "calc(100vh - 8rem)" }
             : { height: "calc(100vh - 0.5rem)" }
         }
         id="tweet-div"
       >
         <Tweets
-          styleDark={a.styleDark}
-          style={a.style}
-          input={props.input}
-          handleAddTweet={props.handleAddTweet}
+          styleDark={styleDark}
+          style={style}
+          input={input}
+          handleAddTweet={handleAddTweet}
         />
       </div>
       <div
-        style={a.style}
-        className={`d-flex text-center justify-content-center ${a.collapse}`}
+        style={style}
+        className={`d-flex text-center justify-content-center ${collapse}`}
       >
         <button
-          disabled={props.input === ""}
+          disabled={input === ""}
           type='button'
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
@@ -42,13 +42,13 @@ const RightSideBar = (props) => {
         </button>
         <Schedule />
         <button
-          disabled={props.input === "" || props.input.length >= 280}
+          disabled={checkLimit}
           className="btn btn-primary rounded-pill mx-2 col text-white"
         >
           <div className="d-flex justify-content-center align-items-center">
             <i className="fa fa-paper-plane fs-4"></i>
             <span className="mx-2 text-truncate">
-              {props.input.includes("\n\n\n") ? "Tweet All" : "Tweet"}
+              {tweetAllCheck}
             </span>
           </div>
         </button>

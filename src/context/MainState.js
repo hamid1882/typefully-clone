@@ -1,14 +1,31 @@
-import { useState, useEffect } from "react";
-import MainContext from "./MainContext";
+import { useState, useEffect,useReducer } from "react";
+import { mainContext as MainContext } from ".";
+
+// function reducer(state, action) {
+//   switch(action.type) {
+//     case 'add-input':
+//       return state.input = [...state.input]
+//   }
+// }
+
+// const initialValue = {
+//   input: '',
+// }
+
+export const changeInput = 'input_change';
 
 const MainState = (props) => {
+
+  // const [state, dispatch] = useReducer(reducer, initialValue)
+
   // local storage
   const initialCount = localStorage.getItem("counter")
     ? localStorage.getItem("counter")
     : "";
+  
 
   // Controlled input
-  const [input, setInput] = useState(initialCount);
+  const [input, setInput] = useState('');
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -44,6 +61,10 @@ const MainState = (props) => {
     }
   };
 
+  const checkLimit = input === "" || input.length >= 280;
+
+  const tweetAllCheck = input.includes("\n\n\n") ? "Tweet All" : "Tweet";
+
   return (
     <MainContext.Provider
       value={{
@@ -56,6 +77,8 @@ const MainState = (props) => {
         handleTextCount,
         scrollbar,
         handleScrollBar,
+        checkLimit,
+        tweetAllCheck
       }}
     >
       {props.children}

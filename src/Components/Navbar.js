@@ -1,11 +1,10 @@
 import { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
-import DarkContext from "../context/DarkContext";
-import "../App.css";
 import SettingModal from "./SettingModal";
+import { darkContext } from "../Context";
 
 const Navbar = () => {
-  const a = useContext(DarkContext);
+  const a = useContext(darkContext)
   const location = useLocation();
 
   return (

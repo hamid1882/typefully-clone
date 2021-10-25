@@ -1,5 +1,5 @@
 import { useState } from "react";
-import DarkContext from "./DarkContext";
+import { darkContext as DarkContext } from ".";
 
 const DarkState = (props) => {
   const [style, setStyle] = useState({
@@ -79,7 +79,7 @@ const DarkState = (props) => {
   const check =  draftCollapse.transform === 'translate(0px)';
 
   const handleDraftCollapse = () => {
-    if (draftCollapse.transform === "translate(-500px)") {
+    if (draftCollapse.transform === "translate(-250px)") {
       setdraftCollapse({
         transform: "translate(0px)",
         transition: "all 700ms",
@@ -87,7 +87,7 @@ const DarkState = (props) => {
     } else {
       setdraftCollapse({
         transition: "all 1000ms",
-        transform: "translate(-500px)",
+        transform: "translate(-250px)",
       });
     }
   };

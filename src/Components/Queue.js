@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import DarkContext from "../context/DarkContext";
+import { darkContext } from "../Context";
 
 const Queue = () => {
-  const context = useContext(DarkContext);
+  const context = useContext(darkContext);
   return (
     <div style={context.style} className=" w-100 p-2 vh-100">
       <div className="container my-4">

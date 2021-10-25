@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import DarkContext from "../context/DarkContext";
 import ReactTooltip from "react-tooltip";
-import "../App.css";
+import { darkContext, mainContext } from "../Context";
 
-const Editor = (props) => {
-  const context = useContext(DarkContext);
+const Floatingicons = () => {
+  const { input, handleAddTweet } = useContext(mainContext);
+  const context = useContext(darkContext);
 
   return (
     <>
@@ -24,7 +24,7 @@ const Editor = (props) => {
           </button>
           <button
             style={context.style}
-            onClick={props.handleAddTweet}
+            onClick={handleAddTweet}
             data-tip="Add Tweet"
             className={`border-0 p-2 mx-1 ${context.collapse}`}
           >
@@ -57,7 +57,7 @@ const Editor = (props) => {
         </div>
         <div className="d-md-none mx-2 ">
           <button
-            disabled={props.input === ""}
+            disabled={input === ""}
             className="border-0 btn btn-primary rounded-circle"
           >
             <i className="fa fa-paper-plane p-2 py-3 fs-2 text-light"></i>
@@ -68,4 +68,4 @@ const Editor = (props) => {
   );
 };
 
-export default Editor;
+export default Floatingicons;

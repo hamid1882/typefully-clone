@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
-import DarkContext from "../../context/DarkContext";
+import { darkContext } from "../../Context";
 
 const About = (props) => {
-  const context = useContext(DarkContext);
+  const context = useContext(darkContext);
 
   const [modeCount, setmodeCount] = useState(1);
 

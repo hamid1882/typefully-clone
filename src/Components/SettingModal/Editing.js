@@ -1,19 +1,15 @@
 import { useState, useContext } from "react";
-import MainContext from "../../context/MainContext";
+import { mainContext } from "../../Context";
 
 const Editing = (props) => {
   const [selectEmoji, setselectEmoji] = useState(1);
-  // const [textCount, settextCount] = useState(1);
 
   const handleEmojiCount = (index) => {
     setselectEmoji(index);
   };
 
-  const main = useContext(MainContext);
+  const main = useContext(mainContext);
 
-  // const handleTextCount = (index) => {
-  //   settextCount(index);
-  // }
 
   return (
     <div>
