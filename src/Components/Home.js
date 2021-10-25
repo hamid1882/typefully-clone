@@ -1,49 +1,40 @@
 import { useContext } from "react";
-import RightSideBar from "./RightSideBar";
-import Textarea from "./Textarea";
 import Split from "react-split";
-import "../App.css";
+import RightSideBar,{SchduleButton, TweetButton} from "./RightSideBar";
+import Textarea from "./Textarea";
 import Draft from "./Draft";
-import DarkContext from "../Context/DarkContext";
-import MainContext from '../Context/MainContext';
 import TextareaMini from "./TextareaMini";
+import { darkContext } from "../Context";
+import Schedule from "./Schedule";
+
 
 const Home = () => {
-  const mode = useContext(DarkContext);
-  const main = useContext(MainContext);
-
-  
+  const mode = useContext(darkContext);
 
   return (
-    <div className="d-flex h-100 ">
-      <Draft
-        input={main.input}
-        addDraft={main.addDraft}
-        setaddDraft={main.setaddDraft}
-        handleAddDraft={main.handleAddDraft}
-      />
-      <Split
-        direction="horizontal"
-        minSize={[1000, 400]}
-        sizes={[70, 30]}
-        gutterAlign="end"
-        className="d-none d-md-flex gutterNew"
-        style={mode.style}
-      >
-        <Textarea
-          input={main.input}
-          handleChange={main.handleChange}
-          handleAddDraft={main.handleAddDraft}
-        />
-        <div style={{ width: "20%" }}>
-          <RightSideBar
-            input={main.input}
-            handleChange={main.handleChange}
-          />
+    <div style={mode.style}>
+      <div className="d-flex h-100 ">
+        <Draft />
+        <Split
+          direction="horizontal"
+          minSize={[1000, 400]}
+          sizes={[70, 30]}
+          gutterAlign="end"
+          className="d-none d-md-flex gutterNew"
+          style={mode.style}
+        >
+          <Textarea/>
+          <div style={{ width: "20%" }}>
+            <RightSideBar>
+              <SchduleButton />
+              <Schedule />
+              <TweetButton />
+            </RightSideBar>
+          </div>
+        </Split>
+        <div className="w-100 d-md-none tweet-overflow">
+          <TextareaMini />
         </div>
-      </Split>
-      <div className="w-100 d-md-none tweet-overflow">
-        <TextareaMini input={main.input} handleChange={main.handleChange} />
       </div>
     </div>
   );

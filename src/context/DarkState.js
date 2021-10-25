@@ -1,5 +1,5 @@
 import { useState } from "react";
-import DarkContext from "./DarkContext";
+import { darkContext as DarkContext } from ".";
 
 const DarkState = (props) => {
   const [style, setStyle] = useState({

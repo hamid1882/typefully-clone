@@ -1,61 +1,107 @@
-import { useState, useEffect } from "react";
-import MainContext from "./MainContext";
+import { useState, useEffect, useReducer } from "react";
+import { mainContext as MainContext } from ".";
+import { updateTextCount} from '../action';
+import {
+  textCountSelector,
+  inputSelector,
+  draftSelector,
+  scrollbarSelector
+} from '../selectors'
+
+const initialInput = localStorage.getItem("input") || "";
+
+const initialState = {
+  input: initialInput,
+  textCount: 1,
+  scrollBar: false,
+  draft: "",
+}
+
+const reducer = (state, {type, payload}) => {
+  switch (type) {
+    case "input_change":
+      return {
+        ...state,
+        input: payload
+      }
+    case "add_draft":
+      return {
+        ...state,
+        draft: payload
+      }
+    case "update_textcount":
+      return {
+        ...state,
+        textCount: payload
+      }
+    case "update_scroll_bar":
+      return {
+        ...state,
+        textCount: payload
+      }
+    case "reset":
+      return initialState
+    default:
+      return state;
+  }
+}
+
+
 
 const MainState = (props) => {
-  // local storage
-  const initialCount = localStorage.getItem("counter")
-    ? localStorage.getItem("counter")
-    : "";
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const textCount = textCountSelector(state);
+  const input = inputSelector(state)
+  const draft = draftSelector(state);
+  const scrollbar = scrollbarSelector(state);
 
-  // Controlled input
-  const [input, setInput] = useState(initialCount);
+  const handleAddDraft = (val) => {
+    dispatch({
+      type: "add_draft",
+      payload: val
+    })
+  }
 
-  const handleChange = (e) => {
-    e.preventDefault();
-    setInput(e.target.value);
+
+  const handleTextCount = (val) => {
+    dispatch(updateTextCount(val))
+  }
+
+  const setScrollBar = val => {
+    dispatch({
+      type: "update_scroll_bar",
+      payload: val
+    })
+  }
+
+  const toggleScrollBar = () => {
+    setScrollBar(!scrollbar)
   };
+
 
   useEffect(() => {
-    localStorage.setItem("counter", [input]);
+    localStorage.setItem("input", input);
   }, [input]);
 
-  // draft state and function
-  const [addDraft, setaddDraft] = useState("");
-
-  const handleAddDraft = () => {
-    setaddDraft(addDraft);
-  };
-
-  // Text Direction
-  const [textCount, settextCount] = useState(1);
-
-  const handleTextCount = (index) => {
-    settextCount(index);
-  };
-
-  // Show or hide scroll Bars
-  const [scrollbar, setScrollBar] = useState(false);
-
-  const handleScrollBar = () => {
-    if (scrollbar === false) {
-      setScrollBar(true);
-    } else {
-      setScrollBar(false);
-    }
-  };
+  const isEmptyInput = input === "";
+  const isTweets = input.includes("\n\n\n");
+  const isTextInLimit = input.length >= 280;
 
   return (
     <MainContext.Provider
       value={{
+        dispatch,
+        state,
         input,
-        handleChange,
-        addDraft,
-        setaddDraft,
+        isEmptyInput,
+        isTextInLimit,
+        isTweets,
+        draft,
         handleAddDraft,
         textCount,
         handleTextCount,
         scrollbar,
-        handleScrollBar,
+        handleScrollBar: toggleScrollBar,
       }}
     >
       {props.children}

@@ -1,19 +1,19 @@
 import { useContext } from 'react'
 import TextareaAutosize from "react-textarea-autosize";
-import "../App.css";
 import ScrollToBottom from "react-scroll-to-bottom";
 import ReactTooltip from "react-tooltip";
-import MainContext from "../Context/MainContext"
+import { darkContext, mainContext } from '../Context';
 
-const Tweets = (props) => {
-  const main = useContext(MainContext);
+const Tweets = () => {
+  const { style, styleDark : darkStyle} = useContext(darkContext);
+  const { textCount, input, handleAddTweet } = useContext(mainContext);
 
   return (
     <ScrollToBottom className="h-100 w-100 ">
       <div className={`d-flex`}>
-        <div style={props.style} className="w-100 mb-5">
+        <div style={style} className="w-100 mb-5">
           <div>
-            {props.input.split("\n\n\n").map((text) => {
+            {input.split("\n\n\n").map((text) => {
               return (
                 <>
                   <div
@@ -31,7 +31,7 @@ const Tweets = (props) => {
                         src="https://pbs.twimg.com/profile_images/1420523735472214017/uMRf2FIm_400x400.jpg"
                         alt="dp"
                       ></img>
-                      {props.input.includes("\n\n\n") && (
+                      {input.includes("\n\n\n") && (
                         <div
                           style={{
                             width: "2px",
@@ -47,7 +47,7 @@ const Tweets = (props) => {
                     <div className="overflow-hidden w-100">
                       <div className="d-flex align-items-center mx-1">
                         <h3
-                          style={props.styleDark}
+                          style={darkStyle}
                           className="py-1 m-1 text-truncate bg-transparent"
                         >
                           Hamid Hussain
@@ -56,7 +56,7 @@ const Tweets = (props) => {
                       </div>
                       <fieldset disabled>
                         <TextareaAutosize
-                          style={props.styleDark}
+                          style={darkStyle}
                           minRows={1}
                           maxRows={15}
                           value={text}
@@ -65,7 +65,7 @@ const Tweets = (props) => {
                             text.length >= 280
                               ? "border border-danger"
                               : "border-0"
-                          } ${main.textCount === 1 ? 'textDirectionLeft' : "textDirectionRight"}`}
+                          } ${textCount === 1 ? 'textDirectionLeft' : "textDirectionRight"}`}
                         />
                       </fieldset>
                       <p
@@ -73,7 +73,7 @@ const Tweets = (props) => {
                           text === "" ? "invisible" : "visible"
                         } ${text.length >= 280 ? "text-danger" : ""}`}
                       >
-                        {props.input.includes("\n\n\n")
+                        {input.includes("\n\n\n")
                           ? text.length
                           : text.length + "/280"}
                       </p>
@@ -86,13 +86,13 @@ const Tweets = (props) => {
           <ReactTooltip />
           <div
             className={`flex text-center align-items-center justify-content-center ${
-              props.input === "" ? "invisible" : "visible"
+              input === "" ? "invisible" : "visible"
             }`}
           >
             <button
               data-tip="Add tweet or Just add two new lines to break the tweet "
               className="btn"
-              onClick={props.handleAddTweet}
+              onClick={handleAddTweet}
             >
               <i className="fa fa-plus text-secondary fs-5"></i>
             </button>
