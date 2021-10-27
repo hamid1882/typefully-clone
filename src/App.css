@@ -113,3 +113,46 @@
 .heightSchedule {
   height: 250px;
 }
+
+.draftBtnHover:hover {
+  color: #802fff;
+}
+
+.draftBtnHoverLight:hover {
+  color: rgb(49, 127, 245);
+}
+
+.draftBefore {
+  width: 0%;
+  transition: all 500ms;
+}
+
+.draftAfter {
+  width: 30%;
+  transition: all 500ms;
+}
+
+.borderColor {
+  border-color: #2b343b;
+}
+
+/* Media query for draft bar making it responsive */
+
+@media only screen and (max-width: 768px) {
+  .draftPosition {
+    position: absolute !important;
+    height: 100%;
+    z-index: 99;
+  }
+  .draftAfter {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .draftAfter {
+    width: 70%;
+  }
+}
+
+

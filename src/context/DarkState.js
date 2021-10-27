@@ -109,7 +109,8 @@ const DarkState = (props) => {
     borderColor: "#ecf0f4",
     transform: "translate(0px)",
   });
-  const check = draftCollapse.transform === "translate(0px)";
+
+  const check = draftCollapse.transform === "translate(-250px)";
 
   const handleDraftCollapse = () => {
     if (draftCollapse.transform === "translate(-250px)") {
@@ -125,10 +126,13 @@ const DarkState = (props) => {
     }
   };
 
+
+
   return (
     <DarkContext.Provider
       value={{
         state,
+        check,
         style: state.style,
         handleStyle,
         handleCollapse,

@@ -27,7 +27,7 @@ const Tweets = () => {
                     <div className="text-center p-2 overflow-hidden">
                       <img
                         style={{ width: "50px", height: "50px"}}
-                        className="rounded-circle"
+                        className="rounded-circle m-2"
                         src="https://pbs.twimg.com/profile_images/1420523735472214017/uMRf2FIm_400x400.jpg"
                         alt="dp"
                       ></img>

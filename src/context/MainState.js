@@ -13,7 +13,7 @@ const initialState = {
   input: initialInput,
   textCount: 1,
   scrollBar: false,
-  draft: "",
+  deleteDraft: true,
 }
 
 const reducer = (state, {type, payload}) => {
@@ -21,12 +21,8 @@ const reducer = (state, {type, payload}) => {
     case "input_change":
       return {
         ...state,
-        input: payload
-      }
-    case "add_draft":
-      return {
-        ...state,
-        draft: payload
+        input: payload,
+        deleteDraft: true,
       }
     case "update_textcount":
       return {
@@ -43,6 +39,22 @@ const reducer = (state, {type, payload}) => {
         ...state,
         scrollBar: false
       }
+    case "delete_draft":
+      return {
+        ...state,
+        input: '',
+        deleteDraft: false,
+      }
+    case "delete_draft_new":
+      return {
+        ...state,
+        deleteDraft: true,
+      }
+    case 'add_new_tweet':
+      return {
+        ...state,
+        input: payload + '\n\n\nNew Tweet'
+      }
     default:
       return state;
   }
@@ -54,17 +66,15 @@ const MainState = (props) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const textCount = textCountSelector(state);
-  const input = inputSelector(state)
+  let input = inputSelector(state)
   const draft = draftSelector(state);
   // const scrollbar = scrollbarSelector(state);
 
-  const handleAddDraft = (val) => {
-    dispatch({
-      type: "add_draft",
-      payload: val
-    })
-  }
 
+  const handleNewTweet =()=> {
+    dispatch({type: 'add_new_tweet'})
+  }
+ 
 
   const handleTextCount = (val) => {
     dispatch(updateTextCount(val))
@@ -72,14 +82,19 @@ const MainState = (props) => {
 
   const handleScrollBar = () => {
     if(state.scrollBar === false) {
-
       dispatch({ type: 'update_scroll_bar'})
     } else {
       dispatch({ type: 'update_again_scroll_bar'})
     }
   }
 
-
+  const handleDeleteDraft = () => {
+    if(state.deleteDraft === true) {
+      dispatch( {type: 'delete_draft'} )
+    } else {
+      dispatch( {type: 'delete_draft_new'} )
+    }
+  }
 
   useEffect(() => {
     localStorage.setItem("input", input);
@@ -88,6 +103,7 @@ const MainState = (props) => {
   const isEmptyInput = input === "";
   const isTweets = input.includes("\n\n\n");
   const isTextInLimit = input.length >= 280;
+  // const newTweet = input = '\n\n\nNew Tweet'
 
   return (
     <MainContext.Provider
@@ -99,10 +115,12 @@ const MainState = (props) => {
         isTextInLimit,
         isTweets,
         draft,
-        handleAddDraft,
+        deleteDraft : state.deleteDraft,
         textCount,
         handleTextCount,
         handleScrollBar,
+        handleDeleteDraft,
+        handleNewTweet,
       }}
     >
       {props.children}

@@ -22,7 +22,7 @@ const Textarea = () => {
             ? { height: "calc(100vh - 3rem)" }
             : { height: "calc(100vh - 0.1rem)" })
       }
-      className={`font-style container-fluid ${state.scrollBar === true ? 'scroll' : 'border-end'} px-0 m-0 `}
+      className={`font-style container-fluid ${state.scrollBar === true ? 'scroll' : 'border-end border-secondary'} px-0 m-0`}
     >
       <div
         style={{ height: "calc(100% - 11.5%)" }}

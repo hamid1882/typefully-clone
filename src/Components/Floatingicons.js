@@ -3,53 +3,55 @@ import ReactTooltip from "react-tooltip";
 import { darkContext, mainContext } from "../Context";
 
 const Floatingicons = () => {
-  const context = useContext(darkContext);
-  const { input, handleAddTweet } = useContext(mainContext);
+  const {style, collapse,handleCollapse} = useContext(darkContext);
+  const { input, handleDeleteDraft, handleNewTweet } = useContext(mainContext);
+  
 
   return (
     <>
-      <div style={context.style} className="overflow-hidden d-flex p-2">
+      <div style={style} className="overflow-hidden d-flex p-2">
         <ReactTooltip />
         <div
           // eslint-disable-next-line
-          style={context.style}
+          style={style}
           className="col d-flex rounded-pill border justify-content-end align-items-center overflow-hidden mx-1 "
         >
           <button
-            style={context.style}
-            className={`border-0 p-2 mx-1 ${context.collapse}`}
+          onClick={handleDeleteDraft}
+            style={style}
+            className={`border-0 p-2 mx-1 ${collapse}`}
             data-tip="New Draft"
           >
             <i className={`fa fa-file float-hover `}></i>
           </button>
           <button
-            style={context.style}
-            onClick={handleAddTweet}
+            style={style}
+            onClick={handleNewTweet}
             data-tip="Add Tweet"
-            className={`border-0 p-2 mx-1 ${context.collapse}`}
+            className={`border-0 p-2 mx-1 ${collapse}`}
           >
             <i className="fa fa-plus-square float-hover"></i>
           </button>
           <button
-            style={context.style}
+            style={style}
             data-tip="Add Images"
-            className={`border-0 p-2 mx-1 ${context.collapse}`}
+            className={`border-0 p-2 mx-1 ${collapse}`}
           >
             <i className="fa fa-images float-hover"></i>
           </button>
 
           <button
-            style={context.style}
+            style={style}
             data-tip="Zen Mode"
-            onClick={context.handleCollapse}
+            onClick={handleCollapse}
             className={`border-0  p-2 mx-1 `}
           >
-            {context.collapse === "d-block" ? (
+            {collapse === "d-block" ? (
               <i className={`fa fa-expand-alt float-hover `}></i>
             ) : (
               <i
                 className={`fa fa-compress-alt float-hover ${
-                  context.collapse === "d-block" ? "" : "floatactive"
+                  collapse === "d-block" ? "" : "floatactive"
                 }`}
               ></i>
             )}

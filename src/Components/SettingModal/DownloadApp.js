@@ -16,7 +16,7 @@ const DownloadApp = (props) => {
                 ? { backgroundColor: "#1da1f2", color: "white" }
                 : { backgroundColor: "#802fff", color: "white" }
             }
-            className="btn w-100 rounded-pill shadow"
+            className="btn w-100 rounded-pill shadow-none "
           >
             Get Code
           </a>

@@ -16,7 +16,6 @@ export const TweetButton = () => {
 
 export const SchduleButton = () => {
   const { isEmptyInput } = useContext(mainContext);
-  console.log(isEmptyInput);
   return (<button
     disabled={isEmptyInput}
     type='button'
