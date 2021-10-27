@@ -1,57 +1,57 @@
 import React, { useContext } from "react";
 import Tweets from "./Tweets";
-import Schedule from "./Schedule";
 import { darkContext, mainContext } from "../Context";
 
-const RightSideBar = () => {
-  const {style, collapse, styleDark } = useContext(darkContext);
-  const { input, handleAddTweet, checkLimit, tweetAllCheck } = useContext(mainContext)
+export const TweetButton = () => {
+  const { isEmptyInput, isTweets, isTextInLimit } = useContext(mainContext);
+  return (<button disabled={isEmptyInput || isTextInLimit} className="btn btn-primary rounded-pill mx-2 col text-white">
+    <div className="d-flex justify-content-center align-items-center">
+      <i className="fa fa-paper-plane fs-4"></i>
+      <span className="mx-2 text-truncate">
+        {isTweets ? "Tweet All" : "Tweet"}
+      </span>
+    </div>
+  </button>);
+}
+
+export const SchduleButton = () => {
+  const { isEmptyInput } = useContext(mainContext);
+  console.log(isEmptyInput);
+  return (<button
+    disabled={isEmptyInput}
+    type='button'
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+    className="btn btn-warning rounded-pill col text-white shadow-none"
+  >
+    <div className="d-flex justify-content-center align-items-center">
+      <i className="fa fa-clock fs-4"></i>
+      <span className="p-2 text-truncate">Schedule</span>
+    </div>
+  </button>);
+}
+
+
+const RightSideBar = ({ children }) => {
+  const dark = useContext(darkContext);
 
   return (
-    <div style={style} className="font-style">
+    <div style={dark.style} className="font-style">
       <div
         style={
-          collapse === "d-block"
+          dark.collapse === "d-block"
             ? { height: "calc(100vh - 8rem)" }
             : { height: "calc(100vh - 0.5rem)" }
         }
         id="tweet-div"
       >
-        <Tweets
-          styleDark={styleDark}
-          style={style}
-          input={input}
-          handleAddTweet={handleAddTweet}
-        />
+        <Tweets />
       </div>
       <div
-        style={style}
-        className={`d-flex text-center justify-content-center ${collapse}`}
+        style={dark.style}
+        className={`d-flex text-center justify-content-center ${dark.collapse}`}
       >
-        <button
-          disabled={input === ""}
-          type='button'
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-          className="btn btn-warning rounded-pill col text-white shadow-none"
-        >
-          <div className="d-flex justify-content-center align-items-center">
-            <i className="fa fa-clock fs-4"></i>
-            <span className="p-2 text-truncate">Schedule</span>
-          </div>
-        </button>
-        <Schedule />
-        <button
-          disabled={checkLimit}
-          className="btn btn-primary rounded-pill mx-2 col text-white"
-        >
-          <div className="d-flex justify-content-center align-items-center">
-            <i className="fa fa-paper-plane fs-4"></i>
-            <span className="mx-2 text-truncate">
-              {tweetAllCheck}
-            </span>
-          </div>
-        </button>
+        {children}
       </div>
     </div>
   );

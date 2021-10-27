@@ -1,5 +1,4 @@
 import React from "react";
-
 const SelectLocation = (props) => {
   return (
     <div style={props.contextStyle} className="fs-5 navBorder p-2 border rounded-3 w-100">

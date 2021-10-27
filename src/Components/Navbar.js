@@ -1,22 +1,22 @@
 import { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
-import SettingModal from "./SettingModal";
 import { darkContext } from "../Context";
+import SettingModal from "./SettingModal";
 
 const Navbar = () => {
-  const a = useContext(darkContext)
+  const {collapse, handleDraftCollapse, style, styleDark} = useContext(darkContext);
   const location = useLocation();
 
   return (
     <nav
-      style={a.style}
-      className={`navbar navbar-expand-lg navBorder ${a.collapse}`}
+      style={style}
+      className={`navbar navbar-expand-lg navBorder ${collapse}`}
     >
       <div className="container-fluid">
         <button
-          onClick={a.handleDraftCollapse}
+          onClick={handleDraftCollapse}
           // eslint-disable-next-line
-          style={(a.style, a.styleDark)}
+          style={(style, styleDark)}
           className="btnHover border-0 px-2 py-1 rounded bg-transparent shadow-none"
         >
           <i className="fas fa-align-left fs-5"></i>
@@ -24,7 +24,7 @@ const Navbar = () => {
         <div className="d-flex mx-auto align-items-center">
           <Link
             to="/"
-            style={location.pathname === "/" ? a.styleDark : a.style}
+            style={location.pathname === "/" ? styleDark : style}
             className={`${
               location.pathname === "/" ? "btnActive" : ""
             } fs-5 mx-2 rounded px-2 py-1 border-0 d-flex align-items-center`}
@@ -36,7 +36,7 @@ const Navbar = () => {
 
           <Link
             to="/user"
-            style={location.pathname === "/user" ? a.styleDark : a.style}
+            style={location.pathname === "/user" ? styleDark : style}
             className={`${
               location.pathname === "/user" ? "btnActive" : ""
             } fs-5 mx-2 rounded px-2 py-1 border-0 d-flex align-items-center`}
@@ -47,7 +47,7 @@ const Navbar = () => {
           </Link>
 
           <button
-            style={a.style}
+            style={style}
             className="fs-5 mx-2 rounded px-2 py-1 border-0 d-flex align-items-center"
           >
             <i className="fas fa-chart-line">
@@ -58,7 +58,7 @@ const Navbar = () => {
         </div>
         <div className="d-flex">
           <button
-            style={a.style}
+            style={style}
             className="fs-5 mx-2 rounded px-2 py-1 border-0"
           >
             <i className="fas fa-bolt">

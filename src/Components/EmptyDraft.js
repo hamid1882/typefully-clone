@@ -1,11 +1,10 @@
 import { useState, useContext } from "react";
-import DarkContext from "../context/DarkContext";
-import MainContext from "../context/MainContext";
+import { darkContext, mainContext } from "../Context";
 
 const EmptyDraft = (props) => {
   const [isShown, setIsShown] = useState(false);
-  const mode = useContext(DarkContext);
-  const main = useContext(MainContext);
+  const mode = useContext(darkContext);
+  const main = useContext(mainContext);
 
   return (
     <div style={mode.style}>

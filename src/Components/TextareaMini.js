@@ -1,10 +1,16 @@
 import React, { useContext } from "react";
 import Floatingicons from "./Floatingicons";
 import { darkContext, mainContext } from "../Context";
+import {
+  changeInput
+} from '../action'
+import { inputSelector } from "../selectors";
 
 const TextareaMini = () => {
   const context = useContext(darkContext);
-  const {input, handleChange} = useContext(mainContext);
+  const { dispatch, state } = useContext(mainContext);
+  const input = inputSelector(state)
+
   return (
     <div>
       <div
@@ -17,7 +23,10 @@ const TextareaMini = () => {
         <textarea
           style={context.styleDark}
           value={input}
-          onChange={handleChange}
+          onChange={e => {
+            e.preventDefault();
+            dispatch(changeInput(e.target.value))
+          }}
         className={`textarea-style bg-transparent form-control outline-0 ${context.style.color === 'white' ? 'shadow-none' : 'shadow'} border-0 w-100 h-100 p-5`}
           placeholder="Write here."
           id="floatingTextarea"

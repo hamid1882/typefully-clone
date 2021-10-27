@@ -8,8 +8,7 @@ const Editing = (props) => {
     setselectEmoji(index);
   };
 
-  const main = useContext(mainContext);
-
+  const {textCount, handleTextCount, handleScrollBar} = useContext(mainContext);
 
   return (
     <div>
@@ -97,7 +96,7 @@ const Editing = (props) => {
             <div>Show Scrollbars</div>
             <div className="form-check form-switch fs-4">
               <input
-                onClick={main.handleScrollBar}
+                onClick={handleScrollBar}
                 className="form-check-input p-2 m-2"
                 type="checkbox"
                 role="switch"
@@ -115,9 +114,9 @@ const Editing = (props) => {
               className="d-flex border rounded-pill p-1"
             >
               <button
-                onClick={() => main.handleTextCount(1)}
+                onClick={() => handleTextCount(1)}
                 style={
-                  main.textCount === 1
+                  textCount === 1
                     ? props.contextDarkStyle
                     : props.contextStyle
                 }
@@ -126,9 +125,9 @@ const Editing = (props) => {
                 Left to Right
               </button>
               <button
-                onClick={() => main.handleTextCount(2)}
+                onClick={() => handleTextCount(2)}
                 style={
-                  main.textCount === 2
+                  textCount === 2
                     ? props.contextDarkStyle
                     : props.contextStyle
                 }

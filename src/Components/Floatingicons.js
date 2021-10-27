@@ -3,8 +3,8 @@ import ReactTooltip from "react-tooltip";
 import { darkContext, mainContext } from "../Context";
 
 const Floatingicons = () => {
-  const { input, handleAddTweet } = useContext(mainContext);
   const context = useContext(darkContext);
+  const { input, handleAddTweet } = useContext(mainContext);
 
   return (
     <>

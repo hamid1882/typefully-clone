@@ -1,84 +1,108 @@
-import { useState, useEffect,useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import { mainContext as MainContext } from ".";
+import { updateTextCount} from '../action';
+import {
+  textCountSelector,
+  inputSelector,
+  draftSelector
+} from '../selectors'
 
-// function reducer(state, action) {
-//   switch(action.type) {
-//     case 'add-input':
-//       return state.input = [...state.input]
-//   }
-// }
+const initialInput = localStorage.getItem("input") || "";
 
-// const initialValue = {
-//   input: '',
-// }
+const initialState = {
+  input: initialInput,
+  textCount: 1,
+  scrollBar: false,
+  draft: "",
+}
 
-export const changeInput = 'input_change';
+const reducer = (state, {type, payload}) => {
+  switch (type) {
+    case "input_change":
+      return {
+        ...state,
+        input: payload
+      }
+    case "add_draft":
+      return {
+        ...state,
+        draft: payload
+      }
+    case "update_textcount":
+      return {
+        ...state,
+        textCount: payload
+      }
+    case "update_scroll_bar":
+      return {
+        ...state,
+        scrollBar: true
+      }
+    case "update_again_scroll_bar":
+      return {
+        ...state,
+        scrollBar: false
+      }
+    default:
+      return state;
+  }
+}
+
+
 
 const MainState = (props) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-  // const [state, dispatch] = useReducer(reducer, initialValue)
+  const textCount = textCountSelector(state);
+  const input = inputSelector(state)
+  const draft = draftSelector(state);
+  // const scrollbar = scrollbarSelector(state);
 
-  // local storage
-  const initialCount = localStorage.getItem("counter")
-    ? localStorage.getItem("counter")
-    : "";
-  
+  const handleAddDraft = (val) => {
+    dispatch({
+      type: "add_draft",
+      payload: val
+    })
+  }
 
-  // Controlled input
-  const [input, setInput] = useState('');
 
-  const handleChange = (e) => {
-    e.preventDefault();
-    setInput(e.target.value);
-  };
-
-  useEffect(() => {
-    localStorage.setItem("counter", [input]);
-  }, [input]);
-
-  // draft state and function
-  const [addDraft, setaddDraft] = useState("");
-
-  const handleAddDraft = () => {
-    setaddDraft(addDraft);
-  };
-
-  // Text Direction
-  const [textCount, settextCount] = useState(1);
-
-  const handleTextCount = (index) => {
-    settextCount(index);
-  };
-
-  // Show or hide scroll Bars
-  const [scrollbar, setScrollBar] = useState(false);
+  const handleTextCount = (val) => {
+    dispatch(updateTextCount(val))
+  }
 
   const handleScrollBar = () => {
-    if (scrollbar === false) {
-      setScrollBar(true);
+    if(state.scrollBar === false) {
+
+      dispatch({ type: 'update_scroll_bar'})
     } else {
-      setScrollBar(false);
+      dispatch({ type: 'update_again_scroll_bar'})
     }
-  };
+  }
 
-  const checkLimit = input === "" || input.length >= 280;
 
-  const tweetAllCheck = input.includes("\n\n\n") ? "Tweet All" : "Tweet";
+
+  useEffect(() => {
+    localStorage.setItem("input", input);
+  }, [input]);
+
+  const isEmptyInput = input === "";
+  const isTweets = input.includes("\n\n\n");
+  const isTextInLimit = input.length >= 280;
 
   return (
     <MainContext.Provider
       value={{
+        dispatch,
+        state,
         input,
-        handleChange,
-        addDraft,
-        setaddDraft,
+        isEmptyInput,
+        isTextInLimit,
+        isTweets,
+        draft,
         handleAddDraft,
         textCount,
         handleTextCount,
-        scrollbar,
         handleScrollBar,
-        checkLimit,
-        tweetAllCheck
       }}
     >
       {props.children}

@@ -1,36 +1,32 @@
 import { useContext, useState } from "react";
-import DarkContext from "../context/DarkContext";
+import { darkContext, mainContext } from "../Context";
 import EmptyDraft from "./EmptyDraft";
 
-import "../App.css";
-
-const Draft = (props) => {
-  const mode = useContext(DarkContext);
+const Draft = () => {
+  const { input, handleAddDraft, state } = useContext(mainContext);
+  const mode = useContext(darkContext);
   const [draftCheck, setdraftCheck] = useState(false);
-  const [countDraft, setcountDraft] = useState(1);
+  const [countDraft, handleCount] = useState(1);
 
   const handleDraftCheck = () => {
     setdraftCheck(true);
     if (draftCheck === true) {
-      props.handleAddDraft();
+      handleAddDraft();
     }
-  };
-
-  const handleCount = (index) => {
-    setcountDraft(index);
   };
 
   return (
     <div
       style={
         (mode.style,
-        mode.draftCollapse.transform === "translate(-500px)"
+        mode.draftCollapse.transform === "translate(-250px)"
           ? { width: "5%", transition: "all 800ms easeIn" }
           : { width: '30%', transition: "all 800ms easeIn" })
       }
       className="transitionDraft d-none d-lg-block"
     >
-      <div className="font scroll h-100" style={mode.draftCollapse}>
+      <div className={`font h-100 ${state.scrollBar === true ? "scroll" : 'border-end'}`}
+       style={mode.draftCollapse}>
         <div
           style={mode.style}
           className="d-flex justify-content-center align-items-center m-1"
@@ -71,7 +67,7 @@ const Draft = (props) => {
             <span className="mx-2">New Draft</span>
           </button>
 
-          {draftCheck && <EmptyDraft input={props.input} />}
+          {draftCheck && <EmptyDraft input={input} />}
         </div>
 
       {/* scheduled */}
@@ -88,7 +84,7 @@ const Draft = (props) => {
             <span className="mx-2">New Draft</span>
           </button>
 
-          {draftCheck && <EmptyDraft input={props.input} />}
+          {draftCheck && <EmptyDraft input={input} />}
         </div>
 
         {/* Tweet */}
@@ -103,7 +99,7 @@ const Draft = (props) => {
           </button>
 
         {draftCheck &&
-        <EmptyDraft input={props.input} />}
+        <EmptyDraft input={input} />}
         </div>
       </div>
     </div>

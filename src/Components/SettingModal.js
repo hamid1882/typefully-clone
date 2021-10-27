@@ -1,14 +1,14 @@
 import { useContext } from "react";
-import SettingModalUI from "./SettingModal/SettingModalUI";
 import { darkContext } from "../Context";
+import SettingModalUI from "./SettingModal/SettingModalUI";
 
 const SettingModal = () => {
-  const context = useContext(darkContext);
+  const {styleDark, style} = useContext(darkContext);
 
   return (
-    <div style={context.style}>
+    <div style={style}>
       <button
-        style={context.styleDark}
+        style={styleDark}
         className="btn fs-5 mx-2 rounded-3 px-2 py-1 border-0 shadow-none bg-transparent navBorder"
         type="button"
         data-bs-toggle="modal"
@@ -27,19 +27,19 @@ const SettingModal = () => {
         aria-hidden="true"
       >
         <div className="container w-100 model rounded-3">
-          <div style={context.style} className="modalWidth modal-dialog rounded-3 shadow">
-            <div style={context.style} className="modalWidth modal-content bg-transparent">
+          <div style={style} className="modalWidth modal-dialog rounded-3 shadow">
+            <div style={style} className="modalWidth modal-content bg-transparent">
               <div
-                style={context.styleDark}
+                style={styleDark}
                 className="modal-header bg-transparent"
               >
                 <h5 className="modal-title" id="staticBackdropLabel">
                   Settings
                 </h5>
                 <button
-                  style={context.styleDark}
+                  style={styleDark}
                   type="button"
-                  className={`${context.styleDark.color === 'black' ? "btn-close" : "btn-close btn-close-white bg-transparent"}  rounded-circle shadow-none`}
+                  className={`${styleDark.color === 'black' ? "btn-close" : "btn-close btn-close-white bg-transparent"}  rounded-circle shadow-none`}
                   data-bs-dismiss="modal"
                   aria-label="Close"
                 ></button>

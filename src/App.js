@@ -7,7 +7,6 @@ import MainState from "./Context/MainState";
 import "./App.css";
 
 function App() {
-
   return (
     <MainState>
       <Router>
@@ -17,7 +16,7 @@ function App() {
             <Home />
           </Route>
           <Route path="/user">
-              <Queue />
+            <Queue />
           </Route>
         </Switch>
       </Router>

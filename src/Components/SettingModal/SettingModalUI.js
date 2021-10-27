@@ -34,12 +34,7 @@ const SettingModalUI = () => {
         />
 
         {/* Look div */}
-        <Look
-          toggleTab={toggleTab}
-          handleToggleTab={handleToggleTab}
-          contextStyle={context.style}
-          contextDarkStyle={context.styleDark}
-        />
+        <Look toggleTab={toggleTab} />
 
         {/* Editing here! */}
         <Editing
@@ -58,12 +53,12 @@ const SettingModalUI = () => {
         />
 
         {/* About */}
-          <About
-            toggleTab={toggleTab}
-            handleToggleTab={handleToggleTab}
-            contextStyle={context.style}
-            contextDarkStyle={context.styleDark}
-          />
+        <About
+          toggleTab={toggleTab}
+          handleToggleTab={handleToggleTab}
+          contextStyle={context.style}
+          contextDarkStyle={context.styleDark}
+        />
       </div>
     </div>
   );
