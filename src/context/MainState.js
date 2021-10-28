@@ -4,7 +4,8 @@ import { updateTextCount} from '../action';
 import {
   textCountSelector,
   inputSelector,
-  draftSelector
+  draftSelector,
+  deleteDraftSelector
 } from '../selectors'
 
 const initialInput = localStorage.getItem("input") || "";
@@ -12,7 +13,7 @@ const initialInput = localStorage.getItem("input") || "";
 const initialState = {
   input: initialInput,
   textCount: 1,
-  scrollBar: false,
+  scrollBar: true,
   deleteDraft: true,
 }
 
@@ -32,7 +33,7 @@ const reducer = (state, {type, payload}) => {
     case "update_scroll_bar":
       return {
         ...state,
-        scrollBar: true
+        scrollBar: false
       }
     case "update_again_scroll_bar":
       return {
@@ -68,6 +69,7 @@ const MainState = (props) => {
   const textCount = textCountSelector(state);
   let input = inputSelector(state)
   const draft = draftSelector(state);
+  const deleteDraft = deleteDraftSelector(state)
   // const scrollbar = scrollbarSelector(state);
 
 
@@ -81,7 +83,7 @@ const MainState = (props) => {
   }
 
   const handleScrollBar = () => {
-    if(state.scrollBar === false) {
+    if(state.scrollBar === true) {
       dispatch({ type: 'update_scroll_bar'})
     } else {
       dispatch({ type: 'update_again_scroll_bar'})
@@ -103,7 +105,6 @@ const MainState = (props) => {
   const isEmptyInput = input === "";
   const isTweets = input.includes("\n\n\n");
   const isTextInLimit = input.length >= 280;
-  // const newTweet = input = '\n\n\nNew Tweet'
 
   return (
     <MainContext.Provider
@@ -115,7 +116,7 @@ const MainState = (props) => {
         isTextInLimit,
         isTweets,
         draft,
-        deleteDraft : state.deleteDraft,
+        deleteDraft,
         textCount,
         handleTextCount,
         handleScrollBar,

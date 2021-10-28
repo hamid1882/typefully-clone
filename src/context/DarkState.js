@@ -13,6 +13,7 @@ const initialState = {
     color: "black",
     transition: "all 500ms",
     borderColor: "#ecf0f4",
+    fontFamily: "Zen Kaku Gothic Antique, sans-serif",
   },
 };
 
@@ -53,17 +54,20 @@ function reducer(state, action) {
           color: "white",
           transition: "all 500ms",
           borderColor: "#2b343b",
+          fontFamily: "Zen Kaku Gothic Antique, sans-serif",
         },
       };
     case ACTIONS.DEFAULTDARKSTYLE:
       return {
         ...state,
-        darkStyle: { 
+        darkStyle: {
           backgroundColor: "#e7ebef",
-        color: "black",
-        transition: "all 500ms",
-        borderColor: "#ecf0f4",
-      }};
+          color: "black",
+          transition: "all 500ms",
+          borderColor: "#ecf0f4",
+          fontFamily: "Zen Kaku Gothic Antique, sans-serif",
+        },
+      };
     default:
       return state;
   }
@@ -125,8 +129,6 @@ const DarkState = (props) => {
       });
     }
   };
-
-
 
   return (
     <DarkContext.Provider

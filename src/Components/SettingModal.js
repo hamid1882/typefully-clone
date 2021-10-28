@@ -9,7 +9,7 @@ const SettingModal = () => {
     <div style={style}>
       <button
         style={styleDark}
-        className="btn fs-5 mx-2 rounded-3 px-2 py-1 border-0 shadow-none bg-transparent navBorder"
+        className="btn d-flex align-items-center fs-5 mx-2 rounded-3 px-2 py-1 border-0 shadow-none bg-transparent navBorder"
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#staticBackdrop"

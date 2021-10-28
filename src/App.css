@@ -1,6 +1,9 @@
 * {
-  font-family: roboto;
   overflow: hidden;
+}
+
+.font {
+  font-family: 'Zen Kaku Gothic Antique', sans-serif;
 }
 
 .gutter {
@@ -135,6 +138,24 @@
 .borderColor {
   border-color: #2b343b;
 }
+
+.iconsShadow {
+  box-shadow: 0 0 1px 1px #2b343b;
+}
+
+.iconsShadowDark {
+  box-shadow: 0 0 1px 1px #ecf0f4;
+}
+
+::selection {
+  background: #802fff;
+  color: white;
+}
+
+
+
+
+
 
 /* Media query for draft bar making it responsive */
 

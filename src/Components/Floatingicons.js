@@ -3,18 +3,18 @@ import ReactTooltip from "react-tooltip";
 import { darkContext, mainContext } from "../Context";
 
 const Floatingicons = () => {
-  const {style, collapse,handleCollapse} = useContext(darkContext);
+  const {style, collapse,handleCollapse, state} = useContext(darkContext);
   const { input, handleDeleteDraft, handleNewTweet } = useContext(mainContext);
   
 
   return (
     <>
-      <div style={style} className="overflow-hidden d-flex p-2">
+      <div style={style} className="overflow-hidden d-flex p-2 justify-content-center align-items-center">
         <ReactTooltip />
         <div
           // eslint-disable-next-line
           style={style}
-          className="col d-flex rounded-pill border justify-content-end align-items-center overflow-hidden mx-1 "
+          className={`col d-flex rounded-pill justify-content-end align-items-center overflow-hidden mx-1 ${state.darkStyle.color === "white" ? 'iconsShadow' : 'iconsShadowDark'}`}
         >
           <button
           onClick={handleDeleteDraft}

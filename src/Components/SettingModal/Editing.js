@@ -101,6 +101,7 @@ const Editing = (props) => {
                 type="checkbox"
                 role="switch"
                 id="flexSwitchCheckChecked"
+                checked
               />
             </div>
           </div>

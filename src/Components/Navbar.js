@@ -12,7 +12,7 @@ const Navbar = () => {
       style={style}
       className={`navbar navbar-expand-lg navBorder ${collapse}`}
     >
-      <div className="container-fluid">
+      <div className="container-fluid ">
         <button
           onClick={handleDraftCollapse}
           // eslint-disable-next-line
@@ -21,7 +21,7 @@ const Navbar = () => {
         >
           <i className="fas fa-align-left fs-5"></i>
         </button>
-        <div className="d-flex mx-auto align-items-center">
+        <div className="d-flex mx-auto align-items-center ">
           <Link
             to="/"
             style={location.pathname === "/" ? styleDark : style}
@@ -30,7 +30,7 @@ const Navbar = () => {
             } fs-5 mx-2 rounded px-2 py-1 border-0 d-flex align-items-center`}
           >
             <i className="fas fa-pen ">
-              <span className="mx-2 d-none d-md-inline-block">Write</span>
+              <span className="mx-2 d-none d-md-inline-block font">Write</span>
             </i>
           </Link>
 
@@ -42,7 +42,7 @@ const Navbar = () => {
             } fs-5 mx-2 rounded px-2 py-1 border-0 d-flex align-items-center`}
           >
             <i className="fas fa-calendar">
-              <span className="mx-2 d-none d-md-inline-block">Queue</span>
+              <span className="mx-2 d-none d-md-inline-block font">Queue</span>
             </i>
           </Link>
 
@@ -51,7 +51,7 @@ const Navbar = () => {
             className="fs-5 mx-2 rounded px-2 py-1 border-0 d-flex align-items-center"
           >
             <i className="fas fa-chart-line">
-              <span className="mx-2 d-none d-md-inline-block">Grow</span>
+              <span className="mx-2 d-none d-md-inline-block font">Grow</span>
             </i>
           </button>
           <div className="d-none d-md-block"></div>
@@ -59,10 +59,10 @@ const Navbar = () => {
         <div className="d-flex">
           <button
             style={style}
-            className="fs-5 mx-2 rounded px-2 py-1 border-0"
+            className="fs-5 mx-2 rounded px-2 py-1 border-0 d-flex align-items-center"
           >
             <i className="fas fa-bolt">
-              <span className="mx-2 d-none d-md-inline-block">Upgrade</span>
+              <span className="mx-2 d-none d-md-inline-block font">Upgrade</span>
             </i>
           </button>
           <SettingModal />

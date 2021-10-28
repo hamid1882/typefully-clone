@@ -16,7 +16,7 @@ const TextareaMini = () => {
       <div
         className="container px-0"
         style={context.collapse === "d-block"
-            ? { height: "calc(100vh - 10rem)" }
+            ? { height: "calc(100vh - 9.5rem)" }
             : { height: "calc(100vh - 6rem)" }
         }
       >
