@@ -63,7 +63,7 @@ const Tweets = () => {
                           placeholder="Your Tweet will appear here..."
                           className={`bg-transparent tweet-text-area overflow-hidden resize-0 py-2 shadow-none form-control ${
                             text.length >= 280
-                              ? "border border-danger"
+                              ? "border-3 border-danger"
                               : "border-0"
                           } ${textCount === 1 ? 'textDirectionLeft' : "textDirectionRight"}`}
                         />
