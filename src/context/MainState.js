@@ -43,7 +43,6 @@ const reducer = (state, {type, payload}) => {
     case "delete_draft":
       return {
         ...state,
-        input: '',
         deleteDraft: false,
       }
     case "delete_draft_new":

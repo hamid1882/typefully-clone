@@ -4,7 +4,11 @@ import { darkContext, mainContext } from "../Context";
 
 const Floatingicons = () => {
   const {style, collapse,handleCollapse, state} = useContext(darkContext);
-  const { input, handleDeleteDraft, handleNewTweet } = useContext(mainContext);
+  const { input, handleDeleteDraft, } = useContext(mainContext);
+
+  const handleNewTweet = () => {
+    console.log("add new tweet")
+  }
   
 
   return (

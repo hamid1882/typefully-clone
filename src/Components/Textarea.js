@@ -19,8 +19,8 @@ const Textarea = () => {
       style={
         (style,
           collapse === "d-block"
-            ? { height: "calc(100vh - 3rem)" }
-            : { height: "calc(100vh - 0.1rem)" })
+            ? { height: "calc(100vh - 2.5rem)" }
+            : { height: "100vh" })
       }
       className={`font-style container-fluid ${state.scrollBar === true ? 'scroll' : 'border-end border-secondary'} px-0 m-0`}
     >

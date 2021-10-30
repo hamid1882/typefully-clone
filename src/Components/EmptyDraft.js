@@ -1,19 +1,26 @@
 import { useState, useContext } from "react";
 import { darkContext, mainContext } from "../Context";
+// import { deleteDraftList } from "../Features/TodoSlice";
+// import { deleteDraft } from "../Features/TodoSlice";
+// import {useDispatch} from 'react-redux';
 
-const EmptyDraft = () => {
+
+const EmptyDraft = ({ value, id, done, data}) => {
   const [isShown, setIsShown] = useState(false);
   const {style, styleDark, state} = useContext(darkContext);
-  const {input,textCount, handleDeleteDraft, deleteDraft} = useContext(mainContext);
+  const {textCount} = useContext(mainContext);
 
-  let data = [input]
+  // const dispatch= useDispatch();
 
+  // const deleteDraft = () => {
+  //   dispatch(deleteDraft({
+  //     item: '',
+  //   }))
+  // }
   return (
+
     <>
-      {deleteDraft && (
-        <div style={style}>
-          {data.map((data) => {
-            return (
+        {<div key={id} style={style}>
               <div className="d-flex w-100">
                 {styleDark.color === "black" ? (
                   <div
@@ -58,7 +65,6 @@ const EmptyDraft = () => {
                   {isShown && (
                     <button
                       className={`btn shadow-none border-0 `}
-                      onClick={handleDeleteDraft}
                       style={style}
                     >
                       <i className={`fas fa-times-circle ${state.darkStyle.color === 'black' ? 'draftBtnHoverLight' : "draftBtnHover"} `}></i>
@@ -66,11 +72,7 @@ const EmptyDraft = () => {
                   )}
                 </div>
               </div>
-            );
-          })}
-          {/* <button onClick={handleEmptyDraft} className="btn btn-default">Empty draft</button> */}
-        </div>
-      )}
+        </div>}
     </>
   );
 };

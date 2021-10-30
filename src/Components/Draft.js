@@ -1,18 +1,42 @@
 import { useContext, useState } from "react";
+import { useDispatch } from "react-redux";
+import { saveDraft } from "../Features/TodoSlice";
 import { darkContext, mainContext } from "../Context";
+import { useSelector } from "react-redux";
+import { selectDraftList } from "../Features/TodoSlice";
 import EmptyDraft from "./EmptyDraft";
 
 const Draft = () => {
-  const { state, deleteDraft, handleDeleteDraft } = useContext(mainContext);
+  const { state, input } =
+    useContext(mainContext);
   const { style, styleDark, draftCollapse } = useContext(darkContext);
   const [countDraft, handleCount] = useState(1);
 
-  
+  const dispatch = useDispatch();
+
+  const addDraft = () => {
+    dispatch(
+      saveDraft({
+        item: input,
+        done: true,
+        id: Date.now(),
+      })
+    );
+  };
+
+  let data = saveDraft({item: input}).payload.item;
+
+  const draftList = useSelector(selectDraftList);
 
   return (
     <div
-      className={`transitionDraft draftPosition draftMini ${draftCollapse.transform === 'translate(-250px)' ? 'draftAfter' : 'draftBefore'}`}
-      style={styleDark}>
+      className={`transitionDraft draftPosition draftMini ${
+        draftCollapse.transform === "translate(-250px)"
+          ? "draftAfter"
+          : "draftBefore"
+      }`}
+      style={styleDark}
+    >
       <div
         className={`font h-100 ${
           state.scrollBar === true ? "scroll" : "border-end border-secondary"
@@ -53,13 +77,15 @@ const Draft = () => {
           <button
             style={style}
             className="btn w-100 shadow-none p-3 border-0 border-top border-bottom rounded-0"
-            onClick={handleDeleteDraft}
+            onClick={addDraft}
           >
             <i className="fa fa-plus collapse"></i>
             <span className="mx-2">New Draft</span>
           </button>
 
-          {deleteDraft && <EmptyDraft />}
+          {draftList.map((item) => (
+             <EmptyDraft id={item.id} value={item.item} data={data}/>
+          ))}
         </div>
 
         {/* scheduled */}
@@ -70,13 +96,15 @@ const Draft = () => {
           <button
             style={style}
             className="btn w-100 shadow-none p-3 border-0 border-top border-bottom rounded-0"
-            onClick={handleDeleteDraft}
+            onClick={addDraft}
           >
             <i className="fa fa-plus collapse"></i>
             <span className="mx-2">New Draft</span>
           </button>
 
-          {deleteDraft && <EmptyDraft />}
+          {draftList.map((item) => (
+             <EmptyDraft id={item.id} value={item.item} data={data}/>
+          ))}
         </div>
 
         {/* Tweet */}
@@ -87,13 +115,15 @@ const Draft = () => {
           <button
             style={style}
             className="btn w-100 shadow-none p-3 border-0 border-top border-bottom rounded-0"
-            onClick={handleDeleteDraft}
+            onClick={addDraft}
           >
             <i className="fa fa-plus collapse"></i>
             <span className="mx-2">New Draft</span>
           </button>
 
-          {deleteDraft && <EmptyDraft />}
+          {draftList.map((item) => (
+             <EmptyDraft id={item.id} value={item.item} data={data} />
+          ))}
         </div>
       </div>
     </div>

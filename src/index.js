@@ -1,14 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from 'react-redux'
 import App from "./App";
+import { store } from "./App/store";
 import DarkState from "./Context/DarkState";
+
 import "./index.css";
 
 ReactDOM.render(
-	<React.StrictMode>
+	<Provider store={store}>
 		<DarkState>
 			<App />
 		</DarkState>
-	</React.StrictMode>,
+	</Provider>,
 	document.getElementById("root")
 );
