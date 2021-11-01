@@ -2,18 +2,30 @@ import { useContext } from 'react'
 import TextareaAutosize from "react-textarea-autosize";
 import ScrollToBottom from "react-scroll-to-bottom";
 import ReactTooltip from "react-tooltip";
+import {useSelector, useDispatch} from "react-redux";
+import {selectInputChange,newTweet } from '../Features/TodoSlice';
 import { darkContext, mainContext } from '../Context';
 
 const Tweets = () => {
   const { style, styleDark : darkStyle} = useContext(darkContext);
-  const { textCount, input, handleAddTweet } = useContext(mainContext);
+  const { textCount } = useContext(mainContext);
+  const data = useSelector(selectInputChange);
+  const renderValue = data[data.length - 1].item;
+  const dispatch = useDispatch();
+
+  const handleNewTweet = () => {
+    dispatch(newTweet({
+      item: renderValue + '\n\n\nNew Tweet',
+    }))
+  }
+
 
   return (
      <ScrollToBottom className="h-100 w-100">
       <div className={`d-flex`}>
         <div style={style} className="w-100 mb-5">
           <div>
-            {input.split("\n\n\n").map((text) => {
+            {renderValue.split('\n\n\n').map((text) => {
               return (
                 <>
                   <div
@@ -31,7 +43,7 @@ const Tweets = () => {
                         src="https://pbs.twimg.com/profile_images/1420523735472214017/uMRf2FIm_400x400.jpg"
                         alt="dp"
                       ></img>
-                      {input.includes("\n\n\n") && (
+                      {renderValue.includes("\n\n\n") && (
                         <div
                           style={{
                             width: "2px",
@@ -73,28 +85,28 @@ const Tweets = () => {
                           text === "" ? "invisible" : "visible"
                         } ${text.length >= 280 ? "text-danger" : ""}`}
                       >
-                        {input.includes("\n\n\n")
+                        {text.includes("\n\n\n")
                           ? text.length
                           : text.length + "/280"}
                       </p>
                     </div>
                   </div>
                 </>
-              );
-            })}
+               );
+           })} 
           </div>
           <ReactTooltip />
           <div
             className={`flex text-center align-items-center justify-content-center ${
-              input === "" ? "invisible" : "visible"
+              renderValue === "" ? "invisible" : "visible"
             }`}
           >
             <button
               data-tip="Add tweet or Just add two new lines to break the tweet "
-              className="btn"
-              onClick={handleAddTweet}
+              className="btn shadow-none"
+              onClick={handleNewTweet}
             >
-              <i className="fa fa-plus text-secondary fs-5"></i>
+              <i className="fa fa-plus text-secondary fs-5 float-hover"></i>
             </button>
             <button data-tip="Spread the Word" className="btn">
               <i className="fa fa-star text-secondary fs-5"></i>

@@ -1,13 +1,27 @@
 import React, { useContext } from "react";
 import ReactTooltip from "react-tooltip";
+import {useDispatch, useSelector} from 'react-redux';
+import {selectInputChange, newTweet} from '../Features/TodoSlice';
 import { darkContext, mainContext } from "../Context";
 
 const Floatingicons = () => {
   const {style, collapse,handleCollapse, state} = useContext(darkContext);
-  const { input, handleDeleteDraft, } = useContext(mainContext);
+  const { input } = useContext(mainContext);
+  const dispatch = useDispatch();
+  const inputSelect = useSelector(selectInputChange);
+  const renderValue = inputSelect[inputSelect.length - 1].item;
+
+
+  // const handleAddDraft = () => {
+  //   dispatch(deleteDraft({
+  //     item: inputSelect.push([]),
+  //   }));
+  // }
 
   const handleNewTweet = () => {
-    console.log("add new tweet")
+    dispatch(newTweet({
+      item: renderValue + '\n\n\nNew Tweet',
+    }))
   }
   
 
@@ -21,7 +35,6 @@ const Floatingicons = () => {
           className={`col d-flex rounded-pill justify-content-end align-items-center overflow-hidden mx-1 ${state.darkStyle.color === "white" ? 'iconsShadow' : 'iconsShadowDark'}`}
         >
           <button
-          onClick={handleDeleteDraft}
             style={style}
             className={`border-0 p-2 mx-1 ${collapse}`}
             data-tip="New Draft"
@@ -29,8 +42,8 @@ const Floatingicons = () => {
             <i className={`fa fa-file float-hover `}></i>
           </button>
           <button
-            style={style}
             onClick={handleNewTweet}
+            style={style}
             data-tip="Add Tweet"
             className={`border-0 p-2 mx-1 ${collapse}`}
           >

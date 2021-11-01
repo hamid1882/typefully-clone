@@ -3,30 +3,25 @@ import { useDispatch } from "react-redux";
 import { saveDraft } from "../Features/TodoSlice";
 import { darkContext, mainContext } from "../Context";
 import { useSelector } from "react-redux";
-import { selectDraftList } from "../Features/TodoSlice";
+import { selectInputChange } from "../Features/TodoSlice";
 import EmptyDraft from "./EmptyDraft";
 
 const Draft = () => {
-  const { state, input } =
-    useContext(mainContext);
+  const { state } = useContext(mainContext);
   const { style, styleDark, draftCollapse } = useContext(darkContext);
   const [countDraft, handleCount] = useState(1);
 
   const dispatch = useDispatch();
+  const inputData = useSelector(selectInputChange);
+  const renderData = inputData[inputData.length - 1].item;
 
   const addDraft = () => {
     dispatch(
       saveDraft({
-        item: input,
-        done: true,
-        id: Date.now(),
+        item: renderData,
       })
     );
   };
-
-  let data = saveDraft({item: input}).payload.item;
-
-  const draftList = useSelector(selectDraftList);
 
   return (
     <div
@@ -75,21 +70,20 @@ const Draft = () => {
           className={`${countDraft === 1 ? "d-block" : "d-none"}`}
         >
           <button
-            style={style}
-            className="btn w-100 shadow-none p-3 border-0 border-top border-bottom rounded-0"
             onClick={addDraft}
+            style={style}
+            className="btn w-100 shadow-none p-3 border-0 border-top border-bottom rounded-0 d-flex justify-content-right align-items-center"
           >
-            <i className="fa fa-plus collapse"></i>
+            <i className="fa fa-plus "></i>
             <span className="mx-2">New Draft</span>
           </button>
 
-          {draftList.map((item) => (
-             <EmptyDraft id={item.id} value={item.item} data={data}/>
-          ))}
+          {/* Empty draft rendering */}
+            <EmptyDraft data={renderData}/>
         </div>
 
         {/* scheduled */}
-        <div
+        {/* <div
           style={style}
           className={`${countDraft === 2 ? "d-block" : "d-none"}`}
         >
@@ -102,13 +96,13 @@ const Draft = () => {
             <span className="mx-2">New Draft</span>
           </button>
 
-          {draftList.map((item) => (
-             <EmptyDraft id={item.id} value={item.item} data={data}/>
+          {inputData.map((item) => (
+             <EmptyDraft id={item.id} value={item.item} />
           ))}
-        </div>
+        </div> */}
 
         {/* Tweet */}
-        <div
+        {/* <div
           style={style}
           className={`${countDraft === 3 ? "d-block" : "d-none"}`}
         >
@@ -121,10 +115,10 @@ const Draft = () => {
             <span className="mx-2">New Draft</span>
           </button>
 
-          {draftList.map((item) => (
-             <EmptyDraft id={item.id} value={item.item} data={data} />
+          {inputData.map((item) => (
+             <EmptyDraft id={item.id} value={item.item}/>
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   );

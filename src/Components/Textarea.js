@@ -1,18 +1,30 @@
 import { useRef, useEffect, useContext } from "react";
 import { darkContext, mainContext } from "../Context";
+import {useDispatch, useSelector} from 'react-redux';
+import {inputChange, selectInputChange} from '../Features/TodoSlice';
 import Floatingicons from "./Floatingicons";
-import {
-  changeInput
-} from '../action'
+
 
 const Textarea = () => {
-  const { textCount, input, dispatch, state} = useContext(mainContext);
+  const { textCount, state} = useContext(mainContext);
   const {style, styleDark, collapse} = useContext(darkContext);
   const inputRef = useRef();
+  const dispatch = useDispatch();
+
+  const data = useSelector(selectInputChange);
 
   useEffect(() => {
     inputRef.current.focus();
   }, []);
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    dispatch(inputChange({
+      item: e.target.value,
+    }))
+  }
+  const renderValue = data[data.length - 1].item;
+  // console.log(data[data.length - 1].item)
 
   return (
     <div
@@ -31,12 +43,8 @@ const Textarea = () => {
         <div className="container h-100">
           <textarea
             ref={inputRef}
-            value={input}
-            onChange={e => {
-              e.preventDefault();
-              dispatch({ type:"input_change", payload: e.target.value})
-              dispatch(changeInput(e.target.value))
-            }}
+            value={renderValue}
+            onChange={handleChange}
             style={styleDark}
             className={`textarea-style form-control outline-0 shadow-none border-0 w-100 h-100 p-5 bg-transparent ${textCount === 1 ? 'textDirectionLeft' : "textDirectionRight"}`}
             placeholder="Write here."
