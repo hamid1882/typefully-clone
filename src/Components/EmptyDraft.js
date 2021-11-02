@@ -1,11 +1,10 @@
 import { useState, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteDraft, selectStyle } from "../Features/TodoSlice";
-import { darkContext, mainContext } from "../Context";
+import {  mainContext } from "../Context";
 
 const EmptyDraft = ({ value, data }) => {
   const [isShown, setIsShown] = useState(false);
-  const { state } = useContext(darkContext);
   const { textCount } = useContext(mainContext);
   const dispatch = useDispatch();
   const newStyle = useSelector(selectStyle)
@@ -71,7 +70,7 @@ const EmptyDraft = ({ value, data }) => {
               >
                 <i
                   className={`fas fa-times-circle ${
-                    state.darkStyle.color === "black"
+                    darkStyle.color === "black"
                       ? "draftBtnHoverLight"
                       : "draftBtnHover"
                   } `}

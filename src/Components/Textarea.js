@@ -1,13 +1,12 @@
 import { useRef, useEffect, useContext } from "react";
-import { darkContext, mainContext } from "../Context";
+import { mainContext } from "../Context";
 import {useDispatch, useSelector} from 'react-redux';
-import {inputChange, selectInputChange, selectStyle} from '../Features/TodoSlice';
+import {inputChange, selectInputChange, selectStyle, selectDraftView} from '../Features/TodoSlice';
 import Floatingicons from "./Floatingicons";
 
 
 const Textarea = () => {
   const { textCount, state} = useContext(mainContext);
-  const {collapse} = useContext(darkContext);
   const inputRef = useRef();
   const dispatch = useDispatch();
 
@@ -27,6 +26,9 @@ const Textarea = () => {
     }))
   }
   const renderValue = data[data.length - 1].item;
+
+  const viewC = useSelector(selectDraftView);
+  const collapse = viewC[viewC.length - 1];
 
   return (
     <div

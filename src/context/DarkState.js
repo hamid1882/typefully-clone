@@ -1,98 +1,9 @@
-import { useState, useReducer } from "react";
+import { useState } from "react";
 import { darkContext as DarkContext } from ".";
 
-const initialState = {
-  style: {
-    backgroundColor: "white",
-    color: "#738696",
-    borderColor: "#ecf0f4",
-    transition: "all 500ms",
-  },
-  darkStyle: {
-    backgroundColor: "#e7ebef",
-    color: "black",
-    transition: "all 500ms",
-    borderColor: "#ecf0f4",
-    fontFamily: "Zen Kaku Gothic Antique, sans-serif",
-  },
-};
-
-const ACTIONS = {
-  STYLE: "style_update",
-  DEFAULTSTYLE: "defaultStyle_update",
-  DARKSTYLE: "darkStyle_update",
-  DEFAULTDARKSTYLE: "defaultdark_update",
-};
-
-function reducer(state, action) {
-  switch (action.type) {
-    case ACTIONS.STYLE:
-      return {
-        ...state,
-        style: {
-          backgroundColor: "#16212c",
-          color: "#738696",
-          transition: "all 500ms",
-          borderColor: "#2b343b",
-        },
-      };
-    case ACTIONS.DEFAULTSTYLE:
-      return {
-        ...state,
-        style: {
-          backgroundColor: "white",
-          color: "#738696",
-          borderColor: "#ecf0f4",
-          transition: "all 500ms",
-        },
-      };
-    case ACTIONS.DARKSTYLE:
-      return {
-        ...state,
-        darkStyle: {
-          backgroundColor: "#2c333a",
-          color: "white",
-          transition: "all 500ms",
-          borderColor: "#2b343b",
-          fontFamily: "Zen Kaku Gothic Antique, sans-serif",
-        },
-      };
-    case ACTIONS.DEFAULTDARKSTYLE:
-      return {
-        ...state,
-        darkStyle: {
-          backgroundColor: "#e7ebef",
-          color: "black",
-          transition: "all 500ms",
-          borderColor: "#ecf0f4",
-          fontFamily: "Zen Kaku Gothic Antique, sans-serif",
-        },
-      };
-    default:
-      return state;
-  }
-}
 
 const DarkState = (props) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
 
-  const handleStyle = () => {
-    if (state.style.backgroundColor === "white") {
-      dispatch({ type: ACTIONS.STYLE });
-    } else {
-      dispatch({ type: ACTIONS.DEFAULTSTYLE });
-    }
-  };
-
-  // Dark Style
-
-  const handleDarkStyle = () => {
-    if (state.darkStyle.color === "black") {
-      dispatch({ type: ACTIONS.DARKSTYLE });
-    } else {
-      dispatch({ type: ACTIONS.DEFAULTDARKSTYLE });
-    }
-  };
 
   // Collapse !
   const [collapse, setCollapse] = useState("d-block");
@@ -133,16 +44,11 @@ const DarkState = (props) => {
   return (
     <DarkContext.Provider
       value={{
-        state,
         check,
-        style: state.style,
-        handleStyle,
         handleCollapse,
         collapse,
         draftCollapse,
         handleDraftCollapse,
-        styleDark: state.darkStyle,
-        handleDarkStyle,
       }}
     >
       {props.children}

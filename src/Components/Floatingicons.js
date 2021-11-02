@@ -1,46 +1,87 @@
-import React, { useContext } from "react";
 import ReactTooltip from "react-tooltip";
-import {useDispatch, useSelector} from 'react-redux';
-import {selectInputChange, newTweet, saveDraft, selectStyle} from '../Features/TodoSlice';
-import { darkContext, mainContext } from "../Context";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectInputChange,
+  newTweet,
+  saveDraft,
+  selectStyle,
+  viewDraft,
+  selectDraftView,
+  collapseDraft,
+} from "../Features/TodoSlice";
 
 const Floatingicons = () => {
-  const { collapse,handleCollapse, state} = useContext(darkContext);
-  const { input } = useContext(mainContext);
   const dispatch = useDispatch();
   const inputSelect = useSelector(selectInputChange);
   const renderValue = inputSelect[inputSelect.length - 1].item;
   const newStyle = useSelector(selectStyle);
   const style = newStyle[newStyle.length - 1].styleLight;
+  const darkStyle = newStyle[newStyle.length - 1].styleDark;
 
   let increment = 0;
   const addDraft = () => {
     dispatch(
       saveDraft({
-        item: ' ',
-        id: increment++
+        item: " ",
+        id: increment++,
+      })
+    );
+    dispatch(
+      collapseDraft({
+        transition: "all 1000ms",
+        transform: "translate(-250px)",
       })
     );
   };
 
   const handleNewTweet = () => {
-    dispatch(newTweet({
-      item: renderValue + '\n\n\nNew Tweet',
-    }))
-  }
-  
+    dispatch(
+      newTweet({
+        item: renderValue + "\n\n\nNew Tweet",
+      })
+    );
+  };
+
+  const newC = useSelector(selectDraftView);
+  const collapse = newC[newC.length - 1];
+
+  const handleViewDraft = () => {
+    if (collapse === "d-block") {
+      dispatch(viewDraft(["d-none"]));
+      dispatch(
+        collapseDraft({
+          transition: "all 700ms",
+          borderColor: "#ecf0f4",
+          transform: "translate(0px)",
+        })
+      );
+    } else {
+      dispatch(viewDraft(newC[0]));
+      dispatch(
+        collapseDraft({
+          transition: "all 1000ms",
+          transform: "translate(-250px)",
+        })
+      );
+    }
+  };
 
   return (
     <>
-      <div style={style} className="overflow-hidden d-flex p-2 justify-content-center align-items-center">
+      <div
+        style={style}
+        className="overflow-hidden d-flex p-2 justify-content-center align-items-center"
+      >
         <ReactTooltip />
         <div
           // eslint-disable-next-line
           style={style}
-          className={`col d-flex rounded-pill justify-content-end align-items-center overflow-hidden mx-1 ${state.darkStyle.color === "white" ? 'iconsShadow' : 'iconsShadowDark'}`}
+          className={`col d-flex rounded-pill justify-content-end align-items-center overflow-hidden mx-1 ${
+            darkStyle.color === "white" ? "iconsShadow" : "iconsShadowDark"
+          }`}
         >
           <button
-           onClick={addDraft}
+            onClick={addDraft}
             style={style}
             className={`border-0 p-2 mx-1 ${collapse}`}
             data-tip="New Draft"
@@ -66,7 +107,7 @@ const Floatingicons = () => {
           <button
             style={style}
             data-tip="Zen Mode"
-            onClick={handleCollapse}
+            onClick={handleViewDraft}
             className={`border-0  p-2 mx-1 `}
           >
             {collapse === "d-block" ? (
@@ -82,7 +123,7 @@ const Floatingicons = () => {
         </div>
         <div className="d-md-none mx-2 ">
           <button
-            disabled={input === ""}
+            disabled={renderValue === ""}
             className="border-0 btn btn-primary rounded-circle"
           >
             <i className="fa fa-paper-plane p-2 py-3 fs-2 text-light"></i>

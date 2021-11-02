@@ -1,16 +1,41 @@
-import { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useSelector} from "react-redux";
-import { darkContext } from "../Context";
+import { useDispatch, useSelector } from "react-redux";
 import SettingModal from "./SettingModal";
-import { selectStyle} from '../Features/TodoSlice';
+import {
+  selectStyle,
+  selectDraftCollapse,
+  selectDraftView,
+  collapseDraft,
+} from "../Features/TodoSlice";
 
 const Navbar = () => {
-  const {collapse, handleDraftCollapse} = useContext(darkContext);
+  // const { collapse } = useContext(darkContext);
   const location = useLocation();
   const newStyle = useSelector(selectStyle);
   const style = newStyle[newStyle.length - 1].styleLight;
   const darkStyle = newStyle[newStyle.length - 1].styleDark;
+  
+
+  const draftColl = useSelector(selectDraftCollapse);
+  const draftCollapse = draftColl[draftColl.length - 1];
+
+  const dispatch = useDispatch();
+
+  const handleDraftCollapse = () => {
+    if(draftCollapse.transform === "translate(-250px)") {
+      dispatch(collapseDraft(draftColl[0]))
+    } else {
+      dispatch(
+        collapseDraft({
+          transition: "all 1000ms",
+          transform: "translate(-250px)",
+        })
+      );
+  };
+}
+
+  const draftView = useSelector(selectDraftView);
+  const collapse = draftView[draftView.length - 1]
 
   return (
     <nav
@@ -67,7 +92,9 @@ const Navbar = () => {
             className="fs-6 mx-2 rounded-3 px-2 py-1 border-0 d-flex align-items-center"
           >
             <i className="fas fa-bolt">
-              <span className="mx-2 d-none d-md-inline-block font">Upgrade</span>
+              <span className="mx-2 d-none d-md-inline-block font">
+                Upgrade
+              </span>
             </i>
           </button>
           <SettingModal />

@@ -1,22 +1,22 @@
-import React, { useContext } from "react";
 import Tweets from "./Tweets";
-import { darkContext } from "../Context";
 import {useSelector} from "react-redux";
-import {selectInputChange, selectStyle } from '../Features/TodoSlice';
+import {selectDraftView, selectInputChange, selectStyle } from '../Features/TodoSlice';
 
 
 
 const RightSideBar = ({ children }) => {
-  const dark = useContext(darkContext);
   const newStyle = useSelector(selectStyle);
   const style = newStyle[newStyle.length - 1].styleLight;
+
+  const viewC = useSelector(selectDraftView);
+  const collapse = viewC[viewC.length - 1];
 
   
   return (
     <div style={style} className="font-style">
       <div
         style={
-          dark.collapse === "d-block"
+          collapse === "d-block"
           ? { height: "calc(100vh - 8rem)" }
             : { height: "calc(100vh - 0.5rem)" }
           }
@@ -26,7 +26,7 @@ const RightSideBar = ({ children }) => {
       </div>
       <div
         style={style}
-        className={`d-flex text-center justify-content-center ${dark.collapse}`}
+        className={`d-flex text-center justify-content-center ${collapse}`}
         >
         {children}
       </div>
