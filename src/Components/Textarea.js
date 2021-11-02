@@ -24,7 +24,6 @@ const Textarea = () => {
     }))
   }
   const renderValue = data[data.length - 1].item;
-  // console.log(data[data.length - 1].item)
 
   return (
     <div
@@ -46,7 +45,7 @@ const Textarea = () => {
             value={renderValue}
             onChange={handleChange}
             style={styleDark}
-            className={`textarea-style form-control outline-0 shadow-none border-0 w-100 h-100 p-5 bg-transparent ${textCount === 1 ? 'textDirectionLeft' : "textDirectionRight"}`}
+            className={`textarea-style overflow-scroll tweet-overflow form-control outline-0 shadow-none border-0 w-100 h-100 p-5 bg-transparent ${textCount === 1 ? 'textDirectionLeft' : "textDirectionRight"}`}
             placeholder="Write here."
             id="floatingTextarea"
           ></textarea>

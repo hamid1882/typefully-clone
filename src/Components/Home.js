@@ -1,12 +1,11 @@
 import { useContext } from "react";
 import Split from "react-split";
-import RightSideBar,{SchduleButton, TweetButton} from "./RightSideBar";
+import RightSideBar, { ScheduleButton, TweetButton } from "./RightSideBar";
 import Textarea from "./Textarea";
 import Draft from "./Draft";
 import TextareaMini from "./TextareaMini";
 import { darkContext } from "../Context";
 import Schedule from "./Schedule";
-
 
 const Home = () => {
   const mode = useContext(darkContext);
@@ -23,10 +22,10 @@ const Home = () => {
           className="d-none d-md-flex gutterNew"
           style={mode.style}
         >
-          <Textarea/>
+          <Textarea />
           <div style={{ width: "20%" }}>
             <RightSideBar>
-              <SchduleButton />
+              <ScheduleButton />
               <Schedule />
               <TweetButton />
             </RightSideBar>

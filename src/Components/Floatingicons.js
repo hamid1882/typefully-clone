@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import ReactTooltip from "react-tooltip";
 import {useDispatch, useSelector} from 'react-redux';
-import {selectInputChange, newTweet} from '../Features/TodoSlice';
+import {selectInputChange, newTweet, saveDraft} from '../Features/TodoSlice';
 import { darkContext, mainContext } from "../Context";
 
 const Floatingicons = () => {
@@ -11,12 +11,15 @@ const Floatingicons = () => {
   const inputSelect = useSelector(selectInputChange);
   const renderValue = inputSelect[inputSelect.length - 1].item;
 
-
-  // const handleAddDraft = () => {
-  //   dispatch(deleteDraft({
-  //     item: inputSelect.push([]),
-  //   }));
-  // }
+  let increment = 0;
+  const addDraft = () => {
+    dispatch(
+      saveDraft({
+        item: ' ',
+        id: increment++
+      })
+    );
+  };
 
   const handleNewTweet = () => {
     dispatch(newTweet({
@@ -35,6 +38,7 @@ const Floatingicons = () => {
           className={`col d-flex rounded-pill justify-content-end align-items-center overflow-hidden mx-1 ${state.darkStyle.color === "white" ? 'iconsShadow' : 'iconsShadowDark'}`}
         >
           <button
+           onClick={addDraft}
             style={style}
             className={`border-0 p-2 mx-1 ${collapse}`}
             data-tip="New Draft"

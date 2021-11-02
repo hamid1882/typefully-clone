@@ -12,11 +12,12 @@ const TodoSlice = createSlice({
     saveDraft: (state, action) => {
       state.draftList.push(action.payload);
     },
-    deleteDraft: (state, action) => {
-        state.input.pop(action.payload);
-    },
     inputChange: (state, action) => {
       state.input.push(action.payload);
+    },
+    deleteDraft: (state, action) => {
+        state.draftList.pop();
+        state.input = [{item: ''}]
     },
     newTweet : (state, action) => {
       state.input.push(action.payload);
