@@ -2,7 +2,7 @@ import React from "react";
 const SelectLocation = (props) => {
   return (
     <div style={props.contextStyle} className="fs-5 navBorder p-2 border rounded-3 w-100">
-      <select style={props.contextDarkStyle} name="timezone" className="kickOutline w-100 bg-transparent border-0 outline-0">
+      <select style={props.contextStyle} name="timezone" className="kickOutline w-100 bg-transparent border-0 outline-0">
         <option disabled="" value="" >
           Select a timezone
         </option>

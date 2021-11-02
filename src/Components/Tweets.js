@@ -3,15 +3,17 @@ import TextareaAutosize from "react-textarea-autosize";
 import ScrollToBottom from "react-scroll-to-bottom";
 import ReactTooltip from "react-tooltip";
 import {useSelector, useDispatch} from "react-redux";
-import {selectInputChange,newTweet } from '../Features/TodoSlice';
-import { darkContext, mainContext } from '../Context';
+import {selectInputChange,newTweet, selectStyle } from '../Features/TodoSlice';
+import { mainContext } from '../Context';
 
 const Tweets = () => {
-  const { style, styleDark : darkStyle} = useContext(darkContext);
   const { textCount } = useContext(mainContext);
   const data = useSelector(selectInputChange);
   const renderValue = data[data.length - 1].item;
   const dispatch = useDispatch();
+  const newStyle = useSelector(selectStyle);
+  const style = newStyle[newStyle.length - 1].styleLight;
+  const darkStyle = newStyle[newStyle.length - 1].styleDark;
 
   const handleNewTweet = () => {
     dispatch(newTweet({

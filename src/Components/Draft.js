@@ -1,15 +1,16 @@
 import { useContext, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { saveDraft } from "../Features/TodoSlice";
-import { darkContext, mainContext } from "../Context";
+import { useDispatch, useSelector } from "react-redux";
+import { saveDraft, selectStyle } from "../Features/TodoSlice";
+import { darkContext } from "../Context";
 import { selectInputChange, selectDraftList } from "../Features/TodoSlice";
 import EmptyDraft from "./EmptyDraft";
 
 const Draft = () => {
-  const { state } = useContext(mainContext);
-  const { style, styleDark, draftCollapse, collapse } = useContext(darkContext);
+  const { draftCollapse, collapse } = useContext(darkContext);
   const [countDraft, handleCount] = useState(1);
+  const newStyle = useSelector(selectStyle);
+  const style = newStyle[newStyle.length - 1].styleLight;
+  const darkStyle = newStyle[newStyle.length - 1].styleDark;
 
   const dispatch = useDispatch();
   const inputData = useSelector(selectInputChange);
@@ -33,7 +34,7 @@ const Draft = () => {
           ? "draftAfter"
           : "draftBefore"
       }`}
-      style={styleDark}
+      style={darkStyle}
     >
       <div
         className="overflow-hidden"
@@ -51,21 +52,21 @@ const Draft = () => {
           >
             <button
               onClick={() => handleCount(1)}
-              style={countDraft === 1 ? styleDark : style}
+              style={countDraft === 1 ? darkStyle : style}
               className="btnActive mx-2 rounded px-2 py-1 border-0 col shadow-none outline-none"
             >
               <div> Drafts </div>
             </button>
             <button
               onClick={() => handleCount(2)}
-              style={countDraft === 2 ? styleDark : style}
+              style={countDraft === 2 ? darkStyle : style}
               className="mx-2 rounded px-2 py-1 border-0 col "
             >
               <div>Schedule</div>
             </button>
             <button
               onClick={() => handleCount(3)}
-              style={countDraft === 3 ? styleDark : style}
+              style={countDraft === 3 ? darkStyle : style}
               className="mx-2 rounded px-2 py-1 border-0 col "
             >
               <div> Tweets </div>

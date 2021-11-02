@@ -1,44 +1,46 @@
-import { useContext } from "react";
-import { darkContext } from "../Context";
+import { useSelector } from 'react-redux';
+import { selectStyle } from "../Features/TodoSlice";
 
 const Queue = () => {
-  const context = useContext(darkContext);
+  const newStyle = useSelector(selectStyle);
+  const style = newStyle[newStyle.length - 1].styleLight;
+
   return (
-    <div style={context.style}>
-      <div style={context.style} className=" w-100 p-2 vh-100">
+    <div style={style}>
+      <div style={style} className="w-100 p-2 h-100">
         <div className="container my-4">
           <div
-            style={context.style}
+            style={style}
             className="d-flex justify-content-center gap-2 py-3"
           >
             <button
-              style={context.style}
+              style={style}
               className="btn btn-primary rounded-pill"
             >
               Edit Schedule
             </button>
             <button
-              style={context.style}
+              style={style}
               className="btn btn-primary rounded-pill"
             >
               Timezone
             </button>
           </div>
-          <div style={context.style}>
+          <div style={style}>
             <p>Today</p>
-            <div style={context.style} className="border rounded shadow">
+            <div style={style} className="border rounded shadow">
               <div className="d-flex gap-3 align-items-center border-0 border-bottom p-2 py-3 text-primary">
                 <i className="fa fa-plus"></i>
                 <span>Schedule Draft</span>
               </div>
               <div className="p-2 py-3">12:00 pm</div>
             </div>
-            <div style={context.style} className="border rounded shadow my-3">
+            <div style={style} className="border rounded shadow my-3">
               <div className="d-flex gap-3 align-items-center border-0 border-bottom p-2 py-3 text-primary">
                 <i className="fa fa-plus"></i>
                 <span>Schedule Draft</span>
               </div>
-              <div style={context.style} className="p-2 py-3">
+              <div style={style} className="p-2 py-3">
                 05:00 pm
               </div>
             </div>
@@ -46,22 +48,22 @@ const Queue = () => {
         </div>
         <hr style={{ width: '100vw'}} />
         {/* Second div */}
-        <div style={context.style} className="container">
+        <div style={style} className="container">
           <p>Tuesday</p>
           <div>
-            <div style={context.style} className="border rounded shadow">
+            <div style={style} className="border rounded shadow">
               <div className="d-flex gap-3 align-items-center border-0 border-bottom p-2 py-3 text-primary">
                 <i className="fa fa-plus"></i>
                 <span>Schedule Draft</span>
               </div>
               <div className="p-2 py-3">12:00 pm</div>
             </div>
-            <div style={context.style} className="border rounded shadow my-3">
+            <div style={style} className="border rounded shadow my-3">
               <div className="d-flex gap-3 align-items-center border-0 border-bottom p-2 py-3 text-primary">
                 <i className="fa fa-plus"></i>
                 <span>Schedule Draft</span>
               </div>
-              <div style={context.style} className="p-2 py-3">
+              <div style={style} className="p-2 py-3">
                 05:00 pm
               </div>
             </div>

@@ -1,17 +1,20 @@
 import { useRef, useEffect, useContext } from "react";
 import { darkContext, mainContext } from "../Context";
 import {useDispatch, useSelector} from 'react-redux';
-import {inputChange, selectInputChange} from '../Features/TodoSlice';
+import {inputChange, selectInputChange, selectStyle} from '../Features/TodoSlice';
 import Floatingicons from "./Floatingicons";
 
 
 const Textarea = () => {
   const { textCount, state} = useContext(mainContext);
-  const {style, styleDark, collapse} = useContext(darkContext);
+  const {collapse} = useContext(darkContext);
   const inputRef = useRef();
   const dispatch = useDispatch();
 
   const data = useSelector(selectInputChange);
+  const newStyle = useSelector(selectStyle);
+  const style = newStyle[newStyle.length - 1].styleLight;
+  const darkStyle = newStyle[newStyle.length - 1].styleDark;
 
   useEffect(() => {
     inputRef.current.focus();
@@ -44,7 +47,7 @@ const Textarea = () => {
             ref={inputRef}
             value={renderValue}
             onChange={handleChange}
-            style={styleDark}
+            style={darkStyle}
             className={`textarea-style overflow-scroll tweet-overflow form-control outline-0 shadow-none border-0 w-100 h-100 p-5 bg-transparent ${textCount === 1 ? 'textDirectionLeft' : "textDirectionRight"}`}
             placeholder="Write here."
             id="floatingTextarea"

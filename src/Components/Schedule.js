@@ -1,9 +1,11 @@
-import { useContext } from "react";
-import { darkContext } from "../Context";
+import {useSelector} from 'react-redux';
+import { selectStyle } from "../Features/TodoSlice";
 import QueueNew from "./QueueNew";
 
 const Schedule = () => {
-  const context = useContext(darkContext);
+  const newStyle = useSelector(selectStyle);
+  const style = newStyle[newStyle.length - 1].styleLight;
+  const darkStyle = newStyle[newStyle.length - 1].styleDark;
 
   return (
     <>
@@ -14,24 +16,24 @@ const Schedule = () => {
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div style={context.style} className="modal-dialog rounded-3 shadow">
-          <div style={context.style} className="modal-content p-3 rounded-3">
+        <div style={style} className="modal-dialog rounded-3 shadow">
+          <div style={style} className="modal-content p-3 rounded-3">
             <div
-              style={context.style}
+              style={style}
               className="d-flex justify-content-between align-items-center px-2"
             >
               <h3
-                style={context.styleDark}
+                style={darkStyle}
                 className="modal-title bg-transparent"
                 id="exampleModalLabel"
               >
                 Schedule Tweet
               </h3>
               <button
-                style={context.styleDark}
+                style={darkStyle}
                 type="button"
                 className={`${
-                  context.styleDark.color === "black"
+                  darkStyle.color === "black"
                     ? "btn-close"
                     : "btn-close btn-close-white bg-transparent"
                 }  rounded-circle shadow-none`}
@@ -43,14 +45,14 @@ const Schedule = () => {
               <p>Choose a time here</p>
               <input
                 type="datetime-local"
-                style={context.styleDark}
+                style={darkStyle}
                 className="w-100 rounded border-0 p-2 kickOutline"
                 placeholder="In 3 hours, or tomorrow at 2pm"
               ></input>
             </div>
             <p>Or pick an available slot:</p>
             <div
-              style={context.styleDark}
+              style={darkStyle}
               className="heightSchedule rounded-3 shadow scroll tweet-auto-overflow mx-3"
             >
               <QueueNew />
@@ -63,7 +65,7 @@ const Schedule = () => {
                 className="btn btn-warning rounded-pill w-75 shadow-none"
               >
                 <div
-                  style={context.styleDark}
+                  style={darkStyle}
                   className="d-flex bg-transparent justify-content-center align-items-center"
                 >
                   <i className="fa fa-clock fs-4"></i>

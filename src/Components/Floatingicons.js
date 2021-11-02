@@ -1,15 +1,17 @@
 import React, { useContext } from "react";
 import ReactTooltip from "react-tooltip";
 import {useDispatch, useSelector} from 'react-redux';
-import {selectInputChange, newTweet, saveDraft} from '../Features/TodoSlice';
+import {selectInputChange, newTweet, saveDraft, selectStyle} from '../Features/TodoSlice';
 import { darkContext, mainContext } from "../Context";
 
 const Floatingicons = () => {
-  const {style, collapse,handleCollapse, state} = useContext(darkContext);
+  const { collapse,handleCollapse, state} = useContext(darkContext);
   const { input } = useContext(mainContext);
   const dispatch = useDispatch();
   const inputSelect = useSelector(selectInputChange);
   const renderValue = inputSelect[inputSelect.length - 1].item;
+  const newStyle = useSelector(selectStyle);
+  const style = newStyle[newStyle.length - 1].styleLight;
 
   let increment = 0;
   const addDraft = () => {

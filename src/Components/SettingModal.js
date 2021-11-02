@@ -1,14 +1,20 @@
-import { useContext } from "react";
-import { darkContext } from "../Context";
+import {useSelector} from 'react-redux';
 import SettingModalUI from "./SettingModal/SettingModalUI";
+import {selectStyle} from '../Features/TodoSlice';
 
 const SettingModal = () => {
-  const {styleDark, style} = useContext(darkContext);
+  // const {styleDark, style} = useContext(darkContext);
+
+
+  const newStyle = useSelector(selectStyle);
+  const style = newStyle[newStyle.length - 1].styleLight;
+  const darkStyle = newStyle[newStyle.length - 1].styleDark;
+
 
   return (
     <div style={style}>
       <button
-        style={styleDark}
+        style={darkStyle}
         className="btn d-flex align-items-center fs-5 mx-2 rounded-3 px-2 py-1 border-0 shadow-none bg-transparent navBorder"
         type="button"
         data-bs-toggle="modal"
@@ -30,16 +36,16 @@ const SettingModal = () => {
           <div style={style} className="modalWidth modal-dialog rounded-3 shadow">
             <div style={style} className="modalWidth modal-content bg-transparent">
               <div
-                style={styleDark}
+                style={darkStyle}
                 className="modal-header bg-transparent"
               >
                 <h5 className="modal-title" id="staticBackdropLabel">
                   Settings
                 </h5>
                 <button
-                  style={styleDark}
+                  style={darkStyle}
                   type="button"
-                  className={`${styleDark.color === 'black' ? "btn-close" : "btn-close btn-close-white bg-transparent"}  rounded-circle shadow-none`}
+                  className={`${darkStyle.color === 'black' ? "btn-close" : "btn-close btn-close-white bg-transparent"}  rounded-circle shadow-none`}
                   data-bs-dismiss="modal"
                   aria-label="Close"
                 ></button>

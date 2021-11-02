@@ -1,17 +1,19 @@
 import React, { useContext } from "react";
 import Tweets from "./Tweets";
-import { darkContext, mainContext } from "../Context";
+import { darkContext } from "../Context";
 import {useSelector} from "react-redux";
-import {selectInputChange } from '../Features/TodoSlice';
+import {selectInputChange, selectStyle } from '../Features/TodoSlice';
 
 
 
 const RightSideBar = ({ children }) => {
   const dark = useContext(darkContext);
+  const newStyle = useSelector(selectStyle);
+  const style = newStyle[newStyle.length - 1].styleLight;
 
   
   return (
-    <div style={dark.style} className="font-style">
+    <div style={style} className="font-style">
       <div
         style={
           dark.collapse === "d-block"
@@ -23,7 +25,7 @@ const RightSideBar = ({ children }) => {
         <Tweets />
       </div>
       <div
-        style={dark.style}
+        style={style}
         className={`d-flex text-center justify-content-center ${dark.collapse}`}
         >
         {children}

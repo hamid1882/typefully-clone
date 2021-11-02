@@ -1,11 +1,16 @@
 import { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useSelector} from "react-redux";
 import { darkContext } from "../Context";
 import SettingModal from "./SettingModal";
+import { selectStyle} from '../Features/TodoSlice';
 
 const Navbar = () => {
-  const {collapse, handleDraftCollapse, style, styleDark} = useContext(darkContext);
+  const {collapse, handleDraftCollapse} = useContext(darkContext);
   const location = useLocation();
+  const newStyle = useSelector(selectStyle);
+  const style = newStyle[newStyle.length - 1].styleLight;
+  const darkStyle = newStyle[newStyle.length - 1].styleDark;
 
   return (
     <nav
@@ -16,7 +21,7 @@ const Navbar = () => {
         <button
           onClick={handleDraftCollapse}
           // eslint-disable-next-line
-          style={(style, styleDark)}
+          style={darkStyle}
           className="btnHover border-0 px-2 py-1 rounded-3 bg-transparent shadow-none "
         >
           <i className="fas fa-align-left"></i>
@@ -24,7 +29,7 @@ const Navbar = () => {
         <div className="d-flex mx-auto align-items-center ">
           <Link
             to="/"
-            style={location.pathname === "/" ? styleDark : style}
+            style={location.pathname === "/" ? darkStyle : style}
             className={`${
               location.pathname === "/" ? "btnActive" : ""
             } fs-6 mx-2 rounded-3 px-2 py-1 border-0 d-flex align-items-center`}
@@ -36,7 +41,7 @@ const Navbar = () => {
 
           <Link
             to="/user"
-            style={location.pathname === "/user" ? styleDark : style}
+            style={location.pathname === "/user" ? darkStyle : style}
             className={`${
               location.pathname === "/user" ? "btnActive" : ""
             } fs-6 mx-2 rounded-3 px-2 py-1 border-0 d-flex align-items-center`}

@@ -1,15 +1,19 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import About from "./About";
 import Account from "./Account";
 import Look from "./Look";
 import Buttons from "./Buttons";
 import DownloadApp from "./DownloadApp";
 import Editing from "./Editing";
-import { darkContext } from "../../Context";
+import {selectStyle} from '../../Features/TodoSlice';
 
 const SettingModalUI = () => {
   const [toggleTab, settoggleTab] = useState(1);
-  const context = useContext(darkContext);
+
+  const newStyle = useSelector(selectStyle);
+  const style = newStyle[newStyle.length - 1].styleLight;
+  const darkStyle = newStyle[newStyle.length - 1].styleDark;
 
   const handleToggleTab = (index) => {
     settoggleTab(index);
@@ -29,8 +33,8 @@ const SettingModalUI = () => {
         <Account
           toggleTab={toggleTab}
           handleToggleTab={handleToggleTab}
-          contextStyle={context.style}
-          contextDarkStyle={context.styleDark}
+          contextStyle={style}
+          contextDarkStyle={darkStyle}
         />
 
         {/* Look div */}
@@ -40,24 +44,24 @@ const SettingModalUI = () => {
         <Editing
           toggleTab={toggleTab}
           handleToggleTab={handleToggleTab}
-          contextStyle={context.style}
-          contextDarkStyle={context.styleDark}
+          contextStyle={style}
+          contextDarkStyle={darkStyle}
         />
 
         {/* App download here */}
         <DownloadApp
           toggleTab={toggleTab}
           handleToggleTab={handleToggleTab}
-          contextStyle={context.style}
-          contextDarkStyle={context.styleDark}
+          contextStyle={style}
+          contextDarkStyle={darkStyle}
         />
 
         {/* About */}
         <About
           toggleTab={toggleTab}
           handleToggleTab={handleToggleTab}
-          contextStyle={context.style}
-          contextDarkStyle={context.styleDark}
+          contextStyle={style}
+          contextDarkStyle={darkStyle}
         />
       </div>
     </div>
