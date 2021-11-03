@@ -1,14 +1,38 @@
-import { useState, useContext } from "react";
-import { mainContext } from "../../Context";
+import { useState } from "react";
+import {useDispatch, useSelector} from 'react-redux';
+import {scrollBar, selectScrollBar, textDirection} from "../../Features/TodoSlice";
+
 
 const Editing = (props) => {
   const [selectEmoji, setselectEmoji] = useState(1);
+  const [textCount, settextCount] = useState(1)
 
   const handleEmojiCount = (index) => {
     setselectEmoji(index);
   };
 
-  const {textCount, handleTextCount, handleScrollBar} = useContext(mainContext);
+
+  const handleTextCount = (index) => {
+    settextCount(index)
+    if(textCount === 1) {
+      dispatch(textDirection(false))
+    } else {
+      dispatch(textDirection(true))
+    }
+  }
+
+  const dispatch = useDispatch();
+  const scroll = useSelector(selectScrollBar)
+
+  const handleScrollBar = () => {
+    if(scroll === false){
+      dispatch(scrollBar(true))
+    } else {
+      dispatch(scrollBar(false))
+    }
+  }
+
+
 
   return (
     <div>
@@ -96,12 +120,11 @@ const Editing = (props) => {
             <div>Show Scrollbars</div>
             <div className="form-check form-switch fs-4">
               <input
-                onClick={handleScrollBar}
                 className="form-check-input p-2 m-2"
                 type="checkbox"
                 role="switch"
                 id="flexSwitchCheckChecked"
-                
+                onClick={handleScrollBar}
               />
             </div>
           </div>

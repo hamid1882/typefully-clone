@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { saveDraft, selectStyle, selectDraftList, selectInputChange, selectDraftCollapse, selectDraftView } from "../Features/TodoSlice";
+import { saveDraft, selectStyle, selectDraftList, selectInputChange, selectDraftCollapse, selectDraftView, selectScrollBar } from "../Features/TodoSlice";
 import EmptyDraft from "./EmptyDraft";
 
 const Draft = () => {
@@ -29,6 +29,8 @@ const Draft = () => {
 
   const viewC = useSelector(selectDraftView);
   const collapse = viewC[viewC.length - 1];
+  const scroll = useSelector(selectScrollBar);
+
 
   return (
     <div
@@ -48,7 +50,7 @@ const Draft = () => {
         }
         id="tweet-div"
       >
-        <div className="font h-100 scroll" style={(draftCollapse, style)}>
+        <div className={`font h-100  ${scroll ? 'border-end shadow scroll tweet-overflow' : 'scroll'}`} style={(draftCollapse, style)}>
           <div
             style={style}
             className="d-flex justify-content-center align-items-center m-1 "
@@ -91,7 +93,7 @@ const Draft = () => {
 
             {/* Empty draft rendering */}
               {draftData.map((item) => (
-                <EmptyDraft key={item.id} value={item.item} data={renderData} />
+                <EmptyDraft id={item.id} value={item.item} data={renderData} />
               ))}
           </div>
 

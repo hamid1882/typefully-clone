@@ -1,13 +1,10 @@
-import { useContext } from 'react'
 import TextareaAutosize from "react-textarea-autosize";
 import ScrollToBottom from "react-scroll-to-bottom";
 import ReactTooltip from "react-tooltip";
 import {useSelector, useDispatch} from "react-redux";
-import {selectInputChange,newTweet, selectStyle } from '../Features/TodoSlice';
-import { mainContext } from '../Context';
+import {selectInputChange,newTweet, selectStyle, selectTextDirection } from '../Features/TodoSlice';
 
 const Tweets = () => {
-  const { textCount } = useContext(mainContext);
   const data = useSelector(selectInputChange);
   const renderValue = data[data.length - 1].item;
   const dispatch = useDispatch();
@@ -15,11 +12,19 @@ const Tweets = () => {
   const style = newStyle[newStyle.length - 1].styleLight;
   const darkStyle = newStyle[newStyle.length - 1].styleDark;
 
+ let key = data.map(id => id.id)
+
+  let keyValue = 0;
+
   const handleNewTweet = () => {
     dispatch(newTweet({
       item: renderValue + '\n\n\nNew Tweet',
+      id: keyValue++,
     }))
   }
+
+  const textDirection = useSelector(selectTextDirection);
+
 
 
   return (
@@ -31,29 +36,30 @@ const Tweets = () => {
               return (
                 <>
                   <div
+                  key={key}
                     style={
                       text === ""
                         ? null
                         : { backgroundColor: "rgba(29, 161, 242, 0.2)" }
                     }
-                    className="d-flex"
+                    className="d-flex "
                   >
-                    <div className="text-center p-2 overflow-hidden">
+                    <div className="text-center my-2 position-relative">
                       <img
                         style={{ width: "50px", height: "50px"}}
-                        className="rounded-circle m-2"
+                        className="rounded-circle mx-3"
                         src="https://pbs.twimg.com/profile_images/1420523735472214017/uMRf2FIm_400x400.jpg"
                         alt="dp"
                       ></img>
                       {renderValue.includes("\n\n\n") && (
                         <div
+                        className="position-absolute"
                           style={{
                             width: "2px",
                             backgroundColor: "gray",
                             height: "100%",
-                            margin: "0 auto",
-                            marginTop: "3px",
-                            marginBottom: "3px",
+                            left: '40px',
+                            top: '53px'
                           }}
                         ></div>
                       )}
@@ -79,7 +85,8 @@ const Tweets = () => {
                             text.length >= 280
                               ? "border-3 border-danger"
                               : "border-0"
-                          } ${textCount === 1 ? 'textDirectionLeft' : "textDirectionRight"}`}
+                          } 
+                          ${textDirection ? 'textDirectionLeft' : 'textDirectionRight'}`}
                         />
                       </fieldset>
                       <p

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   draftList: [],
-  input: [{ item: "" }],
+  input: [{ item: "" , id: 0}],
   style: [
     {
       styleLight: {
@@ -22,11 +22,14 @@ const initialState = {
   ],
   draftCollapse: [
     {
-    transition: "all 700ms",
-    borderColor: "#ecf0f4",
-    transform: "translate(0px)",
-  }],
-  draftView : ['d-block']
+      transition: "all 700ms",
+      borderColor: "#ecf0f4",
+      transform: "translate(0px)",
+    },
+  ],
+  draftView: ["d-block"],
+  scroll: false,
+  text: true,
 };
 
 const TodoSlice = createSlice({
@@ -50,16 +53,31 @@ const TodoSlice = createSlice({
       state.style.push(action.payload);
     },
     collapseDraft: (state, action) => {
-      state.draftCollapse.push(action.payload)
+      state.draftCollapse.push(action.payload);
     },
     viewDraft: (state, action) => {
-      state.draftView.push(action.payload)
-    }
+      state.draftView.push(action.payload);
+    },
+    scrollBar: (state, action) => {
+      state.scroll = action.payload;
+    },
+    textDirection: (state, action) => {
+      state.text = action.payload;
+    },
   },
 });
 
-export const { saveDraft, deleteDraft, inputChange, newTweet, addStyle, collapseDraft, viewDraft } =
-  TodoSlice.actions;
+export const {
+  saveDraft,
+  deleteDraft,
+  inputChange,
+  newTweet,
+  addStyle,
+  collapseDraft,
+  viewDraft,
+  scrollBar,
+  textDirection,
+} = TodoSlice.actions;
 
 // action creators
 
@@ -68,5 +86,8 @@ export const selectInputChange = (state) => state.draft.input;
 export const selectStyle = (state) => state.draft.style;
 export const selectDraftCollapse = (state) => state.draft.draftCollapse;
 export const selectDraftView = (state) => state.draft.draftView;
+export const selectScrollBar = (state) => state.draft.scroll;
+export const selectTextDirection = (state) => state.draft.text;
+
 
 export default TodoSlice.reducer;

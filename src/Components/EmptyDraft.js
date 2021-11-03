@@ -1,27 +1,31 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteDraft, selectStyle } from "../Features/TodoSlice";
-import {  mainContext } from "../Context";
+import { deleteDraft, selectStyle, selectTextDirection } from "../Features/TodoSlice";
 
-const EmptyDraft = ({ value, data }) => {
+const EmptyDraft = ({ value, data, id }) => {
   const [isShown, setIsShown] = useState(false);
-  const { textCount } = useContext(mainContext);
   const dispatch = useDispatch();
   const newStyle = useSelector(selectStyle)
   const style = newStyle[newStyle.length - 1].styleLight;
   const darkStyle = newStyle[newStyle.length - 1].styleDark;
 
+  let keyValue = 100;
+
   const handleDeleteDraft = () => {
     dispatch(
       deleteDraft({
         item: value,
+        id: keyValue++
       })
     );
   };
 
+  const text = useSelector(selectTextDirection);
+
+
   return (
     <>
-      <div style={style}>
+      <div key={id} style={style}>
         <div className="d-flex w-100">
           {darkStyle.color === "black" ? (
             <div
@@ -56,9 +60,7 @@ const EmptyDraft = ({ value, data }) => {
                 style={({ cursor: "pointer" }, darkStyle)}
                 value={data}
                 type="text"
-                className={`w-100 p-2 py-3 border-0 text-truncate bg-transparent ${
-                  textCount === 1 ? "textDirectionLeft" : "textDirectionRight"
-                }`}
+                className={`w-100 p-2 py-3 border-0 text-truncate bg-transparent ${text ? 'textDirectionLeft' : 'textDirectionRight'}`}
                 placeholder="Empty draft..."
               />
             </fieldset>

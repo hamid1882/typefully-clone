@@ -3,8 +3,6 @@ import SettingModalUI from "./SettingModal/SettingModalUI";
 import {selectStyle} from '../Features/TodoSlice';
 
 const SettingModal = () => {
-  // const {styleDark, style} = useContext(darkContext);
-
 
   const newStyle = useSelector(selectStyle);
   const style = newStyle[newStyle.length - 1].styleLight;
@@ -28,7 +26,7 @@ const SettingModal = () => {
         id="staticBackdrop"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="staticBackdropLabel"
         aria-hidden="true"
       >

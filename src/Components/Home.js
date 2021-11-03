@@ -1,6 +1,6 @@
 import Split from "react-split";
-import { useSelector } from 'react-redux';
-import { selectStyle } from '../Features/TodoSlice';
+import { useSelector } from "react-redux";
+import { selectStyle } from "../Features/TodoSlice";
 import RightSideBar, { ScheduleButton, TweetButton } from "./RightSideBar";
 import Textarea from "./Textarea";
 import Draft from "./Draft";
@@ -12,7 +12,7 @@ const Home = () => {
   const style = newStyle[newStyle.length - 1].styleLight;
 
   return (
-    <div style={style}>
+    <div className="vh-100" style={style}>
       <div className="d-flex h-100 ">
         <Draft />
         <Split
@@ -23,7 +23,7 @@ const Home = () => {
           className="d-none d-md-flex gutterNew"
           style={style}
         >
-          <Textarea />
+            <Textarea />
           <div style={{ width: "20%" }}>
             <RightSideBar>
               <ScheduleButton />

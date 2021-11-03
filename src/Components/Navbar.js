@@ -9,7 +9,6 @@ import {
 } from "../Features/TodoSlice";
 
 const Navbar = () => {
-  // const { collapse } = useContext(darkContext);
   const location = useLocation();
   const newStyle = useSelector(selectStyle);
   const style = newStyle[newStyle.length - 1].styleLight;
