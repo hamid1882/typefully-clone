@@ -13,7 +13,6 @@ const Navbar = () => {
   const newStyle = useSelector(selectStyle);
   const style = newStyle[newStyle.length - 1].styleLight;
   const darkStyle = newStyle[newStyle.length - 1].styleDark;
-  
 
   const draftColl = useSelector(selectDraftCollapse);
   const draftCollapse = draftColl[draftColl.length - 1];
@@ -21,8 +20,8 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   const handleDraftCollapse = () => {
-    if(draftCollapse.transform === "translate(-250px)") {
-      dispatch(collapseDraft(draftColl[0]))
+    if (draftCollapse.transform === "translate(-250px)") {
+      dispatch(collapseDraft(draftColl[0]));
     } else {
       dispatch(
         collapseDraft({
@@ -30,11 +29,11 @@ const Navbar = () => {
           transform: "translate(-250px)",
         })
       );
+    }
   };
-}
 
   const draftView = useSelector(selectDraftView);
-  const collapse = draftView[draftView.length - 1]
+  const collapse = draftView[draftView.length - 1];
 
   return (
     <nav
@@ -43,6 +42,7 @@ const Navbar = () => {
     >
       <div className="container-fluid fs-6">
         <button
+          data-testid="collapse-btn"
           onClick={handleDraftCollapse}
           // eslint-disable-next-line
           style={darkStyle}

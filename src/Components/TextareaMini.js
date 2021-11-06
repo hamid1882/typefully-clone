@@ -43,7 +43,7 @@ const TextareaMini = () => {
   const text = useSelector(selectTextDirection);
 
   return (
-    <div onClick={handleCollapse}>
+    <div>
       <div
         className="container px-0"
         style={
@@ -53,6 +53,7 @@ const TextareaMini = () => {
         }
       >
         <textarea
+        onClick={handleCollapse}
           style={darkStyle}
           value={renderValue}
           onChange={handleChange}
