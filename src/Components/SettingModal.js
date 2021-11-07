@@ -7,9 +7,8 @@ const SettingModal = () => {
   const newStyle = useSelector(selectStyle);
   const style = newStyle.styleLight;
   const darkStyle = newStyle.styleDark;
-  console.log(darkStyle.color);
 
-
+  
   return (
     <div style={style}>
       <button

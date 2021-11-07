@@ -36,7 +36,7 @@ const Schedule = () => {
                   darkStyle.color === "black"
                     ? "btn-close"
                     : "btn-close btn-close-white bg-transparent"
-                }  rounded-circle shadow-none`}
+                }  rounded-circle shadow-none p-2`}
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
@@ -57,7 +57,7 @@ const Schedule = () => {
             >
               <QueueNew />
             </div>
-            <div className="my-3 mt-5 d-flex justify-content-center ">
+            <div className="my-3 mt-5 d-flex justify-content-center">
               <button
                 type="button"
                 data-bs-dismiss="modal"

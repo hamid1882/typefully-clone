@@ -62,11 +62,12 @@ export const {
 
 export const selectDraftList = (state) => state.draft.draftList;
 export const selectInputChange = (state) => state.draft.input;
-export const selectStyle = (state) => state.draft.input;
+export const selectStyle = (state) => state.draft.style;
 export const selectDraftCollapse = (state) => state.draft.draftCollapse;
 export const selectDraftView = (state) => state.draft.draftView;
 export const selectScrollBar = (state) => state.draft.scroll;
 export const selectTextDirection = (state) => state.draft.text;
+
 
 
 export default InputSlice.reducer;

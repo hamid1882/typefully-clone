@@ -14,6 +14,8 @@ const TextareaMini = () => {
   const style = newStyle.styleLight;
   const darkStyle = newStyle.styleDark;
 
+  console.log(style)
+
   const data = useSelector(selectInputChange);
 
   const dispatch = useDispatch();

@@ -11,14 +11,12 @@ import { collapseIn, Collapse } from "../Features/Styles";
 
 const Navbar = () => {
   const location = useLocation();
+  const dispatch = useDispatch();
   const newStyle = useSelector(selectStyle);
   const style = newStyle.styleLight;
   const darkStyle = newStyle.styleDark;
-
   const draftColl = useSelector(selectDraftCollapse);
-  console.log(draftColl)
-
-  const dispatch = useDispatch();
+  const collapse = useSelector(selectDraftView);
 
   const handleDraftCollapse = () => {
     if (draftColl.transform === "translate(-250px)") {
@@ -27,11 +25,6 @@ const Navbar = () => {
       dispatch(collapseDraft(collapseIn));
     }
   };
-
-  const draftView = useSelector(selectDraftView);
-  const collapse = draftView;
-
-
 
   return (
     <nav
@@ -83,16 +76,13 @@ const Navbar = () => {
           </button>
           <div className="d-none d-md-block"></div>
         </div>
-        <div className="d-flex">
+        <div className="d-flex justify-content-center align-items-center">
           <button
-            style={style}
-            className="fs-6 mx-2 rounded-3 px-2 py-1 border-0 d-flex align-items-center"
+            style={darkStyle}
+            className="fs-6 mx-2 rounded-3 px-2 py-2 border-0 d-flex justify-content-center align-items-center"
           >
-            <i className="fas fa-bolt">
-              <span className="mx-2 d-none d-md-inline-block font">
-                Upgrade
-              </span>
-            </i>
+            <i className="fas fa-bolt"></i>
+            <span className="mx-2 font d-none d-md-inline-block ">Upgrade</span>
           </button>
           <SettingModal />
         </div>

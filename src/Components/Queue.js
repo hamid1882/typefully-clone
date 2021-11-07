@@ -28,14 +28,14 @@ const Queue = () => {
           </div>
           <div style={style}>
             <p>Today</p>
-            <div style={style} className="border rounded shadow">
+            <div style={style} className="border rounded">
               <div className="d-flex gap-3 align-items-center border-0 border-bottom p-2 py-3 text-primary">
                 <i className="fa fa-plus"></i>
                 <span>Schedule Draft</span>
               </div>
               <div className="p-2 py-3">12:00 pm</div>
             </div>
-            <div style={style} className="border rounded shadow my-3">
+            <div style={style} className="border rounded my-3">
               <div className="d-flex gap-3 align-items-center border-0 border-bottom p-2 py-3 text-primary">
                 <i className="fa fa-plus"></i>
                 <span>Schedule Draft</span>
@@ -51,14 +51,14 @@ const Queue = () => {
         <div style={style} className="container">
           <p>Tuesday</p>
           <div>
-            <div style={style} className="border rounded shadow">
+            <div style={style} className="border rounded">
               <div className="d-flex gap-3 align-items-center border-0 border-bottom p-2 py-3 text-primary">
                 <i className="fa fa-plus"></i>
                 <span>Schedule Draft</span>
               </div>
               <div className="p-2 py-3">12:00 pm</div>
             </div>
-            <div style={style} className="border rounded shadow my-3">
+            <div style={style} className="border rounded my-3">
               <div className="d-flex gap-3 align-items-center border-0 border-bottom p-2 py-3 text-primary">
                 <i className="fa fa-plus"></i>
                 <span>Schedule Draft</span>
