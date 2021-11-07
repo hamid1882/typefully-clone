@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteDraft, selectStyle, selectTextDirection } from "../Features/TodoSlice";
+import { deleteDraft, selectStyle, selectTextDirection } from "../Features/InputSlice";
 
 const EmptyDraft = ({ value, data, id }) => {
   const [isShown, setIsShown] = useState(false);
   const dispatch = useDispatch();
   const newStyle = useSelector(selectStyle)
-  const style = newStyle[newStyle.length - 1].styleLight;
-  const darkStyle = newStyle[newStyle.length - 1].styleDark;
+  const style = newStyle.styleLight;
+  const darkStyle = newStyle.styleDark;
 
   let keyValue = 100;
 

@@ -4,14 +4,13 @@ import {
   selectDraftView,
   selectInputChange,
   selectStyle,
-} from "../Features/TodoSlice";
+} from "../Features/InputSlice";
 
 const RightSideBar = ({ children }) => {
   const newStyle = useSelector(selectStyle);
-  const style = newStyle[newStyle.length - 1].styleLight;
+  const style = newStyle.styleLight;
 
-  const viewC = useSelector(selectDraftView);
-  const collapse = viewC[viewC.length - 1];
+  const collapse = useSelector(selectDraftView);
 
   return (
     <div style={style} className="font-style">

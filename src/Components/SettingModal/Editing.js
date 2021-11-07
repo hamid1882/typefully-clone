@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import {scrollBar, selectScrollBar, textDirection} from "../../Features/TodoSlice";
+import {scrollBar, selectScrollBar, textDirection} from "../../Features/InputSlice";
 
 
 const Editing = (props) => {

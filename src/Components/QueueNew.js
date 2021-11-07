@@ -1,10 +1,10 @@
 import {useSelector} from 'react-redux';
-import {selectStyle} from '../Features/TodoSlice';
+import {selectStyle} from '../Features/InputSlice';
 
 const QueueNew = () => {
   const newStyle = useSelector(selectStyle);
-  const style = newStyle[newStyle.length - 1].styleLight;
-  const darkStyle = newStyle[newStyle.length - 1].styleDark;
+  const style = newStyle.styleLight;
+  const darkStyle = newStyle.styleDark;
 
 
   return (

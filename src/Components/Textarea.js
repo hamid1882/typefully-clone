@@ -7,7 +7,7 @@ import {
   selectDraftView,
   selectScrollBar,
   selectTextDirection,
-} from "../Features/TodoSlice";
+} from "../Features/InputSlice";
 import Floatingicons from "./Floatingicons";
 
 const Textarea = () => {
@@ -16,8 +16,8 @@ const Textarea = () => {
 
   const data = useSelector(selectInputChange);
   const newStyle = useSelector(selectStyle);
-  const style = newStyle[newStyle.length - 1].styleLight;
-  const darkStyle = newStyle[newStyle.length - 1].styleDark;
+  const style = newStyle.styleLight;
+  const darkStyle = newStyle.styleDark;
 
   useEffect(() => {
     inputRef.current.focus();
@@ -37,8 +37,7 @@ const Textarea = () => {
 
   const renderValue = data[data.length - 1].item;
 
-  const viewC = useSelector(selectDraftView);
-  const collapse = viewC[viewC.length - 1];
+  const collapse = useSelector(selectDraftView);
 
   const scroll = useSelector(selectScrollBar);
   const text = useSelector(selectTextDirection);

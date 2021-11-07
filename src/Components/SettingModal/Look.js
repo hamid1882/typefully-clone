@@ -1,51 +1,28 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addStyle, selectStyle } from "../../Features/TodoSlice";
+import { DarkMode, lightMode } from "../../Features/Styles";
+import { addStyle, selectStyle } from "../../Features/InputSlice";
 
 const About = (props) => {
   const [modeCount, setmodeCount] = useState(1);
   const dispatch = useDispatch();
   const newStyle = useSelector(selectStyle);
-  const style = newStyle[newStyle.length - 1].styleLight;
-  const darkStyle = newStyle[newStyle.length - 1].styleDark;
+  const style = newStyle.styleLight;
+  const darkStyle = newStyle.styleDark;
 
   const handleDisplayMode = (index) => {
     setmodeCount(index);
   };
-  
-  const darkMode = () => {
+
+  const handleDarkMode = () => {
     handleDisplayMode(2);
-    dispatch(
-      addStyle({
-        styleLight: {
-          backgroundColor: "#16212c",
-          color: "#738696",
-          transition: "all 500ms",
-          borderColor: "#2b343b",
-        },
-        styleDark: {
-          backgroundColor: "#2c333a",
-          color: "white",
-          transition: "all 500ms",
-          borderColor: "#2b343b",
-          fontFamily: "Zen Kaku Gothic Antique, sans-serif",
-        },
-      })
-    );
+    dispatch(addStyle(DarkMode));
   };
 
-  const lightMode = () => {
+  const handleLightMode = () => {
     handleDisplayMode(1);
-    dispatch(
-      addStyle({
-        styleLight: newStyle[0].styleLight,
-        styleDark: newStyle[0].styleDark
-      })
-    );
+    dispatch(addStyle(lightMode));
   };
-
-
-
 
   return (
     <div
@@ -62,14 +39,14 @@ const About = (props) => {
         <p>Automatically used when your system is set to dark mode.</p>
         <div style={style} className="d-flex border rounded-pill p-1">
           <button
-            onClick={lightMode}
+            onClick={handleLightMode}
             style={modeCount === 1 ? darkStyle : style}
             className="col btn rounded-pill shadow-none border-0"
           >
             Light
           </button>
           <button
-            onClick={darkMode}
+            onClick={handleDarkMode}
             style={modeCount === 2 ? darkStyle : style}
             className="col btn rounded-pill shadow-none border-0"
           >

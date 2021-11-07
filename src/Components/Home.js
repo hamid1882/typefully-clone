@@ -1,15 +1,15 @@
 import Split from "react-split";
 import { useSelector } from "react-redux";
-import { selectStyle } from "../Features/TodoSlice";
 import RightSideBar, { ScheduleButton, TweetButton } from "./RightSideBar";
 import Textarea from "./Textarea";
 import Draft from "./Draft";
 import TextareaMini from "./TextareaMini";
 import Schedule from "./Schedule";
+import { selectStyle } from "../Features/InputSlice";
 
 const Home = () => {
   const newStyle = useSelector(selectStyle);
-  const style = newStyle[newStyle.length - 1].styleLight;
+  const style = newStyle.styleLight;
 
   return (
     <div className="vh-100" style={style}>

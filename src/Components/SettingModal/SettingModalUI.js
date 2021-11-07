@@ -6,14 +6,14 @@ import Look from "./Look";
 import Buttons from "./Buttons";
 import DownloadApp from "./DownloadApp";
 import Editing from "./Editing";
-import {selectStyle} from '../../Features/TodoSlice';
+import {selectStyle} from '../../Features/InputSlice';
 
 const SettingModalUI = () => {
   const [toggleTab, settoggleTab] = useState(1);
 
   const newStyle = useSelector(selectStyle);
-  const style = newStyle[newStyle.length - 1].styleLight;
-  const darkStyle = newStyle[newStyle.length - 1].styleDark;
+  const style = newStyle.styleLight;
+  const darkStyle = newStyle.styleDark;
 
   const handleToggleTab = (index) => {
     settoggleTab(index);

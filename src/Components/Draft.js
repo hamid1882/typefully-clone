@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { saveDraft, selectStyle, selectDraftList, selectInputChange, selectDraftCollapse, selectDraftView, selectScrollBar } from "../Features/TodoSlice";
+import { saveDraft, selectStyle, selectDraftList, selectInputChange, selectDraftCollapse, selectDraftView, selectScrollBar } from "../Features/InputSlice";
 import EmptyDraft from "./EmptyDraft";
 
 const Draft = () => {
   const [countDraft, handleCount] = useState(1);
   const newStyle = useSelector(selectStyle);
-  const style = newStyle[newStyle.length - 1].styleLight;
-  const darkStyle = newStyle[newStyle.length - 1].styleDark;
+  const style = newStyle.styleLight;
+  const darkStyle = newStyle.styleDark;
 
   const dispatch = useDispatch();
   const inputData = useSelector(selectInputChange);
@@ -24,11 +24,9 @@ const Draft = () => {
     );
   };
 
-  const draftColl = useSelector(selectDraftCollapse);
-  const draftCollapse = draftColl[draftColl.length - 1];
+  const draftCollapse = useSelector(selectDraftCollapse);
 
-  const viewC = useSelector(selectDraftView);
-  const collapse = viewC[viewC.length - 1];
+  const collapse = useSelector(selectDraftView);
   const scroll = useSelector(selectScrollBar);
 
 

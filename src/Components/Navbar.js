@@ -6,34 +6,32 @@ import {
   selectDraftCollapse,
   selectDraftView,
   collapseDraft,
-} from "../Features/TodoSlice";
+} from "../Features/InputSlice";
+import { collapseIn, Collapse } from "../Features/Styles";
 
 const Navbar = () => {
   const location = useLocation();
   const newStyle = useSelector(selectStyle);
-  const style = newStyle[newStyle.length - 1].styleLight;
-  const darkStyle = newStyle[newStyle.length - 1].styleDark;
+  const style = newStyle.styleLight;
+  const darkStyle = newStyle.styleDark;
 
   const draftColl = useSelector(selectDraftCollapse);
-  const draftCollapse = draftColl[draftColl.length - 1];
+  console.log(draftColl)
 
   const dispatch = useDispatch();
 
   const handleDraftCollapse = () => {
-    if (draftCollapse.transform === "translate(-250px)") {
-      dispatch(collapseDraft(draftColl[0]));
+    if (draftColl.transform === "translate(-250px)") {
+      dispatch(collapseDraft(Collapse));
     } else {
-      dispatch(
-        collapseDraft({
-          transition: "all 1000ms",
-          transform: "translate(-250px)",
-        })
-      );
+      dispatch(collapseDraft(collapseIn));
     }
   };
 
   const draftView = useSelector(selectDraftView);
-  const collapse = draftView[draftView.length - 1];
+  const collapse = draftView;
+
+
 
   return (
     <nav

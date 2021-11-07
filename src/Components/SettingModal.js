@@ -1,12 +1,13 @@
 import {useSelector} from 'react-redux';
 import SettingModalUI from "./SettingModal/SettingModalUI";
-import {selectStyle} from '../Features/TodoSlice';
+import {selectStyle} from '../Features/InputSlice';
 
 const SettingModal = () => {
 
   const newStyle = useSelector(selectStyle);
-  const style = newStyle[newStyle.length - 1].styleLight;
-  const darkStyle = newStyle[newStyle.length - 1].styleDark;
+  const style = newStyle.styleLight;
+  const darkStyle = newStyle.styleDark;
+  console.log(darkStyle.color);
 
 
   return (
@@ -43,7 +44,7 @@ const SettingModal = () => {
                 <button
                   style={darkStyle}
                   type="button"
-                  className={`${darkStyle.color === 'black' ? "btn-close" : "btn-close btn-close-white bg-transparent"}  rounded-circle shadow-none`}
+                  className={`${darkStyle.color === 'black'  ? "btn-close" : "btn-close btn-close-white bg-transparent"}  rounded-circle shadow-none`}
                   data-bs-dismiss="modal"
                   aria-label="Close"
                 ></button>

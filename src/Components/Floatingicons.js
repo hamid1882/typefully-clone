@@ -8,15 +8,16 @@ import {
   viewDraft,
   selectDraftView,
   collapseDraft,
-} from "../Features/TodoSlice";
+} from "../Features/InputSlice";
+import { collapseIn } from "../Features/Styles";
 
 const Floatingicons = () => {
   const dispatch = useDispatch();
   const inputSelect = useSelector(selectInputChange);
   const renderValue = inputSelect[inputSelect.length - 1].item;
   const newStyle = useSelector(selectStyle);
-  const style = newStyle[newStyle.length - 1].styleLight;
-  const darkStyle = newStyle[newStyle.length - 1].styleDark;
+  const style = newStyle.styleLight;
+  const darkStyle = newStyle.styleDark;
 
   let increment = 0;
   const addDraft = () => {
@@ -42,12 +43,11 @@ const Floatingicons = () => {
     );
   };
 
-  const newC = useSelector(selectDraftView);
-  const collapse = newC[newC.length - 1];
+  const collapse = useSelector(selectDraftView);
 
   const handleViewDraft = () => {
     if (collapse === "d-block") {
-      dispatch(viewDraft(["d-none"]));
+      dispatch(viewDraft("d-none"));
       dispatch(
         collapseDraft({
           transition: "all 700ms",
@@ -56,13 +56,8 @@ const Floatingicons = () => {
         })
       );
     } else {
-      dispatch(viewDraft(newC[0]));
-      dispatch(
-        collapseDraft({
-          transition: "all 1000ms",
-          transform: "translate(-250px)",
-        })
-      );
+      dispatch(viewDraft("d-block"));
+      dispatch(collapseDraft(collapseIn));
     }
   };
 
@@ -121,9 +116,10 @@ const Floatingicons = () => {
             )}
           </button>
         </div>
-        <div 
-        style={{right: '20px', bottom: '55px'}}
-        className="d-md-none mx-2 position-absolute">
+        <div
+          style={{ right: "20px", bottom: "55px" }}
+          className="d-md-none mx-2 position-absolute"
+        >
           <button
             disabled={renderValue === ""}
             className="border-0 btn btn-primary rounded-circle"
