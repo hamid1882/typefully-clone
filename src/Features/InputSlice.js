@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Collapse, lightMode } from "./Styles";
 
-const initialState = {
+  const initialState = {
   draftList: [],
   input: [{ item: "" , id: 0}],
   style: lightMode,
@@ -11,7 +11,7 @@ const initialState = {
   text: true,
 };
 
-const InputSlice = createSlice({
+  const InputSlice = createSlice({
   name: "draftBox",
   initialState,
   reducers: {

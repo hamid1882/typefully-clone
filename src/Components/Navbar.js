@@ -33,9 +33,7 @@ const Navbar = () => {
     >
       <div className="container-fluid fs-6">
         <button
-          data-testid="collapse-btn"
           onClick={handleDraftCollapse}
-          // eslint-disable-next-line
           style={darkStyle}
           className="btnHover border-0 px-2 py-1 rounded-3 bg-transparent shadow-none "
         >
@@ -82,7 +80,7 @@ const Navbar = () => {
             className="fs-6 mx-2 rounded-3 px-2 py-2 border-0 d-flex justify-content-center align-items-center"
           >
             <i className="fas fa-bolt"></i>
-            <span className="mx-2 font d-none d-md-inline-block ">Upgrade</span>
+            <span className="mx-2 font d-none d-md-inline-block" data-testid="upgrade-btn">Upgrade</span>
           </button>
           <SettingModal />
         </div>

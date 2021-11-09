@@ -58,7 +58,6 @@ export const ScheduleButton = () => {
   const renderValue = data[data.length - 1].item;
   return (
     <button
-      data-testid="tweet-btn"
       disabled={renderValue === ""}
       type="button"
       data-bs-toggle="modal"
@@ -72,4 +71,5 @@ export const ScheduleButton = () => {
     </button>
   );
 };
+
 export default RightSideBar;
