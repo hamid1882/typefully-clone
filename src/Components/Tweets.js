@@ -1,30 +1,34 @@
 import TextareaAutosize from "react-textarea-autosize";
 import ScrollToBottom from "react-scroll-to-bottom";
 import ReactTooltip from "react-tooltip";
-import {useSelector, useDispatch} from "react-redux";
-import {selectStyle, selectTextDirection, selectDraftList } from '../Features/InputSlice';
+import { useSelector } from "react-redux";
+import {
+  selectStyle,
+  selectTextDirection,
+  selectDraftList,
+} from "../Features/InputSlice";
 
 const Tweets = () => {
   const renderValue = useSelector(selectDraftList);
-  console.log(renderValue.toString().length)
-
-  const dispatch = useDispatch();
   const newStyle = useSelector(selectStyle);
   const style = newStyle.styleLight;
   const darkStyle = newStyle.styleDark;
 
   const textDirection = useSelector(selectTextDirection);
 
-
-
   return (
-     <ScrollToBottom className="h-100 w-100">
+    <ScrollToBottom className="h-100 w-100">
       <div className={`d-flex`}>
         <div style={style} className="w-100 mb-5">
-          <div>
+          {renderValue
+            .toString()
+            .split("\n\n\n")
+            .map((text) => {
+              return (
+                <div>
                   <div
                     style={
-                      renderValue === ""
+                      renderValue.toString() === ""
                         ? null
                         : { backgroundColor: "rgba(29, 161, 242, 0.2)" }
                     }
@@ -32,20 +36,20 @@ const Tweets = () => {
                   >
                     <div className="text-center my-2 position-relative">
                       <img
-                        style={{ width: "50px", height: "50px"}}
+                        style={{ width: "50px", height: "50px" }}
                         className="rounded-circle mx-3"
                         src="https://pbs.twimg.com/profile_images/1420523735472214017/uMRf2FIm_400x400.jpg"
                         alt="dp"
                       ></img>
                       {renderValue.toString().includes("\n\n\n") && (
                         <div
-                        className="position-absolute"
+                          className="position-absolute"
                           style={{
                             width: "2px",
                             backgroundColor: "gray",
                             height: "100%",
-                            left: '40px',
-                            top: '53px'
+                            left: "40px",
+                            top: "53px",
                           }}
                         ></div>
                       )}
@@ -65,28 +69,38 @@ const Tweets = () => {
                           style={darkStyle}
                           minRows={1}
                           maxRows={15}
-                          value={renderValue}
+                          value={text}
                           placeholder="Your Tweet will appear here..."
                           className={`bg-transparent tweet-text-area overflow-hidden resize-0 py-2 shadow-none form-control ${
                             renderValue.toString().length >= 280
                               ? "border-3 border-danger"
                               : "border-0"
                           } 
-                          ${textDirection ? 'textDirectionLeft' : 'textDirectionRight'}`}
+                          ${
+                            textDirection
+                              ? "textDirectionLeft"
+                              : "textDirectionRight"
+                          }`}
                         />
                       </fieldset>
                       <p
                         className={`form-text text-auto mx-3 ${
                           renderValue === "" ? "invisible" : "visible"
-                        } ${renderValue.toString().length >= 280 ? "text-danger" : ""}`}
+                        } ${
+                          text >= 280
+                            ? "text-danger"
+                            : ""
+                        }`}
                       >
                         {renderValue.includes("\n\n\n")
-                          ? renderValue.toString().length
-                          : renderValue.toString().length + "/280"}
+                          ? text.length
+                          : text.length + "/280"}
                       </p>
                     </div>
                   </div>
-          </div>
+                </div>
+              );
+            })}
           <ReactTooltip />
           <div
             className={`flex text-center align-items-center justify-content-center ${

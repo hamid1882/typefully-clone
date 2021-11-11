@@ -6,8 +6,7 @@ import {
   selectStyle,
   selectDraftView,
   selectScrollBar,
-  selectTextDirection,
-  selectDraftList,
+  selectTextDirection
 } from "../Features/InputSlice";
 import Floatingicons from "./Floatingicons";
 

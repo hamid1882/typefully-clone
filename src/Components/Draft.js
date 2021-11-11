@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectStyle, selectDraftCollapse, selectDraftView, selectScrollBar, inputChange } from "../Features/InputSlice";
+import { useSelector } from "react-redux";
+import { selectStyle, selectDraftCollapse, selectDraftView, selectScrollBar } from "../Features/InputSlice";
 import EmptyDraft from "./EmptyDraft";
 
 const Draft = () => {
@@ -9,15 +9,7 @@ const Draft = () => {
   const style = newStyle.styleLight;
   const darkStyle = newStyle.styleDark;
 
-  const dispatch = useDispatch();
 
-  // const addDraft = () => {
-  //   dispatch(
-  //     inputChange({
-  //       item: ""
-  //     })
-  //   );
-  // };
 
   const draftCollapse = useSelector(selectDraftCollapse);
   const collapse = useSelector(selectDraftView);

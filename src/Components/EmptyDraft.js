@@ -1,21 +1,12 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteDraft, selectDraftList, selectInputChange, selectStyle, selectTextDirection } from "../Features/InputSlice";
+import { useSelector } from "react-redux";
+import {  selectDraftList, selectStyle, selectTextDirection } from "../Features/InputSlice";
 
 const EmptyDraft = () => {
   const [isShown, setIsShown] = useState(false);
-  const dispatch = useDispatch();
   const newStyle = useSelector(selectStyle)
   const style = newStyle.styleLight;
   const darkStyle = newStyle.styleDark;
-
-  // const handleDeleteDraft = () => {
-  //   dispatch(
-  //     deleteDraft({
-  //       item: value,
-  //     })
-  //   );
-  // };
 
   const text = useSelector(selectTextDirection);
   const renderValue = useSelector(selectDraftList)
