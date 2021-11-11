@@ -1,15 +1,14 @@
 import Tweets from "./Tweets";
 import { useSelector } from "react-redux";
 import {
+  selectDraftList,
   selectDraftView,
-  selectInputChange,
   selectStyle,
 } from "../Features/InputSlice";
 
 const RightSideBar = ({ children }) => {
   const newStyle = useSelector(selectStyle);
   const style = newStyle.styleLight;
-
   const collapse = useSelector(selectDraftView);
 
   return (
@@ -35,12 +34,11 @@ const RightSideBar = ({ children }) => {
 };
 
 export const TweetButton = () => {
-  const data = useSelector(selectInputChange);
-  const renderValue = data[data.length - 1].item;
+  const renderValue = useSelector(selectDraftList);
 
   return (
     <button
-      disabled={renderValue === "" || renderValue.length > 280}
+      disabled={renderValue.toString() === "" || renderValue.toString().length > 280}
       className="btn btn-primary rounded-pill mx-2 col text-white"
     >
       <div className="d-flex justify-content-center align-items-center">
@@ -54,11 +52,11 @@ export const TweetButton = () => {
 };
 
 export const ScheduleButton = () => {
-  const data = useSelector(selectInputChange);
-  const renderValue = data[data.length - 1].item;
+  const renderValue = useSelector(selectDraftList);
+
   return (
     <button
-      disabled={renderValue === ""}
+      disabled={renderValue.toString() === ""}
       type="button"
       data-bs-toggle="modal"
       data-bs-target="#exampleModal"

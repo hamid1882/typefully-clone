@@ -7,6 +7,7 @@ import {
   selectDraftView,
   selectScrollBar,
   selectTextDirection,
+  selectDraftList,
 } from "../Features/InputSlice";
 import Floatingicons from "./Floatingicons";
 
@@ -14,7 +15,6 @@ const Textarea = () => {
   const inputRef = useRef();
   const dispatch = useDispatch();
 
-  const data = useSelector(selectInputChange);
   const newStyle = useSelector(selectStyle);
   const style = newStyle.styleLight;
   const darkStyle = newStyle.styleDark;
@@ -23,22 +23,18 @@ const Textarea = () => {
     inputRef.current.focus();
   }, []);
 
-  let keyValue = 1;
-
   const handleChange = (e) => {
     e.preventDefault();
     dispatch(
       inputChange({
-        item: e.target.value,
-        id: keyValue++,
+        id: 0,
+        item: e.target.value
       })
     );
   };
 
-  const renderValue = data[data.length - 1].item;
-
+  const renderValue = useSelector(selectInputChange);
   const collapse = useSelector(selectDraftView);
-
   const scroll = useSelector(selectScrollBar);
   const text = useSelector(selectTextDirection);
 
@@ -61,7 +57,7 @@ const Textarea = () => {
         <div className="container h-100">
           <textarea
             ref={inputRef}
-            value={renderValue}
+            value={renderValue.item}
             onChange={handleChange}
             style={darkStyle}
             className={`textarea-style form-control overflow-scroll tweet-overflow outline-0 shadow-none border-0 w-100 h-100 p-5 bg-transparent ${

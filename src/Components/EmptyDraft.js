@@ -1,31 +1,29 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteDraft, selectStyle, selectTextDirection } from "../Features/InputSlice";
+import { deleteDraft, selectDraftList, selectInputChange, selectStyle, selectTextDirection } from "../Features/InputSlice";
 
-const EmptyDraft = ({ value, data, id }) => {
+const EmptyDraft = () => {
   const [isShown, setIsShown] = useState(false);
   const dispatch = useDispatch();
   const newStyle = useSelector(selectStyle)
   const style = newStyle.styleLight;
   const darkStyle = newStyle.styleDark;
 
-  let keyValue = 100;
-
-  const handleDeleteDraft = () => {
-    dispatch(
-      deleteDraft({
-        item: value,
-        id: keyValue++
-      })
-    );
-  };
+  // const handleDeleteDraft = () => {
+  //   dispatch(
+  //     deleteDraft({
+  //       item: value,
+  //     })
+  //   );
+  // };
 
   const text = useSelector(selectTextDirection);
+  const renderValue = useSelector(selectDraftList)
 
 
   return (
     <>
-      <div key={id} style={style}>
+      <div style={style}>
         <div className="d-flex w-100">
           {darkStyle.color === "black" ? (
             <div
@@ -58,7 +56,7 @@ const EmptyDraft = ({ value, data, id }) => {
                 readOnly
                 // eslint-disable-next-line
                 style={({ cursor: "pointer" }, darkStyle)}
-                value={data}
+                value={renderValue}
                 type="text"
                 className={`w-100 p-2 py-3 border-0 text-truncate bg-transparent ${text ? 'textDirectionLeft' : 'textDirectionRight'}`}
                 placeholder="Empty draft..."
@@ -66,7 +64,6 @@ const EmptyDraft = ({ value, data, id }) => {
             </fieldset>
             {isShown && (
               <button
-                onClick={handleDeleteDraft}
                 className={`btn shadow-none border-0 `}
                 style={style}
               >

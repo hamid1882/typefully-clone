@@ -14,14 +14,15 @@ const TextareaMini = () => {
   const style = newStyle.styleLight;
   const darkStyle = newStyle.styleDark;
 
-  const data = useSelector(selectInputChange);
+  const renderValue = useSelector(selectInputChange);
 
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
     dispatch(
       inputChange({
-        item: e.target.value,
+        id: 0,
+        item: e.target.value
       })
     );
   };
@@ -35,8 +36,6 @@ const TextareaMini = () => {
       })
     );
   };
-
-  const renderValue = data[data.length - 1].item;
 
   const collapse = useSelector(selectDraftView);
   const text = useSelector(selectTextDirection);

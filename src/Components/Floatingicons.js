@@ -2,7 +2,6 @@ import ReactTooltip from "react-tooltip";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectInputChange,
-  newTweet,
   saveDraft,
   selectStyle,
   viewDraft,
@@ -13,8 +12,7 @@ import { collapseIn } from "../Features/Styles";
 
 const Floatingicons = () => {
   const dispatch = useDispatch();
-  const inputSelect = useSelector(selectInputChange);
-  const renderValue = inputSelect[inputSelect.length - 1].item;
+  const renderValue = useSelector(selectInputChange);
   const newStyle = useSelector(selectStyle);
   const style = newStyle.styleLight;
   const darkStyle = newStyle.styleDark;
@@ -35,13 +33,13 @@ const Floatingicons = () => {
     );
   };
 
-  const handleNewTweet = () => {
-    dispatch(
-      newTweet({
-        item: renderValue + "\n\n\nNew Tweet",
-      })
-    );
-  };
+  // const handleNewTweet = () => {
+  //   dispatch(
+  //     newTweet({
+  //       item: renderValue + "\n\n\nNew Tweet",
+  //     })
+  //   );
+  // };
 
   const collapse = useSelector(selectDraftView);
 
@@ -84,7 +82,6 @@ const Floatingicons = () => {
             <i className={`fa fa-file float-hover `}></i>
           </button>
           <button
-            onClick={handleNewTweet}
             style={style}
             data-tip="Add Tweet"
             className={`border-0 p-2 mx-1 ${collapse}`}

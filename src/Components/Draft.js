@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { saveDraft, selectStyle, selectDraftList, selectInputChange, selectDraftCollapse, selectDraftView, selectScrollBar } from "../Features/InputSlice";
+import { selectStyle, selectDraftCollapse, selectDraftView, selectScrollBar, inputChange } from "../Features/InputSlice";
 import EmptyDraft from "./EmptyDraft";
 
 const Draft = () => {
@@ -10,22 +10,16 @@ const Draft = () => {
   const darkStyle = newStyle.styleDark;
 
   const dispatch = useDispatch();
-  const inputData = useSelector(selectInputChange);
-  const renderData = inputData[inputData.length - 1].item;
-  const draftData = useSelector(selectDraftList);
-  let increment = 0;
 
-  const addDraft = () => {
-    dispatch(
-      saveDraft({
-        item: " ",
-        id: increment++,
-      })
-    );
-  };
+  // const addDraft = () => {
+  //   dispatch(
+  //     inputChange({
+  //       item: ""
+  //     })
+  //   );
+  // };
 
   const draftCollapse = useSelector(selectDraftCollapse);
-
   const collapse = useSelector(selectDraftView);
   const scroll = useSelector(selectScrollBar);
 
@@ -81,7 +75,6 @@ const Draft = () => {
             className={`${countDraft === 1 ? "d-block" : "d-none"}`}
           >
             <button
-              onClick={addDraft}
               style={style}
               className="btn w-100 shadow-none sticky-top p-3 border-0 border-top border-bottom rounded-0 d-flex justify-content-right align-items-center"
             >
@@ -90,9 +83,7 @@ const Draft = () => {
             </button>
 
             {/* Empty draft rendering */}
-              {draftData.map((item) => (
-                <EmptyDraft id={item.id} value={item.item} data={renderData} />
-              ))}
+                <EmptyDraft  />
           </div>
 
           {/* scheduled */}
@@ -103,15 +94,12 @@ const Draft = () => {
           <button
           style={style}
           className="btn w-100 shadow-none p-3 border-0 border-top border-bottom rounded-0 d-flex justify-content-right align-items-center"
-          onClick={addDraft}
           >
             <i className="fa fa-plus"></i>
             <span className="mx-2">New Draft</span>
           </button>
           
-           {draftData.map((item) => (
-                <EmptyDraft key={item.id} value={item.item} data={renderData} />
-              ))}
+          <EmptyDraft  />
         </div>
 
           {/* Tweet */}
@@ -122,15 +110,12 @@ const Draft = () => {
           <button
           style={style}
           className="btn w-100 shadow-none p-3 border-0 border-top border-bottom rounded-0 d-flex justify-content-right align-items-center"
-          onClick={addDraft}
           >
           <i className="fa fa-plus "></i>
           <span className="mx-2">New Draft</span>
           </button>
           
-           {draftData.map((item) => (
-                <EmptyDraft key={item.id} value={item.item} data={renderData} />
-              ))}
+          <EmptyDraft  />
           </div>
         </div>
       </div>
