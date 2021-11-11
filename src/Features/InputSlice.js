@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Collapse, lightMode } from "./Styles";
 
-  const initialState = {
-  draftList: [],
-  input: [{ item: "" , id: 0}],
+export const initialState = {
+  draftList: {
+    0: "",
+  },
+  input: { item: "", id: 0 },
   style: lightMode,
   draftCollapse: Collapse,
   draftView: "d-block",
@@ -11,19 +13,22 @@ import { Collapse, lightMode } from "./Styles";
   text: true,
 };
 
-  const InputSlice = createSlice({
+const InputSlice = createSlice({
   name: "draftBox",
   initialState,
   reducers: {
     saveDraft: (state, action) => {
-      state.draftList.push(action.payload);
+      const { id, item } = action.payload
+      state.draftList[id] = item;
     },
     inputChange: (state, action) => {
-      state.input.push(action.payload);
+      const { id, item } = action.payload
+      const newItem = { id, item };
+      state.input = newItem
+      state.draftList[id] = item;
     },
     deleteDraft: (state, action) => {
-      state.draftList.pop();
-      state.input = [{ item: "" }];
+      delete state.draftList[action.payload.id]
     },
     newTweet: (state, action) => {
       state.input.push(action.payload);
@@ -67,6 +72,7 @@ export const selectDraftCollapse = (state) => state.draft.draftCollapse;
 export const selectDraftView = (state) => state.draft.draftView;
 export const selectScrollBar = (state) => state.draft.scroll;
 export const selectTextDirection = (state) => state.draft.text;
+export const selectTweet = (state) => state.draft.input.split(" ");
 
 
 
