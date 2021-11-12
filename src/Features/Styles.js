@@ -30,6 +30,7 @@ export const DarkMode = {
   },
 };
 
+
 export const Collapse = {
   transition: "all 700ms",
   borderColor: "#ecf0f4",
@@ -39,4 +40,4 @@ export const Collapse = {
 export const collapseIn = {
   transition: "all 1000ms",
   transform: "translate(-250px)",
-}
+};

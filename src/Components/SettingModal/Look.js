@@ -6,23 +6,34 @@ import { addStyle, selectStyle } from "../../Features/InputSlice";
 const About = (props) => {
   const [modeCount, setmodeCount] = useState(1);
   const dispatch = useDispatch();
-  const newStyle = useSelector(selectStyle);
-  const style = newStyle.styleLight;
-  const darkStyle = newStyle.styleDark;
 
   const handleDisplayMode = (index) => {
     setmodeCount(index);
   };
 
-  const handleDarkMode = () => {
-    handleDisplayMode(2);
-    dispatch(addStyle(DarkMode));
+  // const handleDarkMode = () => {
+  //   handleDisplayMode(2);
+  //   dispatch(addStyle(DarkMode));
+  // };
+
+  // const handleLightMode = () => {
+  //   handleDisplayMode(1);
+  //   dispatch(addStyle(lightMode));
+  // };
+  const newStyle = useSelector(selectStyle);
+
+  const handleTheme = () => {
+    handleDisplayMode(1);
+    if (newStyle === true) {
+      dispatch(addStyle(false));
+    } else {
+      dispatch(addStyle(true));
+    }
   };
 
-  const handleLightMode = () => {
-    handleDisplayMode(1);
-    dispatch(addStyle(lightMode));
-  };
+  const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
+  const darkStyle =
+    newStyle === true ? DarkMode.styleDark : lightMode.styleDark;
 
   return (
     <div
@@ -39,14 +50,14 @@ const About = (props) => {
         <p>Automatically used when your system is set to dark mode.</p>
         <div style={style} className="d-flex border rounded-pill p-1">
           <button
-            onClick={handleLightMode}
+            onClick={handleTheme}
             style={modeCount === 1 ? darkStyle : style}
             className="col btn rounded-pill shadow-none border-0"
           >
             Light
           </button>
           <button
-            onClick={handleDarkMode}
+            onClick={handleTheme}
             style={modeCount === 2 ? darkStyle : style}
             className="col btn rounded-pill shadow-none border-0"
           >

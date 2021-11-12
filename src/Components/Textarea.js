@@ -10,23 +10,25 @@ import {
   selectCurrentDraft,
 } from "../Features/InputSlice";
 import Floatingicons from "./Floatingicons";
+import { DarkMode, lightMode } from "../Features/Styles";
 
 const Textarea = () => {
   const inputRef = useRef();
   const dispatch = useDispatch();
 
-  const newStyle = useSelector(selectStyle);
-  const selectedDraft = useSelector(selectCurrentDraft);
-  const style = newStyle.styleLight;
-  const darkStyle = newStyle.styleDark;
-
   const focusInput = () => {
     inputRef.current.focus();
-  }
+  };
+  const selectedDraft = useSelector(selectCurrentDraft);
 
   useEffect(focusInput, []);
   useEffect(focusInput, [selectedDraft]);
 
+  const newStyle = useSelector(selectStyle);
+
+  const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
+  const darkStyle =
+    newStyle === true ? DarkMode.styleDark : lightMode.styleDark;
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -41,7 +43,6 @@ const Textarea = () => {
   const collapse = useSelector(selectDraftView);
   const scroll = useSelector(selectScrollBar);
   const text = useSelector(selectTextDirection);
-
 
   return (
     <div

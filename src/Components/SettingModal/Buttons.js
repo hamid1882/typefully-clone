@@ -1,11 +1,14 @@
 import {useSelector} from 'react-redux';
 import { selectStyle } from "../../Features/InputSlice";
+import { DarkMode, lightMode } from "../../Features/Styles";
+
 
 const Buttons = (props) => {
 
   const newStyle = useSelector(selectStyle);
-  const style = newStyle.styleLight;
-  const darkStyle = newStyle.styleDark;
+   const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
+  const darkStyle =
+    newStyle === true ? DarkMode.styleDark : lightMode.styleDark;
   
 
 

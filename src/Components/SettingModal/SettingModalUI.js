@@ -7,13 +7,16 @@ import Buttons from "./Buttons";
 import DownloadApp from "./DownloadApp";
 import Editing from "./Editing";
 import {selectStyle} from '../../Features/InputSlice';
+import { DarkMode, lightMode } from "../../Features/Styles";
+
 
 const SettingModalUI = () => {
   const [toggleTab, settoggleTab] = useState(1);
 
   const newStyle = useSelector(selectStyle);
-  const style = newStyle.styleLight;
-  const darkStyle = newStyle.styleDark;
+   const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
+  const darkStyle =
+    newStyle === true ? DarkMode.styleDark : lightMode.styleDark;
 
   const handleToggleTab = (index) => {
     settoggleTab(index);

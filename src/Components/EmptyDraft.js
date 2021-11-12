@@ -1,22 +1,23 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  selectDraftList,
   selectStyle,
   selectTextDirection,
   deleteDraft,
-  changeCurrentDraft
+  changeCurrentDraft,
 } from "../Features/InputSlice";
+import { DarkMode, lightMode } from "../Features/Styles";
+
 
 const EmptyDraft = ({ value, id }) => {
   const [isShown, setIsShown] = useState(false);
   const newStyle = useSelector(selectStyle);
-  const style = newStyle.styleLight;
-  const darkStyle = newStyle.styleDark;
+   const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
+  const darkStyle =
+    newStyle === true ? DarkMode.styleDark : lightMode.styleDark;
   const dispatch = useDispatch();
 
   const text = useSelector(selectTextDirection);
-  const renderValue = useSelector(selectDraftList);
 
   const handleDeleteDraft = (e) => {
     e.stopPropagation();
@@ -26,8 +27,6 @@ const EmptyDraft = ({ value, id }) => {
       })
     );
   };
-
-
 
   const handleDraftClick = (e) => {
     e.stopPropagation();
@@ -75,8 +74,9 @@ const EmptyDraft = ({ value, id }) => {
                 style={({ cursor: "pointer" }, darkStyle)}
                 value={value}
                 type="text"
-                className={`w-100 p-2 py-3 border-0 text-truncate bg-transparent ${text ? "textDirectionLeft" : "textDirectionRight"
-                  }`}
+                className={`w-100 p-2 py-3 border-0 text-truncate bg-transparent ${
+                  text ? "textDirectionLeft" : "textDirectionRight"
+                }`}
                 placeholder="Empty draft..."
               />
             </fieldset>
@@ -87,10 +87,11 @@ const EmptyDraft = ({ value, id }) => {
                 onClick={handleDeleteDraft}
               >
                 <i
-                  className={`fas fa-times-circle ${darkStyle.color === "black"
+                  className={`fas fa-times-circle ${
+                    darkStyle.color === "black"
                       ? "draftBtnHoverLight"
                       : "draftBtnHover"
-                    } `}
+                  } `}
                 ></i>
               </button>
             )}

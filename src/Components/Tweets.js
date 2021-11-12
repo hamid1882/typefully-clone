@@ -7,12 +7,14 @@ import {
   selectTextDirection,
   selectTweetThread
 } from "../Features/InputSlice";
+import { DarkMode, lightMode } from "../Features/Styles";
 
 const Tweets = () => {
   const renderValue = useSelector(selectTweetThread);
   const newStyle = useSelector(selectStyle);
-  const style = newStyle.styleLight;
-  const darkStyle = newStyle.styleDark;
+  const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
+  const darkStyle =
+    newStyle === true ? DarkMode.styleDark : lightMode.styleDark;
 
   const textDirection = useSelector(selectTextDirection);
 

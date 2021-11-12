@@ -73,11 +73,6 @@ describe("draftlist", () => {
 });
 
 describe("misk", () => {
-  // it("items should be added on draftList when typed", () => {
-  //   expect(reducer(undefined, saveDraft("Hamid Hussain")).draftList).toEqual([
-  //     "Hamid Hussain",
-  //   ]);
-  // });
 
   it("should toggle the themes", () => {
     expect(reducer(undefined, addStyle(DarkMode)).style).toEqual(DarkMode);

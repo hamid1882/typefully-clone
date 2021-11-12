@@ -5,9 +5,9 @@ const currentDraft = 0;
 export const initialState = {
   currentDraft,
   draftList: { [currentDraft]: "" },
-  style: lightMode,
-  draftCollapse: Collapse,
   draftView: "d-block",
+  isDarkMode: false,
+  isDraftCollapsed: false,
   scroll: false,
   text: true,
 
@@ -36,18 +36,17 @@ const InputSlice = createSlice({
     },
     deleteDraft: (state, action) => {
       delete state.draftList[action.payload.id]
-      const [id, val] = Object.entries(state.draftList)[0] || [0, ""]
+      const [id] = Object.entries(state.draftList)[0] || [0, ""]
       state.currentDraft = id
-      state.input = val
     },
     // newTweet: (state, action) => {
     //   state.input.push(action.payload);
     // },
     addStyle: (state, action) => {
-      state.style = action.payload;
+      state.isDarkMode = action.payload;
     },
     collapseDraft: (state, action) => {
-      state.draftCollapse = action.payload;
+      state.isDraftCollapsed = action.payload;
     },
     viewDraft: (state, action) => {
       state.draftView = action.payload;
@@ -82,8 +81,8 @@ export const selectDraftList = (state) => Object.entries(state.draft.draftList);
 export const selectCurrentDraft = (state) => state.draft.currentDraft;
 export const selectInput = (state) => state.draft.draftList[selectCurrentDraft(state)];
 export const selectTweetThread = (state) => state.draft.draftList[selectCurrentDraft(state)].toString().split("\n\n\n");
-export const selectStyle = (state) => state.draft.style;
-export const selectDraftCollapse = (state) => state.draft.draftCollapse;
+export const selectStyle = (state) => state.draft.isDarkMode;
+export const selectDraftCollapse = (state) => state.draft.isDraftCollapsed;
 export const selectDraftView = (state) => state.draft.draftView;
 export const selectScrollBar = (state) => state.draft.scroll;
 export const selectTextDirection = (state) => state.draft.text;

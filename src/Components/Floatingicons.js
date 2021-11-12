@@ -9,13 +9,16 @@ import {
   collapseDraft,
 } from "../Features/InputSlice";
 import { collapseIn } from "../Features/Styles";
+import { DarkMode, lightMode } from "../Features/Styles";
+
 
 const Floatingicons = () => {
   const dispatch = useDispatch();
   const renderValue = useSelector(selectInput);
   const newStyle = useSelector(selectStyle);
-  const style = newStyle.styleLight;
-  const darkStyle = newStyle.styleDark;
+   const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
+  const darkStyle =
+    newStyle === true ? DarkMode.styleDark : lightMode.styleDark;
 
   let increment = 0;
   const addDraft = () => {

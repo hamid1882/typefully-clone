@@ -5,40 +5,34 @@ import {
   selectDraftCollapse,
   selectDraftView,
   selectScrollBar,
-  selectInput,
-  saveDraft,
   newDraft,
-  inputChange,
   selectDraftList,
 } from "../Features/InputSlice";
 import EmptyDraft from "./EmptyDraft";
+import { DarkMode, lightMode } from "../Features/Styles";
+
 
 const Draft = () => {
   const [countDraft, handleCount] = useState(1);
   const newStyle = useSelector(selectStyle);
-  const style = newStyle.styleLight;
-  const darkStyle = newStyle.styleDark;
+   const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
+  const darkStyle =
+    newStyle === true ? DarkMode.styleDark : lightMode.styleDark;
   const draftCollapse = useSelector(selectDraftCollapse);
   const collapse = useSelector(selectDraftView);
   const scroll = useSelector(selectScrollBar);
   const dispatch = useDispatch();
-  const input = useSelector(selectInput);
   const draft = useSelector(selectDraftList);
+  const selectCollapse = useSelector(selectDraftCollapse);
 
-  const handleAddDraft = (id) => {
-    dispatch(
-      newDraft()
-    );
+  const handleAddDraft = () => {
+    dispatch(newDraft());
   };
-
-  // console.log(draft);
 
   return (
     <div
       className={`transitionDraft draftPosition draftMini overflow-hidden ${
-        draftCollapse.transform === "translate(-250px)"
-          ? "draftAfter"
-          : "draftBefore"
+        selectCollapse ? "draftBefore" : "draftAfter"
       }`}
       style={darkStyle}
     >

@@ -8,11 +8,14 @@ import {
   collapseDraft,
 } from "../Features/InputSlice";
 import Floatingicons from "./Floatingicons";
+import { DarkMode, lightMode } from "../Features/Styles";
+
 
 const TextareaMini = () => {
   const newStyle = useSelector(selectStyle);
-  const style = newStyle.styleLight;
-  const darkStyle = newStyle.styleDark;
+   const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
+  const darkStyle =
+    newStyle === true ? DarkMode.styleDark : lightMode.styleDark;
 
   const renderValue = useSelector(selectInput);
 
@@ -56,7 +59,7 @@ const TextareaMini = () => {
           value={renderValue}
           onChange={handleChange}
           className={`textarea-style bg-transparent form-control outline-0 overflow-scroll tweet-overflow ${
-            style.color === "white" ? "shadow-none" : "shadow"
+            darkStyle.color === "white" ? "shadow-none" : "shadow"
           }
           ${text ? "textDirectionLeft" : "textDirectionRight"}
           border-0 w-100 h-100 p-5
