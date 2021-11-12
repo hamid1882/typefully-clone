@@ -2,13 +2,12 @@ import { useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   inputChange,
-  selectInputChange,
+  selectInput,
   selectStyle,
   selectDraftView,
   selectScrollBar,
   selectTextDirection,
-  selectDraftList,
-  saveDraft,
+  selectCurrentDraft,
 } from "../Features/InputSlice";
 import Floatingicons from "./Floatingicons";
 
@@ -17,29 +16,32 @@ const Textarea = () => {
   const dispatch = useDispatch();
 
   const newStyle = useSelector(selectStyle);
+  const selectedDraft = useSelector(selectCurrentDraft);
   const style = newStyle.styleLight;
   const darkStyle = newStyle.styleDark;
 
-  useEffect(() => {
+  const focusInput = () => {
     inputRef.current.focus();
-  }, []);
+  }
+
+  useEffect(focusInput, []);
+  useEffect(focusInput, [selectedDraft]);
 
 
   const handleChange = (e) => {
     e.preventDefault();
     dispatch(
-      saveDraft({
+      inputChange({
         item: e.target.value,
       })
     );
   };
-  const draft = useSelector(selectDraftList)
-  const renderValue = useSelector(selectDraftList);
+
+  const input = useSelector(selectInput);
   const collapse = useSelector(selectDraftView);
   const scroll = useSelector(selectScrollBar);
   const text = useSelector(selectTextDirection);
 
-  console.log(draft)
 
   return (
     <div
@@ -60,7 +62,7 @@ const Textarea = () => {
         <div className="container h-100">
           <textarea
             ref={inputRef}
-            value={draft[draft.length-1]}
+            value={input}
             onChange={handleChange}
             style={darkStyle}
             className={`textarea-style form-control overflow-scroll tweet-overflow outline-0 shadow-none border-0 w-100 h-100 p-5 bg-transparent ${

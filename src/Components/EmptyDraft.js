@@ -5,9 +5,10 @@ import {
   selectStyle,
   selectTextDirection,
   deleteDraft,
+  changeCurrentDraft
 } from "../Features/InputSlice";
 
-const EmptyDraft = ({value}) => {
+const EmptyDraft = ({ value, id }) => {
   const [isShown, setIsShown] = useState(false);
   const newStyle = useSelector(selectStyle);
   const style = newStyle.styleLight;
@@ -16,20 +17,30 @@ const EmptyDraft = ({value}) => {
 
   const text = useSelector(selectTextDirection);
   const renderValue = useSelector(selectDraftList);
-  // const deleteData = useSelector(deleteDraft);
 
-  const handleDeleteDraft = () => {
+  const handleDeleteDraft = (e) => {
+    e.stopPropagation();
     dispatch(
       deleteDraft({
-        item: renderValue,
-        id: 0,
+        id,
+      })
+    );
+  };
+
+
+
+  const handleDraftClick = (e) => {
+    e.stopPropagation();
+    dispatch(
+      changeCurrentDraft({
+        id,
       })
     );
   };
 
   return (
     <>
-      <div className="" style={style}>
+      <div className="" style={style} onClick={handleDraftClick}>
         <div className="d-flex w-100">
           {darkStyle.color === "black" ? (
             <div
@@ -64,9 +75,8 @@ const EmptyDraft = ({value}) => {
                 style={({ cursor: "pointer" }, darkStyle)}
                 value={value}
                 type="text"
-                className={`w-100 p-2 py-3 border-0 text-truncate bg-transparent ${
-                  text ? "textDirectionLeft" : "textDirectionRight"
-                }`}
+                className={`w-100 p-2 py-3 border-0 text-truncate bg-transparent ${text ? "textDirectionLeft" : "textDirectionRight"
+                  }`}
                 placeholder="Empty draft..."
               />
             </fieldset>
@@ -77,11 +87,10 @@ const EmptyDraft = ({value}) => {
                 onClick={handleDeleteDraft}
               >
                 <i
-                  className={`fas fa-times-circle ${
-                    darkStyle.color === "black"
+                  className={`fas fa-times-circle ${darkStyle.color === "black"
                       ? "draftBtnHoverLight"
                       : "draftBtnHover"
-                  } `}
+                    } `}
                 ></i>
               </button>
             )}

@@ -8,6 +8,7 @@ import {
   collapseDraft,
 } from "../Features/InputSlice";
 import { collapseIn, Collapse } from "../Features/Styles";
+import { useState } from "react";
 
 const Navbar = () => {
   const location = useLocation();
@@ -17,8 +18,10 @@ const Navbar = () => {
   const darkStyle = newStyle.styleDark;
   const draftColl = useSelector(selectDraftCollapse);
   const collapse = useSelector(selectDraftView);
-
+  const [isDraftOpen, setDraft] = useState(() => localStorage.getItem("draftOpen") || true);
+  
   const handleDraftCollapse = () => {
+    setDraft(!isDraftOpen);
     if (draftColl.transform === "translate(-250px)") {
       dispatch(collapseDraft(Collapse));
     } else {

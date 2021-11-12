@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectStyle,
-  selectInputChange,
+  selectInput,
   inputChange,
   selectDraftView,
   selectTextDirection,
@@ -14,7 +14,7 @@ const TextareaMini = () => {
   const style = newStyle.styleLight;
   const darkStyle = newStyle.styleDark;
 
-  const renderValue = useSelector(selectInputChange);
+  const renderValue = useSelector(selectInput);
 
   const dispatch = useDispatch();
 

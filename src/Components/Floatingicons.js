@@ -1,7 +1,7 @@
 import ReactTooltip from "react-tooltip";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectInputChange,
+  selectInput,
   saveDraft,
   selectStyle,
   viewDraft,
@@ -12,7 +12,7 @@ import { collapseIn } from "../Features/Styles";
 
 const Floatingicons = () => {
   const dispatch = useDispatch();
-  const renderValue = useSelector(selectInputChange);
+  const renderValue = useSelector(selectInput);
   const newStyle = useSelector(selectStyle);
   const style = newStyle.styleLight;
   const darkStyle = newStyle.styleDark;
