@@ -12,13 +12,6 @@ import reducer, {
 import { CollapseIn, lightMode, DarkMode } from "./Styles";
 
 describe("initial states", () => {
-  it("should return the initial state of input", () => {
-    expect(reducer(undefined, {}).input).toEqual({
-      item: "",
-      id: 0,
-    });
-  });
-
   it("should return the initial state of draft", () => {
     expect(reducer(undefined, {}).draftList).toEqual({ 0: "" });
   });
@@ -34,7 +27,7 @@ describe("initial states", () => {
   });
 });
 
-describe.only("draftlist", () => {
+describe("draftlist", () => {
   it("Input data should be added to draft list", () => {
     const action = saveDraft({ id: 0, item: "first" });
     let state = initialState;

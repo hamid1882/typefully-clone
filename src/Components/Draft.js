@@ -5,8 +5,9 @@ import {
   selectDraftCollapse,
   selectDraftView,
   selectScrollBar,
-  selectInputChange,
+  selectInput,
   saveDraft,
+  newDraft,
   inputChange,
   selectDraftList,
 } from "../Features/InputSlice";
@@ -21,16 +22,14 @@ const Draft = () => {
   const collapse = useSelector(selectDraftView);
   const scroll = useSelector(selectScrollBar);
   const dispatch = useDispatch();
-  const input = useSelector(selectInputChange);
+  const input = useSelector(selectInput);
   const draft = useSelector(selectDraftList);
 
-  // const handleAddDraft = (id) => {
-  //   dispatch(
-  //     saveDraft({
-  //       item: "",
-  //     })
-  //   );
-  // };
+  const handleAddDraft = (id) => {
+    dispatch(
+      newDraft()
+    );
+  };
 
   // console.log(draft);
 
@@ -91,6 +90,7 @@ const Draft = () => {
           >
             <button
               style={style}
+              onClick={() => handleAddDraft(3)}
               className="btn w-100 shadow-none sticky-top p-3 border-0 border-top border-bottom rounded-0 d-flex justify-content-right align-items-center"
             >
               <i className="fa fa-plus"></i>
@@ -98,8 +98,8 @@ const Draft = () => {
             </button>
 
             {/* Empty draft rendering */}
-            {draft.map((item) => (
-              <EmptyDraft value={item} />
+            {draft.map(([id, value]) => (
+              <EmptyDraft value={value} id={id} />
             ))}
           </div>
 

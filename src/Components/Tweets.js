@@ -5,11 +5,11 @@ import { useSelector } from "react-redux";
 import {
   selectStyle,
   selectTextDirection,
-  selectDraftList,
+  selectTweetThread
 } from "../Features/InputSlice";
 
 const Tweets = () => {
-  const renderValue = useSelector(selectDraftList);
+  const renderValue = useSelector(selectTweetThread);
   const newStyle = useSelector(selectStyle);
   const style = newStyle.styleLight;
   const darkStyle = newStyle.styleDark;
@@ -21,8 +21,6 @@ const Tweets = () => {
       <div className={`d-flex`}>
         <div style={style} className="w-100 mb-5">
           {renderValue
-            .toString()
-            .split("\n\n\n")
             .map((text) => {
               return (
                 <div>
