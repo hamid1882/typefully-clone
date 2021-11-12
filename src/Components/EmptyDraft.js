@@ -1,20 +1,35 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import {  selectDraftList, selectStyle, selectTextDirection } from "../Features/InputSlice";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  selectDraftList,
+  selectStyle,
+  selectTextDirection,
+  deleteDraft,
+} from "../Features/InputSlice";
 
-const EmptyDraft = () => {
+const EmptyDraft = ({value}) => {
   const [isShown, setIsShown] = useState(false);
-  const newStyle = useSelector(selectStyle)
+  const newStyle = useSelector(selectStyle);
   const style = newStyle.styleLight;
   const darkStyle = newStyle.styleDark;
+  const dispatch = useDispatch();
 
   const text = useSelector(selectTextDirection);
-  const renderValue = useSelector(selectDraftList)
+  const renderValue = useSelector(selectDraftList);
+  // const deleteData = useSelector(deleteDraft);
 
+  const handleDeleteDraft = () => {
+    dispatch(
+      deleteDraft({
+        item: renderValue,
+        id: 0,
+      })
+    );
+  };
 
   return (
     <>
-      <div style={style}>
+      <div className="" style={style}>
         <div className="d-flex w-100">
           {darkStyle.color === "black" ? (
             <div
@@ -47,9 +62,11 @@ const EmptyDraft = () => {
                 readOnly
                 // eslint-disable-next-line
                 style={({ cursor: "pointer" }, darkStyle)}
-                value={renderValue}
+                value={value}
                 type="text"
-                className={`w-100 p-2 py-3 border-0 text-truncate bg-transparent ${text ? 'textDirectionLeft' : 'textDirectionRight'}`}
+                className={`w-100 p-2 py-3 border-0 text-truncate bg-transparent ${
+                  text ? "textDirectionLeft" : "textDirectionRight"
+                }`}
                 placeholder="Empty draft..."
               />
             </fieldset>
@@ -57,6 +74,7 @@ const EmptyDraft = () => {
               <button
                 className={`btn shadow-none border-0 `}
                 style={style}
+                onClick={handleDeleteDraft}
               >
                 <i
                   className={`fas fa-times-circle ${

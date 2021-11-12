@@ -1,6 +1,15 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { selectStyle, selectDraftCollapse, selectDraftView, selectScrollBar } from "../Features/InputSlice";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  selectStyle,
+  selectDraftCollapse,
+  selectDraftView,
+  selectScrollBar,
+  selectInputChange,
+  saveDraft,
+  inputChange,
+  selectDraftList,
+} from "../Features/InputSlice";
 import EmptyDraft from "./EmptyDraft";
 
 const Draft = () => {
@@ -8,13 +17,22 @@ const Draft = () => {
   const newStyle = useSelector(selectStyle);
   const style = newStyle.styleLight;
   const darkStyle = newStyle.styleDark;
-
-
-
   const draftCollapse = useSelector(selectDraftCollapse);
   const collapse = useSelector(selectDraftView);
   const scroll = useSelector(selectScrollBar);
+  const dispatch = useDispatch();
+  const input = useSelector(selectInputChange);
+  const draft = useSelector(selectDraftList);
 
+  // const handleAddDraft = (id) => {
+  //   dispatch(
+  //     saveDraft({
+  //       item: "",
+  //     })
+  //   );
+  // };
+
+  // console.log(draft);
 
   return (
     <div
@@ -34,7 +52,12 @@ const Draft = () => {
         }
         id="tweet-div"
       >
-        <div className={`font h-100  ${scroll ? 'border-end shadow scroll tweet-overflow' : 'scroll'}`} style={(draftCollapse, style)}>
+        <div
+          className={`font h-100  ${
+            scroll ? "border-end shadow scroll tweet-overflow" : "scroll"
+          }`}
+          style={(draftCollapse, style)}
+        >
           <div
             style={style}
             className="d-flex justify-content-center align-items-center m-1 "
@@ -75,40 +98,42 @@ const Draft = () => {
             </button>
 
             {/* Empty draft rendering */}
-                <EmptyDraft  />
+            {draft.map((item) => (
+              <EmptyDraft value={item} />
+            ))}
           </div>
 
           {/* scheduled */}
-          <div
-          style={style}
-          className={`${countDraft === 2 ? "d-block" : "d-none"}`}
+          {/* <div
+            style={style}
+            className={`${countDraft === 2 ? "d-block" : "d-none"}`}
           >
-          <button
-          style={style}
-          className="btn w-100 shadow-none p-3 border-0 border-top border-bottom rounded-0 d-flex justify-content-right align-items-center"
-          >
-            <i className="fa fa-plus"></i>
-            <span className="mx-2">New Draft</span>
-          </button>
-          
-          <EmptyDraft  />
-        </div>
+            <button
+              style={style}
+              className="btn w-100 shadow-none p-3 border-0 border-top border-bottom rounded-0 d-flex justify-content-right align-items-center"
+            >
+              <i className="fa fa-plus"></i>
+              <span className="mx-2">New Draft</span>
+            </button>
+
+            <EmptyDraft />
+          </div> */}
 
           {/* Tweet */}
-          <div
-          style={style}
-          className={`${countDraft === 3 ? "d-block" : "d-none"}`}
+          {/* <div
+            style={style}
+            className={`${countDraft === 3 ? "d-block" : "d-none"}`}
           >
-          <button
-          style={style}
-          className="btn w-100 shadow-none p-3 border-0 border-top border-bottom rounded-0 d-flex justify-content-right align-items-center"
-          >
-          <i className="fa fa-plus "></i>
-          <span className="mx-2">New Draft</span>
-          </button>
-          
-          <EmptyDraft  />
-          </div>
+            <button
+              style={style}
+              className="btn w-100 shadow-none p-3 border-0 border-top border-bottom rounded-0 d-flex justify-content-right align-items-center"
+            >
+              <i className="fa fa-plus "></i>
+              <span className="mx-2">New Draft</span>
+            </button>
+
+            <EmptyDraft />
+          </div> */}
         </div>
       </div>
     </div>

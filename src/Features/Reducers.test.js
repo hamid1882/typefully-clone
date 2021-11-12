@@ -7,7 +7,7 @@ import reducer, {
   saveDraft,
   addStyle,
   inputChange,
-  deleteDraft
+  deleteDraft,
 } from "./InputSlice";
 import { CollapseIn, lightMode, DarkMode } from "./Styles";
 
@@ -34,7 +34,7 @@ describe("initial states", () => {
   });
 });
 
-describe("draftlist", () => {
+describe.only("draftlist", () => {
   it("Input data should be added to draft list", () => {
     const action = saveDraft({ id: 0, item: "first" });
     let state = initialState;
@@ -42,32 +42,40 @@ describe("draftlist", () => {
     expect(state.draftList).toStrictEqual({
       0: "first",
     });
-    
+
     const action2 = inputChange({ id: 0, item: "second" });
     state = reducer(state, action2);
     expect(state.draftList).toStrictEqual({
-      0: "second"
-    })
+      0: "second",
+    });
 
     const action3 = inputChange({ id: 1, item: "third" });
     state = reducer(state, action3);
     expect(state.draftList).toStrictEqual({
       0: "second",
-      1: "third"
-    })
+      1: "third",
+    });
 
-    const action4 = inputChange({ id: 1, item: "fourth"});
+    const action4 = inputChange({ id: 1, item: "fourth" });
     state = reducer(state, action4);
     expect(state.draftList).toStrictEqual({
       0: "second",
-      1: "fourth"
-    })
+      1: "fourth",
+    });
 
-    const action5 = deleteDraft({ id: 1});
+    const action5 = deleteDraft({ id: 1 });
     state = reducer(state, action5);
     expect(state.draftList).toStrictEqual({
       0: "second",
+    });
+
+    const action6 = saveDraft({id: 2, item: "new item"})
+    state= reducer(state, action6);
+    expect(state.draftList).toStrictEqual({
+      0: "second",
+      2: "new item"
     })
+
   });
 });
 
