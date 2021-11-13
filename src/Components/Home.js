@@ -19,14 +19,15 @@ const Home = () => {
         <Draft />
         <Split
           direction="horizontal"
-          minSize={[1000, 400]}
+          minSize={[1000, 200]}
+          maxSize={[1000, 300]}
           sizes={[70, 30]}
-          gutterAlign="end"
+          gutterAlign="start"
           className="d-none d-md-flex gutterNew"
           style={style}
         >
             <Textarea />
-          <div style={{ width: "20%" }}>
+          <div style={{ width: "300px" }}>
             <RightSideBar>
               <ScheduleButton />
               <Schedule />

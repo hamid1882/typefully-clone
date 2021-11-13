@@ -6,6 +6,7 @@ import {
   deleteDraft,
   changeCurrentDraft,
   selectDraftList,
+  selectCurrentDraft,
 } from "../Features/InputSlice";
 import { DarkMode, lightMode } from "../Features/Styles";
 
@@ -37,30 +38,18 @@ const EmptyDraft = ({ value, id }) => {
   const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
   const darkStyle =
     newStyle === true ? DarkMode.styleDark : lightMode.styleDark;
-
+  const currentDraft = useSelector(selectCurrentDraft);
+  const draftData = value.split("\n\n\n").toString();
   return (
     <>
       <div className="d-flex" style={style} onClick={handleDraftClick}>
         <div className="d-flex w-100">
-          {darkStyle.color === "black" ? (
-            <div
-              style={{
-                width: "4px",
-                backgroundColor: "#1da1f2",
-                paddingBottom: "57px",
-                boxSizing: "border-box",
-              }}
-            ></div>
+          {currentDraft === id && darkStyle.color === "black" ? (
+            <div className="draftBorder"></div>
           ) : (
-            <div
-              style={{
-                width: "4px",
-                backgroundColor: "#802fff",
-                paddingBottom: "57px",
-                boxSizing: "border-box",
-              }}
-            ></div>
+            currentDraft === id && <div className="draftBorderDark"></div>
           )}
+
           <div
             style={style}
             className="d-flex w-100 navBorder justify-content-between"
@@ -72,7 +61,7 @@ const EmptyDraft = ({ value, id }) => {
                 readOnly
                 // eslint-disable-next-line
                 style={({ cursor: "pointer" }, darkStyle)}
-                value={value}
+                value={draftData}
                 type="text"
                 className={`w-100 p-2 py-3 cursor border-0 text-truncate bg-transparent ${
                   text ? "textDirectionLeft" : "textDirectionRight"

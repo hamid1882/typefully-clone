@@ -38,15 +38,15 @@ const InputSlice = createSlice({
       const [id] = data[data.length - 1]  || [0, ""];
       state.currentDraft = id;
     },
-    // newTweet: (state, action) => {
-    //   const [id] = Object.entries(state.draftList)[0] || [0, ""];
-    //   state.currentDraft = id;
-    // },
-    addStyle: (state, action) => {
-      state.isDarkMode = action.payload;
+    newTweet: (state, action) => {
+      const data = Object.entries(state.draftList)
+      state.draftList[selectCurrentDraft] = data[data.length - 1][1] + "\n\n\nnew Tweet"
     },
-    collapseDraft: (state, action) => {
-      state.isDraftCollapsed = action.payload;
+    addStyle: (state, action) => {
+      state.isDarkMode = !state.isDarkMode;
+    },
+    collapseDraft: (state,) => {
+      state.isDraftCollapsed = !state.isDraftCollapsed;
     },
     viewDraft: (state, action) => {
       state.draftView = action.payload;

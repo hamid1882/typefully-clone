@@ -10,25 +10,16 @@ const About = (props) => {
   const handleDisplayMode = (index) => {
     setmodeCount(index);
   };
-
-  // const handleDarkMode = () => {
-  //   handleDisplayMode(2);
-  //   dispatch(addStyle(DarkMode));
-  // };
-
-  // const handleLightMode = () => {
-  //   handleDisplayMode(1);
-  //   dispatch(addStyle(lightMode));
-  // };
   const newStyle = useSelector(selectStyle);
 
-  const handleTheme = () => {
+  const handleDarkMode = () => {
+    handleDisplayMode(2);
+    dispatch(addStyle());
+  };
+
+  const handleLightMode = () => {
     handleDisplayMode(1);
-    if (newStyle === true) {
-      dispatch(addStyle(false));
-    } else {
-      dispatch(addStyle(true));
-    }
+    dispatch(addStyle());
   };
 
   const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
@@ -50,14 +41,14 @@ const About = (props) => {
         <p>Automatically used when your system is set to dark mode.</p>
         <div style={style} className="d-flex border rounded-pill p-1">
           <button
-            onClick={handleTheme}
+            onClick={handleLightMode}
             style={modeCount === 1 ? darkStyle : style}
             className="col btn rounded-pill shadow-none border-0"
           >
             Light
           </button>
           <button
-            onClick={handleTheme}
+            onClick={handleDarkMode}
             style={modeCount === 2 ? darkStyle : style}
             className="col btn rounded-pill shadow-none border-0"
           >

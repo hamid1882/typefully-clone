@@ -1,9 +1,10 @@
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 import { selectStyle } from "../Features/InputSlice";
+import { DarkMode, lightMode } from "../Features/Styles";
 
 const Queue = () => {
   const newStyle = useSelector(selectStyle);
-  const style = newStyle.styleLight;
+  const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
 
   return (
     <div style={style}>
@@ -13,16 +14,10 @@ const Queue = () => {
             style={style}
             className="d-flex justify-content-center gap-2 py-3"
           >
-            <button
-              style={style}
-              className="btn btn-primary rounded-pill"
-            >
+            <button style={style} className="btn btn-primary rounded-pill">
               Edit Schedule
             </button>
-            <button
-              style={style}
-              className="btn btn-primary rounded-pill"
-            >
+            <button style={style} className="btn btn-primary rounded-pill">
               Timezone
             </button>
           </div>
@@ -46,7 +41,7 @@ const Queue = () => {
             </div>
           </div>
         </div>
-        <hr style={{ width: '100vw'}} />
+        <hr style={{ width: "100vw" }} />
         {/* Second div */}
         <div style={style} className="container">
           <p>Tuesday</p>

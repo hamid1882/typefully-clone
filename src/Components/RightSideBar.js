@@ -5,10 +5,11 @@ import {
   selectDraftView,
   selectStyle,
 } from "../Features/InputSlice";
+import { DarkMode, lightMode } from "../Features/Styles";
 
 const RightSideBar = ({ children }) => {
   const newStyle = useSelector(selectStyle);
-  const style = newStyle.styleLight;
+  const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
   const collapse = useSelector(selectDraftView);
 
   return (
@@ -38,7 +39,9 @@ export const TweetButton = () => {
 
   return (
     <button
-      disabled={renderValue.toString() === "" || renderValue.toString().length > 280}
+      disabled={
+        renderValue.toString() === "" || renderValue.toString().length > 280
+      }
       className="btn btn-primary rounded-pill mx-2 col text-white"
     >
       <div className="d-flex justify-content-center align-items-center">

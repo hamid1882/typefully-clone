@@ -5,7 +5,6 @@ import { DarkMode, lightMode } from "../Features/Styles";
 
 import {
   selectStyle,
-  selectDraftCollapse,
   selectDraftView,
   collapseDraft,
 } from "../Features/InputSlice";
@@ -14,20 +13,14 @@ const Navbar = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const newStyle = useSelector(selectStyle);
-   const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
+  const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
   const darkStyle =
     newStyle === true ? DarkMode.styleDark : lightMode.styleDark;
   const collapse = useSelector(selectDraftView);
-  const selectCollapse = useSelector(selectDraftCollapse);
 
   const handleDraftCollapse = () => {
-    if (selectCollapse === true) {
-      dispatch(collapseDraft(false));
-    } else {
-      dispatch(collapseDraft(true));
-    }
+    dispatch(collapseDraft());
   };
-
   return (
     <nav
       style={style}

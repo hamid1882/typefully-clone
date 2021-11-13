@@ -33,33 +33,35 @@ const Tweets = () => {
                       ? null
                       : { backgroundColor: "rgba(29, 161, 242, 0.2)" }
                   }
-                  className="d-flex "
+                  className="d-flex"
                 >
-                  <div className="text-center my-2 position-relative">
+                  <div 
+                  style={{ width: "70px",}}
+                  className="text-center position-relative my-2">
                     <img
-                      style={{ width: "50px", height: "50px" }}
-                      className="rounded-circle mx-3"
+                      style={{ width: "50px", height: "50px"}}
+                      className="rounded-circle mx-0"
                       src="https://pbs.twimg.com/profile_images/1420523735472214017/uMRf2FIm_400x400.jpg"
                       alt="dp"
                     ></img>
                     {renderValue.length > 1 && (
                       <div
-                        className="position-absolute"
                         style={{
                           width: "2px",
                           backgroundColor: "gray",
                           height: "100%",
-                          left: "40px",
-                          top: "53px",
+                          marginRight: "auto",
+                          marginLeft: "auto",
+                          marginTop: "1px",
                         }}
                       ></div>
                     )}
                   </div>
-                  <div className="overflow-hidden w-100">
+                  <div className="overflow-hidden w-100 mx-1">
                     <div className="d-flex align-items-center mx-1">
                       <h3
                         style={darkStyle}
-                        className="py-1 m-1 text-truncate bg-transparent"
+                        className=" m-1 text-truncate bg-transparent"
                       >
                         Hamid Hussain
                       </h3>
@@ -73,7 +75,7 @@ const Tweets = () => {
                         value={text}
                         placeholder="Your Tweet will appear here..."
                         className={`bg-transparent tweet-text-area overflow-hidden resize-0 py-2 shadow-none form-control ${
-                          renderValue.toString().length >= 280
+                          text.length >= 280
                             ? "border-3 border-danger"
                             : "border-0"
                         } 

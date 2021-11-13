@@ -3,19 +3,17 @@
 }
 
 .font {
-  font-family: 'Zen Kaku Gothic Antique', sans-serif;
+  font-family: "Zen Kaku Gothic Antique", sans-serif;
 }
 
 .gutter {
-  /* background-color: rgb(196, 169, 169); */
   background-repeat: no-repeat;
   background-position: 50%;
 }
 
 .gutter.gutter-horizontal {
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=");
   cursor: col-resize;
-  /* background-color: white; */
+  background-color: transparent;
 }
 
 .gutter.gutter-vertical {
@@ -32,7 +30,6 @@
   transition: max-height 0.5s ease-out;
   max-height: 600px;
 }
-
 
 .navBorder {
   border-bottom: 1px solid #6e8291;
@@ -86,7 +83,6 @@
   display: none;
 }
 
-
 .float-hover:hover {
   color: rgb(49, 127, 245);
 }
@@ -94,7 +90,6 @@
 .floatactive {
   color: rgb(49, 127, 245);
 }
-
 
 .transitionDraft {
   transition: all 800ms ease-in-out;
@@ -156,10 +151,19 @@
   cursor: pointer;
 }
 
+.draftBorder {
+  width: 4px;
+  background-color: #1da1f2;
+  padding-bottom: 57px;
+  box-sizing: border-box;
+}
 
-
-
-
+.draftBorderDark {
+  width: 4px;
+  background-color: #802fff;
+  padding-bottom: 57px;
+  box-sizing: border-box;
+}
 /* Media query for draft bar making it responsive */
 
 @media only screen and (max-width: 768px) {
@@ -178,5 +182,3 @@
     width: 70%;
   }
 }
-
-
