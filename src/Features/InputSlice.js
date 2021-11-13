@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Collapse, lightMode } from "./Styles";
 
 const currentDraft = 0;
 export const initialState = {
@@ -10,7 +9,6 @@ export const initialState = {
   isDraftCollapsed: false,
   scroll: false,
   text: true,
-
 };
 
 const InputSlice = createSlice({
@@ -35,12 +33,14 @@ const InputSlice = createSlice({
       state.draftList[id] = item;
     },
     deleteDraft: (state, action) => {
-      delete state.draftList[action.payload.id]
-      const [id] = Object.entries(state.draftList)[0] || [0, ""]
-      state.currentDraft = id
+      delete state.draftList[action.payload.id];
+      const data = Object.entries(state.draftList)
+      const [id] = data[data.length - 1]  || [0, ""];
+      state.currentDraft = id;
     },
     // newTweet: (state, action) => {
-    //   state.input.push(action.payload);
+    //   const [id] = Object.entries(state.draftList)[0] || [0, ""];
+    //   state.currentDraft = id;
     // },
     addStyle: (state, action) => {
       state.isDarkMode = action.payload;
@@ -66,7 +66,7 @@ export const {
   changeCurrentDraft,
   deleteDraft,
   inputChange,
-  // newTweet,
+  newTweet,
   addStyle,
   collapseDraft,
   viewDraft,
@@ -76,11 +76,14 @@ export const {
 
 // action creators
 
-
 export const selectDraftList = (state) => Object.entries(state.draft.draftList);
 export const selectCurrentDraft = (state) => state.draft.currentDraft;
-export const selectInput = (state) => state.draft.draftList[selectCurrentDraft(state)];
-export const selectTweetThread = (state) => state.draft.draftList[selectCurrentDraft(state)].toString().split("\n\n\n");
+export const selectInput = (state) =>
+  state.draft.draftList[selectCurrentDraft(state)];
+export const selectTweetThread = (state) =>
+  state.draft.draftList[selectCurrentDraft(state)].toString().split("\n\n\n");
+export const selectNewTweet = (state) =>
+  state.draft.draftList[selectCurrentDraft(state)];
 export const selectStyle = (state) => state.draft.isDarkMode;
 export const selectDraftCollapse = (state) => state.draft.isDraftCollapsed;
 export const selectDraftView = (state) => state.draft.draftView;
@@ -88,4 +91,3 @@ export const selectScrollBar = (state) => state.draft.scroll;
 export const selectTextDirection = (state) => state.draft.text;
 
 export default InputSlice.reducer;
- 

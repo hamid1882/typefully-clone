@@ -131,7 +131,7 @@
 }
 
 .draftAfter {
-  width: 30%;
+  width: 300px;
   transition: all 500ms;
 }
 
@@ -152,6 +152,9 @@
   color: white;
 }
 
+.cursor {
+  cursor: pointer;
+}
 
 
 

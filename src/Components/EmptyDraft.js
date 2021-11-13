@@ -5,19 +5,16 @@ import {
   selectTextDirection,
   deleteDraft,
   changeCurrentDraft,
+  selectDraftList,
 } from "../Features/InputSlice";
 import { DarkMode, lightMode } from "../Features/Styles";
-
 
 const EmptyDraft = ({ value, id }) => {
   const [isShown, setIsShown] = useState(false);
   const newStyle = useSelector(selectStyle);
-   const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
-  const darkStyle =
-    newStyle === true ? DarkMode.styleDark : lightMode.styleDark;
   const dispatch = useDispatch();
-
   const text = useSelector(selectTextDirection);
+  const draftList = useSelector(selectDraftList);
 
   const handleDeleteDraft = (e) => {
     e.stopPropagation();
@@ -37,13 +34,16 @@ const EmptyDraft = ({ value, id }) => {
     );
   };
 
+  const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
+  const darkStyle =
+    newStyle === true ? DarkMode.styleDark : lightMode.styleDark;
+
   return (
     <>
-      <div className="" style={style} onClick={handleDraftClick}>
+      <div className="d-flex" style={style} onClick={handleDraftClick}>
         <div className="d-flex w-100">
           {darkStyle.color === "black" ? (
             <div
-              className=""
               style={{
                 width: "4px",
                 backgroundColor: "#1da1f2",
@@ -74,13 +74,13 @@ const EmptyDraft = ({ value, id }) => {
                 style={({ cursor: "pointer" }, darkStyle)}
                 value={value}
                 type="text"
-                className={`w-100 p-2 py-3 border-0 text-truncate bg-transparent ${
+                className={`w-100 p-2 py-3 cursor border-0 text-truncate bg-transparent ${
                   text ? "textDirectionLeft" : "textDirectionRight"
                 }`}
                 placeholder="Empty draft..."
               />
             </fieldset>
-            {isShown && (
+            {isShown && draftList.length > 1 && (
               <button
                 className={`btn shadow-none border-0 `}
                 style={style}

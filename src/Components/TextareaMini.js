@@ -1,3 +1,4 @@
+import { useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectStyle,
@@ -10,22 +11,26 @@ import {
 import Floatingicons from "./Floatingicons";
 import { DarkMode, lightMode } from "../Features/Styles";
 
-
 const TextareaMini = () => {
   const newStyle = useSelector(selectStyle);
-   const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
   const darkStyle =
     newStyle === true ? DarkMode.styleDark : lightMode.styleDark;
 
   const renderValue = useSelector(selectInput);
+
+  const inputRef = useRef();
+
+  const focusInput = () => {
+    inputRef.current.focus();
+  };
+  useEffect(focusInput, []);
 
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
     dispatch(
       inputChange({
-        id: 0,
-        item: e.target.value
+        item: e.target.value,
       })
     );
   };
@@ -54,7 +59,8 @@ const TextareaMini = () => {
         }
       >
         <textarea
-        onClick={handleCollapse}
+          ref={inputRef}
+          onClick={handleCollapse}
           style={darkStyle}
           value={renderValue}
           onChange={handleChange}

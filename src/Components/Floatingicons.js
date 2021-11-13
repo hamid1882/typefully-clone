@@ -2,46 +2,32 @@ import ReactTooltip from "react-tooltip";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectInput,
-  saveDraft,
   selectStyle,
   viewDraft,
   selectDraftView,
   collapseDraft,
+  newDraft,
+  // selectNewTweet,
+  // newTweet,
 } from "../Features/InputSlice";
-import { collapseIn } from "../Features/Styles";
 import { DarkMode, lightMode } from "../Features/Styles";
-
 
 const Floatingicons = () => {
   const dispatch = useDispatch();
   const renderValue = useSelector(selectInput);
   const newStyle = useSelector(selectStyle);
-   const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
+  const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
   const darkStyle =
     newStyle === true ? DarkMode.styleDark : lightMode.styleDark;
 
-  let increment = 0;
   const addDraft = () => {
-    dispatch(
-      saveDraft({
-        item: " ",
-        id: increment++,
-      })
-    );
-    dispatch(
-      collapseDraft({
-        transition: "all 1000ms",
-        transform: "translate(-250px)",
-      })
-    );
+    dispatch(newDraft());
+    dispatch(collapseDraft(false));
   };
 
-  // const handleNewTweet = () => {
-  //   dispatch(
-  //     newTweet({
-  //       item: renderValue + "\n\n\nNew Tweet",
-  //     })
-  //   );
+  // const myTweet = useSelector(selectNewTweet);
+  // const addTweet = () => {
+  //   dispatch(newTweet());
   // };
 
   const collapse = useSelector(selectDraftView);
@@ -49,16 +35,10 @@ const Floatingicons = () => {
   const handleViewDraft = () => {
     if (collapse === "d-block") {
       dispatch(viewDraft("d-none"));
-      dispatch(
-        collapseDraft({
-          transition: "all 700ms",
-          borderColor: "#ecf0f4",
-          transform: "translate(0px)",
-        })
-      );
+      dispatch(collapseDraft(true));
     } else {
       dispatch(viewDraft("d-block"));
-      dispatch(collapseDraft(collapseIn));
+      dispatch(collapseDraft(false));
     }
   };
 

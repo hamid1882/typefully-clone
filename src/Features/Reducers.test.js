@@ -8,6 +8,7 @@ import reducer, {
   addStyle,
   inputChange,
   deleteDraft,
+  newTweet,
 } from "./InputSlice";
 import { CollapseIn, lightMode, DarkMode } from "./Styles";
 
@@ -71,6 +72,17 @@ describe("draftlist", () => {
 
   });
 });
+
+describe.only("Add new tweet",  () => {
+  it("should add new tweet", () => {
+    const action = newTweet();
+    let state= initialState;
+    state = reducer(state, action);
+    expect(state.draftList).toStrictEqual({
+      0: "\n\n\nnew tweet"
+    })
+  })
+})
 
 describe("misk", () => {
 
