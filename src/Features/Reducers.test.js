@@ -9,6 +9,8 @@ import reducer, {
   inputChange,
   deleteDraft,
   newTweet,
+  selectCurrentDraft,
+  selectDraftList,
 } from "./InputSlice";
 import { CollapseIn, lightMode, DarkMode } from "./Styles";
 
@@ -63,33 +65,33 @@ describe("draftlist", () => {
       0: "second",
     });
 
-    const action6 = saveDraft({id: 2, item: "new item"})
-    state= reducer(state, action6);
+    const action6 = saveDraft({ id: 2, item: "new item" });
+    state = reducer(state, action6);
     expect(state.draftList).toStrictEqual({
       0: "second",
-      2: "new item"
-    })
-
+      2: "new item",
+    });
   });
 });
 
-describe.only("Add new tweet",  () => {
+describe("Add new tweet", () => {
   it("should add new tweet", () => {
     const action = newTweet();
-    let state= initialState;
+    let state = initialState;
     state = reducer(state, action);
-    expect(state.draftList).toStrictEqual("\n\n\nnew Tweet")
-  })
-})
+    expect(state.draftList).toStrictEqual({
+      0: "\n\n\nNew Tweet...",
+    });
+  });
+});
 
 describe("misk", () => {
-
   it("should toggle the theme theme", () => {
-    expect(reducer(undefined, addStyle(true)).isDarkMode).toEqual(true);
+    expect(reducer(undefined, addStyle(false)).isDarkMode).toEqual(true);
   });
 
   it("scroll bar toggles on click", () => {
-    expect(reducer(undefined, scrollBar(false)).scroll).toEqual(false);
+    expect(reducer(undefined, scrollBar(false)).scroll).toEqual(true);
   });
 
   it("DraftView toggles from visible to hidden", () => {
@@ -97,8 +99,6 @@ describe("misk", () => {
   });
 
   it("Collapse toggles from visible to hidden", () => {
-    expect(reducer(undefined, collapseDraft(CollapseIn)).draftCollapse).toEqual(
-      CollapseIn
-    );
+    expect(reducer(undefined, collapseDraft(false)).isDraftCollapsed).toEqual(true);
   });
 });
