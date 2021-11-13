@@ -40,14 +40,18 @@ const EmptyDraft = ({ value, id }) => {
     newStyle === true ? DarkMode.styleDark : lightMode.styleDark;
   const currentDraft = useSelector(selectCurrentDraft);
   const draftData = value.split("\n\n\n").toString();
+
+  // eslint-disable-next-line
+  const conditionalRendering = currentDraft == id;
+
   return (
     <>
       <div className="d-flex" style={style} onClick={handleDraftClick}>
         <div className="d-flex w-100">
-          {currentDraft === id && darkStyle.color === "black" ? (
+          {conditionalRendering & (darkStyle.color === "black") ? (
             <div className="draftBorder"></div>
           ) : (
-            currentDraft === id && <div className="draftBorderDark"></div>
+            conditionalRendering && <div className="draftBorderDark"></div>
           )}
 
           <div

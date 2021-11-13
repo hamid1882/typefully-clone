@@ -18,7 +18,7 @@ describe("initial states", () => {
   });
 
   it("should return the initial state of theme", () => {
-    expect(reducer(undefined, {}).style).toEqual(lightMode);
+    expect(reducer(undefined, {}).isDarkMode).toEqual(false);
   });
   it("Check initial state of scroll", () => {
     expect(reducer(undefined, {}).scroll).toEqual(false);
@@ -78,16 +78,14 @@ describe.only("Add new tweet",  () => {
     const action = newTweet();
     let state= initialState;
     state = reducer(state, action);
-    expect(state.draftList).toStrictEqual({
-      0: "\n\n\nnew tweet"
-    })
+    expect(state.draftList).toStrictEqual("\n\n\nnew Tweet")
   })
 })
 
 describe("misk", () => {
 
-  it("should toggle the themes", () => {
-    expect(reducer(undefined, addStyle(DarkMode)).style).toEqual(DarkMode);
+  it("should toggle the theme theme", () => {
+    expect(reducer(undefined, addStyle(true)).isDarkMode).toEqual(true);
   });
 
   it("scroll bar toggles on click", () => {

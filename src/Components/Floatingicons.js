@@ -7,6 +7,7 @@ import {
   selectDraftView,
   collapseDraft,
   newDraft,
+  newTweet,
   // selectNewTweet,
   // newTweet,
 } from "../Features/InputSlice";
@@ -25,17 +26,16 @@ const Floatingicons = () => {
     dispatch(collapseDraft(false));
   };
 
-  // const myTweet = useSelector(selectNewTweet);
-  // const addTweet = () => {
-  //   dispatch(newTweet());
-  // };
+  const addTweet = () => {
+    dispatch(newTweet());
+  };
 
   const collapse = useSelector(selectDraftView);
 
   const handleViewDraft = () => {
     if (collapse === "d-block") {
       dispatch(viewDraft("d-none"));
-      dispatch(collapseDraft(true));
+      dispatch(collapseDraft(true))
     } else {
       dispatch(viewDraft("d-block"));
       dispatch(collapseDraft(false));
@@ -66,6 +66,7 @@ const Floatingicons = () => {
           </button>
           <button
             style={style}
+            onClick={addTweet}
             data-tip="Add Tweet"
             className={`border-0 p-2 mx-1 ${collapse}`}
           >

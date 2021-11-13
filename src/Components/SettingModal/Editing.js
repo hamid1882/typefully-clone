@@ -1,38 +1,25 @@
 import { useState } from "react";
-import {useDispatch, useSelector} from 'react-redux';
-import {scrollBar, selectScrollBar, textDirection} from "../../Features/InputSlice";
-
+import { useDispatch } from "react-redux";
+import { scrollBar, textDirection } from "../../Features/InputSlice";
 
 const Editing = (props) => {
   const [selectEmoji, setselectEmoji] = useState(1);
-  const [textCount, settextCount] = useState(1)
+  const [textCount, settextCount] = useState(1);
 
   const handleEmojiCount = (index) => {
     setselectEmoji(index);
   };
 
+  const dispatch = useDispatch();
 
   const handleTextCount = (index) => {
-    settextCount(index)
-    if(textCount === 1) {
-      dispatch(textDirection(false))
-    } else {
-      dispatch(textDirection(true))
-    }
-  }
-
-  const dispatch = useDispatch();
-  const scroll = useSelector(selectScrollBar)
+    settextCount(index);
+    dispatch(textDirection());
+  };
 
   const handleScrollBar = () => {
-    if(scroll === false){
-      dispatch(scrollBar(true))
-    } else {
-      dispatch(scrollBar(false))
-    }
-  }
-
-
+    dispatch(scrollBar());
+  };
 
   return (
     <div>
@@ -140,9 +127,7 @@ const Editing = (props) => {
               <button
                 onClick={() => handleTextCount(1)}
                 style={
-                  textCount === 1
-                    ? props.contextDarkStyle
-                    : props.contextStyle
+                  textCount === 1 ? props.contextDarkStyle : props.contextStyle
                 }
                 className="btn col border-0 shadow-none rounded-pill"
               >
@@ -151,9 +136,7 @@ const Editing = (props) => {
               <button
                 onClick={() => handleTextCount(2)}
                 style={
-                  textCount === 2
-                    ? props.contextDarkStyle
-                    : props.contextStyle
+                  textCount === 2 ? props.contextDarkStyle : props.contextStyle
                 }
                 className="btn col border-0 shadow-none rounded-pill"
               >

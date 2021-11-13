@@ -21,6 +21,7 @@ const RightSideBar = ({ children }) => {
             : { height: "calc(100vh - 0.5rem)" }
         }
         id="tweet-div"
+        className="navbarPosition"
       >
         <Tweets />
       </div>

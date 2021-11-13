@@ -23,7 +23,7 @@ const InputSlice = createSlice({
       const id = action.payload.id || state.currentDraft;
       state.draftList[id] = item;
     },
-    newDraft: (state, action) => {
+    newDraft: (state) => {
       state.currentDraft++;
       state.draftList[state.currentDraft] = "";
     },
@@ -39,23 +39,24 @@ const InputSlice = createSlice({
       state.currentDraft = id;
     },
     newTweet: (state, action) => {
-      const data = Object.entries(state.draftList)
-      state.draftList[selectCurrentDraft] = data[data.length - 1][1] + "\n\n\nnew Tweet"
+      const key = state.currentDraft;
+      const [id, item] = Object.entries(state.draftList)[key];
+      state.draftList[id] = item + "\n\n\nNew Tweet...";
     },
-    addStyle: (state, action) => {
+    addStyle: (state) => {
       state.isDarkMode = !state.isDarkMode;
     },
-    collapseDraft: (state,) => {
-      state.isDraftCollapsed = !state.isDraftCollapsed;
+    collapseDraft: (state, action) => {
+      state.isDraftCollapsed = action.payload;
     },
     viewDraft: (state, action) => {
       state.draftView = action.payload;
     },
-    scrollBar: (state, action) => {
-      state.scroll = action.payload;
+    scrollBar: (state) => {
+      state.scroll = !state.scroll;
     },
-    textDirection: (state, action) => {
-      state.text = action.payload;
+    textDirection: (state) => {
+      state.text = !state.text;
     },
   },
 });

@@ -1,8 +1,9 @@
 import TextareaAutosize from "react-textarea-autosize";
 import ScrollToBottom from "react-scroll-to-bottom";
 import ReactTooltip from "react-tooltip";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
+  newTweet,
   selectStyle,
   selectTextDirection,
   selectTweetThread,
@@ -17,14 +18,17 @@ const Tweets = () => {
     newStyle === true ? DarkMode.styleDark : lightMode.styleDark;
 
   const textDirection = useSelector(selectTextDirection);
+  const dispatch = useDispatch();
 
+  const addNewTweet = () => {
+    dispatch(newTweet());
+  };
 
   return (
     <ScrollToBottom className="h-100 w-100">
-      <div className={`d-flex`}>
+      <div className="d-flex">
         <div style={style} className="w-100 mb-5">
           {renderValue.map((text) => {
-            // console.log(text);
             return (
               <div>
                 <div
@@ -35,11 +39,12 @@ const Tweets = () => {
                   }
                   className="d-flex"
                 >
-                  <div 
-                  style={{ width: "70px",}}
-                  className="text-center position-relative my-2">
+                  <div
+                    style={{ width: "70px" }}
+                    className="text-center position-relative my-2"
+                  >
                     <img
-                      style={{ width: "50px", height: "50px"}}
+                      style={{ width: "50px", height: "50px" }}
                       className="rounded-circle mx-0"
                       src="https://pbs.twimg.com/profile_images/1420523735472214017/uMRf2FIm_400x400.jpg"
                       alt="dp"
@@ -105,6 +110,7 @@ const Tweets = () => {
             }`}
           >
             <button
+              onClick={addNewTweet}
               data-tip="Add tweet or Just add two new lines to break the tweet "
               className="btn shadow-none"
             >
