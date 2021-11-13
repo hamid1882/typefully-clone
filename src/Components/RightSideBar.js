@@ -1,9 +1,9 @@
 import Tweets from "./Tweets";
 import { useSelector } from "react-redux";
 import {
-  selectDraftList,
   selectDraftView,
   selectStyle,
+  selectInput
 } from "../Features/InputSlice";
 import { DarkMode, lightMode } from "../Features/Styles";
 
@@ -27,7 +27,7 @@ const RightSideBar = ({ children }) => {
       </div>
       <div
         style={style}
-        className={`d-flex text-center justify-content-center ${collapse}`}
+        className={`d-flex text-center justify-content-center px-2 ${collapse}`}
       >
         {children}
       </div>
@@ -36,17 +36,18 @@ const RightSideBar = ({ children }) => {
 };
 
 export const TweetButton = () => {
-  const renderValue = useSelector(selectDraftList);
+  const renderValue = useSelector(selectInput);
+  console.log(renderValue)
 
   return (
     <button
       disabled={
-        renderValue.toString() === "" || renderValue.toString().length > 280
+        renderValue === "" || renderValue.length >= 280
       }
       className="btn btn-primary rounded-pill mx-2 col text-white"
     >
       <div className="d-flex justify-content-center align-items-center">
-        <i className="fa fa-paper-plane fs-4"></i>
+        <i className="fa fa-paper-plane fs-6"></i>
         <span className="mx-2 text-truncate">
           {renderValue.includes("\n\n\n") ? "Tweet All" : "Tweet"}
         </span>
@@ -56,18 +57,18 @@ export const TweetButton = () => {
 };
 
 export const ScheduleButton = () => {
-  const renderValue = useSelector(selectDraftList);
+  const renderValue = useSelector(selectInput);
 
   return (
     <button
-      disabled={renderValue.toString() === ""}
+      disabled={renderValue === ""}
       type="button"
       data-bs-toggle="modal"
       data-bs-target="#exampleModal"
-      className="btn btn-warning rounded-pill col text-white shadow-none"
+      className="btn bg-warning rounded-pill col text-white shadow-none"
     >
       <div className="d-flex justify-content-center align-items-center">
-        <i className="fa fa-clock fs-4"></i>
+        <i className="fa fa-clock fs-6"></i>
         <span className="p-2 text-truncate">Schedule</span>
       </div>
     </button>

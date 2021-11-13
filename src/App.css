@@ -14,6 +14,9 @@
 .gutter.gutter-horizontal {
   cursor: col-resize;
   background-color: transparent;
+  position: relative;
+  right: 20px;
+  z-index: 1;
 }
 
 .gutter.gutter-vertical {
@@ -34,6 +37,7 @@
 .navBorder {
   border-bottom: 1px solid #6e8291;
 }
+
 
 .scroll {
   overflow-y: scroll;

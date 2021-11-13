@@ -27,7 +27,7 @@ const Tweets = () => {
   return (
     <ScrollToBottom className="h-100 w-100">
       <div className="d-flex">
-        <div style={style} className="w-100 mb-5">
+        <div style={style} className="w-100 mb-5 ">
           {renderValue.map((text) => {
             return (
               <div>
@@ -37,7 +37,7 @@ const Tweets = () => {
                       ? null
                       : { backgroundColor: "rgba(29, 161, 242, 0.2)" }
                   }
-                  className="d-flex"
+                  className="d-flex px-2"
                 >
                   <div
                     style={{ width: "70px" }}

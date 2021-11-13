@@ -34,8 +34,8 @@ const InputSlice = createSlice({
     },
     deleteDraft: (state, action) => {
       delete state.draftList[action.payload.id];
-      const data = Object.entries(state.draftList)
-      const [id] = data[data.length - 1]  || [0, ""];
+      const data = Object.entries(state.draftList);
+      const [id] = data[data.length - 1] || [0, ""];
       state.currentDraft = id;
     },
     newTweet: (state, action) => {

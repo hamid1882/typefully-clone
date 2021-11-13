@@ -12,22 +12,21 @@ const Home = () => {
   const newStyle = useSelector(selectStyle);
   const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
 
-
   return (
     <div className="vh-100" style={style}>
-      <div className="d-flex h-100 ">
+      <div className="d-flex h-100">
         <Draft />
         <Split
           direction="horizontal"
-          minSize={[1000, 200]}
-          maxSize={[1000, 300]}
+          minSize={[1000, 300]}
+          maxSize={[1100, 500]}
           sizes={[70, 30]}
           gutterAlign="start"
           className="d-none d-md-flex gutterNew"
           style={style}
         >
-            <Textarea />
-          <div style={{ width: "300px" }}>
+          <Textarea />
+          <div style={{ width: "300px", marginLeft:"-20px" }}>
             <RightSideBar>
               <ScheduleButton />
               <Schedule />
