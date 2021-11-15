@@ -1,5 +1,6 @@
 * {
   overflow: hidden;
+  margin: 0;
 }
 
 .font {
@@ -16,7 +17,6 @@
   background-color: transparent;
   position: relative;
   right: 20px;
-  z-index: 1;
 }
 
 .gutter.gutter-vertical {
@@ -37,7 +37,6 @@
 .navBorder {
   border-bottom: 1px solid #6e8291;
 }
-
 
 .scroll {
   overflow-y: scroll;
@@ -133,6 +132,30 @@
   width: 300px;
   transition: all 500ms;
 }
+
+*/ .navBefore {
+  position: relative;
+}
+
+.navAfter {
+  position: absolute;
+  transform: translateY(-50px);
+  top: 10;
+  width: 100%;
+  transition: all 800ms;
+}
+
+.tweetBtnBefore {
+  transform: translateY(70px);
+  transition: all 700ms;
+}
+.tweetBtnAfter {
+  width: 100%;
+  transition: all 700ms;
+  height: 100%;
+  z-index: 99;
+}
+
 
 .borderColor {
   border-color: #2b343b;

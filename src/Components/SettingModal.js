@@ -13,10 +13,10 @@ const SettingModal = () => {
 
   
   return (
-    <div style={style}>
+    <div style={style} >
       <button
         style={darkStyle}
-        className="btn d-flex align-items-center fs-5 mx-2 rounded-3 px-2 py-1 border-0 shadow-none bg-transparent navBorder"
+        className="btn d-flex align-items-center fs-5 mx-2 rounded-3 px-2 py-1 border-0 shadow-none bg-transparent navBorder "
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#staticBackdrop"
@@ -32,10 +32,11 @@ const SettingModal = () => {
         tabIndex="-1"
         aria-labelledby="staticBackdropLabel"
         aria-hidden="true"
+
       >
-        <div className="container w-100 model rounded-3">
-          <div style={style} className="modalWidth modal-dialog rounded-3 shadow">
-            <div style={style} className="modalWidth modal-content bg-transparent">
+        <div className="container w-100 model rounded-3 ">
+          <div style={style} className="modalWidth modal-dialog rounded-3 shadow ">
+            <div style={style} className="modalWidth modal-content bg-transparent ">
               <div
                 style={darkStyle}
                 className="modal-header bg-transparent"

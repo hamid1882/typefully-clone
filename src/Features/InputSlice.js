@@ -7,6 +7,7 @@ export const initialState = {
   draftView: "d-block",
   isDarkMode: false,
   isDraftCollapsed: false,
+  navCollapsed: false,
   scroll: false,
   text: true,
 };
@@ -40,7 +41,7 @@ const InputSlice = createSlice({
     },
     newTweet: (state, action) => {
       const key = state.currentDraft;
-      const [id, item] = Object.entries(state.draftList)[key];
+      const [id, item] = Object.entries(state.draftList)[key]||[0];
       state.draftList[id] = item + "\n\n\nNew Tweet...";
     },
     addStyle: (state) => {
@@ -48,6 +49,9 @@ const InputSlice = createSlice({
     },
     collapseDraft: (state, action) => {
       state.isDraftCollapsed = action.payload;
+    },
+    collapseNav: (state, action) => {
+      state.navCollapsed = action.payload;
     },
     viewDraft: (state, action) => {
       state.draftView = action.payload;
@@ -70,6 +74,7 @@ export const {
   newTweet,
   addStyle,
   collapseDraft,
+  collapseNav,
   viewDraft,
   scrollBar,
   textDirection,
@@ -90,5 +95,6 @@ export const selectDraftCollapse = (state) => state.draft.isDraftCollapsed;
 export const selectDraftView = (state) => state.draft.draftView;
 export const selectScrollBar = (state) => state.draft.scroll;
 export const selectTextDirection = (state) => state.draft.text;
+export const selectNavCollapsed = (state) => state.draft.navCollapsed;
 
 export default InputSlice.reducer;

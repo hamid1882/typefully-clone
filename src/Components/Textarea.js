@@ -4,10 +4,11 @@ import {
   inputChange,
   selectInput,
   selectStyle,
-  selectDraftView,
   selectScrollBar,
   selectTextDirection,
   selectCurrentDraft,
+  selectNavCollapsed,
+  selectNewTweet,
 } from "../Features/InputSlice";
 import Floatingicons from "./Floatingicons";
 import { DarkMode, lightMode } from "../Features/Styles";
@@ -19,9 +20,12 @@ const Textarea = () => {
   const focusInput = () => {
     inputRef.current.focus();
   };
+
   const selectedDraft = useSelector(selectCurrentDraft);
+  const selectTweet = useSelector(selectNewTweet);
 
   useEffect(focusInput, []);
+  useEffect(focusInput, [selectTweet]);
   useEffect(focusInput, [selectedDraft]);
 
   const newStyle = useSelector(selectStyle);
@@ -40,7 +44,7 @@ const Textarea = () => {
   };
 
   const input = useSelector(selectInput);
-  const collapse = useSelector(selectDraftView);
+  const collapse = useSelector(selectNavCollapsed);
   const scroll = useSelector(selectScrollBar);
   const text = useSelector(selectTextDirection);
 
@@ -48,7 +52,7 @@ const Textarea = () => {
     <div
       style={
         (style,
-        collapse === "d-block"
+        collapse === false
           ? { height: "calc(100vh - 2.5rem)" }
           : { height: "100vh" })
       }
@@ -58,7 +62,7 @@ const Textarea = () => {
     >
       <div
         style={{ height: "calc(100% - 11.5%)" }}
-        className="container-fluid p-0 "
+        className="container-fluid p-0"
       >
         <div className="container h-100">
           <textarea

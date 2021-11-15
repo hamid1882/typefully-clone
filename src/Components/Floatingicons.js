@@ -3,13 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectInput,
   selectStyle,
-  viewDraft,
-  selectDraftView,
   collapseDraft,
   newDraft,
   newTweet,
-  // selectNewTweet,
-  // newTweet,
+  selectDraftCollapse,
+  collapseNav,
+  selectNavCollapsed,
 } from "../Features/InputSlice";
 import { DarkMode, lightMode } from "../Features/Styles";
 
@@ -30,15 +29,16 @@ const Floatingicons = () => {
     dispatch(newTweet());
   };
 
-  const collapse = useSelector(selectDraftView);
+  const collapse = useSelector(selectDraftCollapse);
+  const collapseNavbar = useSelector(selectNavCollapsed);
 
   const handleViewDraft = () => {
-    if (collapse === "d-block") {
-      dispatch(viewDraft("d-none"));
-      dispatch(collapseDraft(true))
-    } else {
-      dispatch(viewDraft("d-block"));
+    if (collapseNavbar === true) {
+      dispatch(collapseNav(false));
       dispatch(collapseDraft(false));
+    } else {
+      dispatch(collapseDraft(true));
+      dispatch(collapseNav(true));
     }
   };
 
@@ -86,12 +86,12 @@ const Floatingicons = () => {
             onClick={handleViewDraft}
             className={`border-0  p-2 mx-1 `}
           >
-            {collapse === "d-block" ? (
+            {collapseNavbar === false ? (
               <i className={`fa fa-expand-alt float-hover `}></i>
             ) : (
               <i
                 className={`fa fa-compress-alt float-hover ${
-                  collapse === "d-block" ? "" : "floatactive"
+                  collapseNavbar === false ? "" : "floatactive"
                 }`}
               ></i>
             )}

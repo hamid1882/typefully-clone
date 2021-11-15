@@ -5,7 +5,6 @@ import { DarkMode, lightMode } from "../Features/Styles";
 
 import {
   selectStyle,
-  selectDraftView,
   collapseDraft,
   selectDraftCollapse,
 } from "../Features/InputSlice";
@@ -17,17 +16,14 @@ const Navbar = () => {
   const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
   const darkStyle =
     newStyle === true ? DarkMode.styleDark : lightMode.styleDark;
-  const collapse = useSelector(selectDraftView);
-  const selectCollapse = useSelector(selectDraftCollapse)
+  const selectCollapse = useSelector(selectDraftCollapse);
 
   const handleDraftCollapse = () => {
     dispatch(collapseDraft(!selectCollapse));
   };
+
   return (
-    <nav
-      style={style}
-      className={`navbar navbar-expand-lg navBorder ${collapse} p-1`}
-    >
+    <nav style={style} className={`navbar navbar-expand-lg navBorder p-1`}>
       <div className="container-fluid fs-6">
         <button
           onClick={handleDraftCollapse}

@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   selectStyle,
   selectDraftCollapse,
-  selectDraftView,
   selectScrollBar,
   newDraft,
   selectDraftList,
@@ -11,15 +10,14 @@ import {
 import EmptyDraft from "./EmptyDraft";
 import { DarkMode, lightMode } from "../Features/Styles";
 
-
 const Draft = () => {
   const [countDraft, handleCount] = useState(1);
   const newStyle = useSelector(selectStyle);
-   const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
+  const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
   const darkStyle =
     newStyle === true ? DarkMode.styleDark : lightMode.styleDark;
   const draftCollapse = useSelector(selectDraftCollapse);
-  const collapse = useSelector(selectDraftView);
+  const collapse = useSelector(selectDraftCollapse);
   const scroll = useSelector(selectScrollBar);
   const dispatch = useDispatch();
   const draft = useSelector(selectDraftList);
@@ -39,7 +37,7 @@ const Draft = () => {
       <div
         className="overflow-hidden"
         style={
-          collapse === "d-block"
+          collapse
             ? { height: "calc(100vh - 2.5rem)" }
             : { height: "calc(100vh - 0.3rem)" }
         }

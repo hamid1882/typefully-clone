@@ -1,33 +1,33 @@
 import Tweets from "./Tweets";
 import { useSelector } from "react-redux";
 import {
-  selectDraftView,
   selectStyle,
-  selectInput
+  selectInput,
+  selectNavCollapsed
 } from "../Features/InputSlice";
 import { DarkMode, lightMode } from "../Features/Styles";
 
 const RightSideBar = ({ children }) => {
   const newStyle = useSelector(selectStyle);
   const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
-  const collapse = useSelector(selectDraftView);
+  const collapse = useSelector(selectNavCollapsed);
 
   return (
     <div style={style} className="font-style">
       <div
         style={
-          collapse === "d-block"
-            ? { height: "calc(100vh - 8rem)" }
-            : { height: "calc(100vh - 0.5rem)" }
+          collapse === false
+            ? { height: "calc(100vh - 7rem)" }
+            : { height: "calc(100vh)" }
         }
         id="tweet-div"
-        className="navbarPosition"
+        className={`${collapse ? "tweetBtnAfter" : "none"}`}
       >
         <Tweets />
       </div>
       <div
         style={style}
-        className={`d-flex text-center justify-content-center px-2 ${collapse}`}
+        className="d-flex text-center justify-content-center px-2"
       >
         {children}
       </div>
@@ -37,7 +37,6 @@ const RightSideBar = ({ children }) => {
 
 export const TweetButton = () => {
   const renderValue = useSelector(selectInput);
-  console.log(renderValue)
 
   return (
     <button
