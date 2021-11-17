@@ -1,4 +1,5 @@
 @import "Variables";
+@import "screenSize";
 
 * {
   overflow: hidden;
@@ -265,21 +266,22 @@
     $borderColor: $border__gray
   );
 }
-/* Media query for draft bar making it responsive */
 
-@media only screen and (max-width: 768px) {
   .draftPosition {
-    position: absolute !important;
-    height: 100%;
-    z-index: 99;
+    @include md {
+      position: absolute !important;
+      height: 100%;
+      z-index: 99;
+    }
   }
   .draftAfter {
-    width: 50%;
+    @include md {
+      width: 50%;
+    }
   }
-}
 
-@media only screen and (max-width: 400px) {
   .draftAfter {
-    width: 70%;
+    @include sm {
+      width: 70%;
+    }
   }
-}
