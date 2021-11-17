@@ -6,16 +6,15 @@ import Draft from "./Draft";
 import TextareaMini from "./TextareaMini";
 import Schedule from "./Schedule";
 import { selectNavCollapsed, selectStyle } from "../Features/InputSlice";
-import { DarkMode, lightMode } from "../Features/Styles";
-import "../App.css"
+import "../App.scss"
 
 const Home = () => {
-  const newStyle = useSelector(selectStyle);
   const navCollapsed = useSelector(selectNavCollapsed)
-  const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
+  const newStyle = useSelector(selectStyle);
+  const style = newStyle === false ? "styleLight" : "styleLightDark";
 
   return (
-    <div className={`${navCollapsed ? "navAfter" : "navBefore"}`} style={style}>
+    <div className={`${navCollapsed ? "navAfter" : "navBefore"} ${style}`}>
       <div className="d-flex h-100">
         <Draft />
         <Split
@@ -23,8 +22,7 @@ const Home = () => {
           minSize={[1000, 250]}
           sizes={[65, 35]}
           gutterAlign="start"
-          className="d-none d-md-flex gutterNew"
-          style={style}
+          className={`d-none d-md-flex gutterNew ${style}`}
         >
           <Textarea />
           <div style={{ width: "300px", marginLeft: "-20px" }}>

@@ -1,3 +1,4 @@
+// import { useRef, useEffect } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import ScrollToBottom from "react-scroll-to-bottom";
 import ReactTooltip from "react-tooltip";
@@ -24,25 +25,26 @@ const Tweets = () => {
     dispatch(newTweet());
   };
 
+  const handleTweetClick = (e) => {
+    console.log("select my tweet");
+  };
+
   return (
     <ScrollToBottom className="h-100 w-100">
       <div className="d-flex">
-        <div style={style} className="w-100 mb-5 ">
+        <div style={style} className="w-100 mb-5 position-relative">
           {renderValue.map((text) => {
             return (
-              <div>
+              <div className="cursor " onClick={handleTweetClick}>
                 <div
                   style={
                     text === ""
                       ? null
                       : { backgroundColor: "rgba(29, 161, 242, 0.2)" }
                   }
-                  className="d-flex px-2"
+                  className="d-flex px-2 "
                 >
-                  <div
-                    style={{ width: "70px" }}
-                    className="text-center position-relative my-2"
-                  >
+                  <div style={{ width: "70px" }} className="text-center py-2">
                     <img
                       style={{ width: "50px", height: "50px" }}
                       className="rounded-circle mx-0"
@@ -72,14 +74,16 @@ const Tweets = () => {
                       </h3>
                       <span className="form-text">@hussainhafeez5</span>
                     </div>
-                    <fieldset disabled>
+
+                    <div>
                       <TextareaAutosize
+                        readOnly
                         style={darkStyle}
                         minRows={1}
                         maxRows={15}
                         value={text}
                         placeholder="Your Tweet will appear here..."
-                        className={`bg-transparent tweet-text-area overflow-hidden resize-0 py-2 shadow-none form-control ${
+                        className={`cursor bg-transparent tweet-text-area overflow-hidden resize-0 py-2 shadow-none form-control ${
                           text.length >= 280
                             ? "border-3 border-danger"
                             : "border-0"
@@ -90,7 +94,7 @@ const Tweets = () => {
                               : "textDirectionRight"
                           }`}
                       />
-                    </fieldset>
+                    </div>
                     <p
                       className={`form-text text-auto mx-3 ${
                         text === "" ? "invisible" : "visible"

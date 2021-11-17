@@ -6,9 +6,9 @@ import {
   selectStyle,
   selectScrollBar,
   selectTextDirection,
-  selectCurrentDraft,
   selectNavCollapsed,
   selectNewTweet,
+  selectTweetThread,
 } from "../Features/InputSlice";
 import Floatingicons from "./Floatingicons";
 import { DarkMode, lightMode } from "../Features/Styles";
@@ -21,12 +21,12 @@ const Textarea = () => {
     inputRef.current.focus();
   };
 
-  const selectedDraft = useSelector(selectCurrentDraft);
   const selectTweet = useSelector(selectNewTweet);
+  const renderValue = useSelector(selectTweetThread);
 
   useEffect(focusInput, []);
   useEffect(focusInput, [selectTweet]);
-  useEffect(focusInput, [selectedDraft]);
+  useEffect(focusInput, [renderValue]);
 
   const newStyle = useSelector(selectStyle);
 

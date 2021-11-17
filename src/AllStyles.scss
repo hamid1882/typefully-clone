@@ -1,10 +1,12 @@
+@import "Variables";
+
 * {
   overflow: hidden;
   margin: 0;
 }
 
 .font {
-  font-family: "Zen Kaku Gothic Antique", sans-serif;
+  font-family: $fonts;
 }
 
 .gutter {
@@ -25,7 +27,6 @@
 
 .gutterNew {
   display: flex;
-  height: cal(100vh - 4rem);
   width: 100%;
 }
 
@@ -54,19 +55,23 @@
 
 .textarea-style {
   resize: none;
-  caret-color: #802fff !important;
+  caret-color: $lightPurple !important;
+}
+
+@mixin textDirection($val) {
+  direction: $val;
 }
 
 .textDirectionRight {
-  direction: rtl;
+  @include textDirection($val: rtl);
 }
 
 .textDirectionLeft {
-  direction: ltr;
+  @include textDirection($val: ltr);
 }
 
 .textColor {
-  color: #802fff;
+  color: $lightPurple;
 }
 
 .tweet-flow {
@@ -87,11 +92,11 @@
 }
 
 .float-hover:hover {
-  color: rgb(49, 127, 245);
+  color: $lightBlue;
 }
 
 .floatactive {
-  color: rgb(49, 127, 245);
+  color: $lightBlue;
 }
 
 .transitionDraft {
@@ -116,11 +121,11 @@
 }
 
 .draftBtnHover:hover {
-  color: #802fff;
+  color: $lightPurple;
 }
 
 .draftBtnHoverLight:hover {
-  color: rgb(49, 127, 245);
+  color: $lightBlue;
 }
 
 .draftBefore {
@@ -133,7 +138,11 @@
   transition: all 500ms;
 }
 
-*/ .navBefore {
+.btnActive:hover {
+  color: black;
+}
+
+.navBefore {
   position: relative;
 }
 
@@ -156,40 +165,105 @@
   z-index: 99;
 }
 
-
 .borderColor {
-  border-color: #2b343b;
+  border-color: $border__gray;
 }
 
 .iconsShadow {
-  box-shadow: 0 0 1px 1px #2b343b;
+  box-shadow: 0 0 1px 1px $border__gray;
 }
 
 .iconsShadowDark {
-  box-shadow: 0 0 1px 1px #ecf0f4;
+  box-shadow: 0 0 1px 1px $border__light;
 }
 
 ::selection {
-  background: #802fff;
-  color: white;
+  background: $lightPurple;
+  color: $white;
 }
 
 .cursor {
   cursor: pointer;
 }
 
-.draftBorder {
+.floatShrink {
+  width: 150px;
+  transition: all 900ms ease-in-out;
+}
+
+.floatShrink__transition {
+  width: 35px;
+  height: 35px;
+  transition: all 900ms ease-in-out;
+}
+
+.zen-resize {
+  position: absolute;
+  right: -4px;
+  width: 100%;
+}
+
+@mixin draftBorder($background-color) {
   width: 4px;
-  background-color: #1da1f2;
+  background-color: $background-color;
   padding-bottom: 57px;
   box-sizing: border-box;
 }
 
+.draftBorder {
+  @include draftBorder($background-color: $lightBlue);
+}
+
 .draftBorderDark {
-  width: 4px;
-  background-color: #802fff;
-  padding-bottom: 57px;
-  box-sizing: border-box;
+  @include draftBorder($background-color: $lightPurple);
+}
+
+@mixin Lighttheme($color, $backgroundColor, $borderColor) {
+  background-color: $backgroundColor;
+  color: $color;
+  border-color: $borderColor;
+  transition: all 500ms;
+  font-family: $fonts;
+}
+
+.styleLight {
+  @include Lighttheme(
+    $color: $gray,
+    $backgroundColor: $white,
+    $borderColor: $border__light
+  );
+}
+
+.styleLightDark {
+  @include Lighttheme(
+    $color: $gray,
+    $backgroundColor: #16212c,
+    $borderColor: $border__gray
+  );
+}
+
+@mixin DarkTheme($color, $backgroundColor, $borderColor) {
+  background-color: $backgroundColor;
+  color: $color;
+  border-color: $borderColor;
+  transition: all 500ms;
+  font-family: $fonts;
+}
+
+.styleDark {
+  @include DarkTheme(
+    $color: black,
+    $backgroundColor: #e7ebef,
+    $borderColor: $border__light
+  );
+}
+
+.styleDarkDark {
+  @include DarkTheme(
+    $color: $white,
+    $backgroundColor: #2c333a,
+    $borderColor: $border__gray
+  );
 }
 /* Media query for draft bar making it responsive */
 

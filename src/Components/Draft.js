@@ -8,15 +8,14 @@ import {
   selectDraftList,
 } from "../Features/InputSlice";
 import EmptyDraft from "./EmptyDraft";
-import { DarkMode, lightMode } from "../Features/Styles";
 
 const Draft = () => {
   const [countDraft, handleCount] = useState(1);
   const newStyle = useSelector(selectStyle);
-  const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
-  const darkStyle =
-    newStyle === true ? DarkMode.styleDark : lightMode.styleDark;
-  const draftCollapse = useSelector(selectDraftCollapse);
+
+  const style = newStyle === false ? "styleLight" : "styleLightDark";
+  const darkStyle = newStyle === false ? "styleDark" : "styleDarkDark";
+
   const collapse = useSelector(selectDraftCollapse);
   const scroll = useSelector(selectScrollBar);
   const dispatch = useDispatch();
@@ -31,8 +30,7 @@ const Draft = () => {
     <div
       className={`transitionDraft draftPosition draftMini overflow-hidden ${
         selectCollapse ? "draftBefore" : "draftAfter"
-      }`}
-      style={darkStyle}
+      } ${darkStyle}`}
     >
       <div
         className="overflow-hidden"
@@ -46,44 +44,43 @@ const Draft = () => {
         <div
           className={`font h-100  ${
             scroll ? "border-end shadow scroll tweet-overflow" : "scroll"
-          }`}
-          style={(draftCollapse, style)}
+          } ${style}`}
         >
           <div
-            style={style}
-            className="d-flex justify-content-center align-items-center m-1 "
+            className={`d-flex justify-content-center align-items-center m-1 ${style}`}
           >
             <button
               onClick={() => handleCount(1)}
-              style={countDraft === 1 ? darkStyle : style}
-              className="btnActive mx-2 rounded px-2 py-1 border-0 col shadow-none outline-none"
+              className={`btnActive mx-2 rounded px-2 py-1 border-0 col shadow-none outline-none ${
+                countDraft === 1 ? darkStyle : style
+              }`}
             >
               <div> Drafts </div>
             </button>
             <button
               onClick={() => handleCount(2)}
-              style={countDraft === 2 ? darkStyle : style}
-              className="mx-2 rounded px-2 py-1 border-0 col "
+              className={`mx-2 rounded px-2 py-1 border-0 col ${
+                countDraft === 2 ? darkStyle : style
+              }`}
             >
               <div>Schedule</div>
             </button>
             <button
               onClick={() => handleCount(3)}
-              style={countDraft === 3 ? darkStyle : style}
-              className="mx-2 rounded px-2 py-1 border-0 col "
+              className={`mx-2 rounded px-2 py-1 border-0 col ${
+                countDraft === 3 ? darkStyle : style
+              }`}
             >
               <div> Tweets </div>
             </button>
           </div>
 
           <div
-            style={style}
-            className={`${countDraft === 1 ? "d-block" : "d-none"}`}
+            className={`${countDraft === 1 ? "d-block" : "d-none"} ${style}`}
           >
             <button
-              style={style}
               onClick={() => handleAddDraft(3)}
-              className="btn w-100 shadow-none sticky-top p-3 border-0 border-top border-bottom rounded-0 d-flex justify-content-right align-items-center"
+              className={`${style} w-100 shadow-none p-3 border-0 border-top border-bottom rounded-0 d-flex justify-content-right align-items-center`}
             >
               <i className="fa fa-plus"></i>
               <span className="mx-2">New Draft</span>
@@ -94,38 +91,6 @@ const Draft = () => {
               <EmptyDraft value={value} id={id} />
             ))}
           </div>
-
-          {/* scheduled */}
-          {/* <div
-            style={style}
-            className={`${countDraft === 2 ? "d-block" : "d-none"}`}
-          >
-            <button
-              style={style}
-              className="btn w-100 shadow-none p-3 border-0 border-top border-bottom rounded-0 d-flex justify-content-right align-items-center"
-            >
-              <i className="fa fa-plus"></i>
-              <span className="mx-2">New Draft</span>
-            </button>
-
-            <EmptyDraft />
-          </div> */}
-
-          {/* Tweet */}
-          {/* <div
-            style={style}
-            className={`${countDraft === 3 ? "d-block" : "d-none"}`}
-          >
-            <button
-              style={style}
-              className="btn w-100 shadow-none p-3 border-0 border-top border-bottom rounded-0 d-flex justify-content-right align-items-center"
-            >
-              <i className="fa fa-plus "></i>
-              <span className="mx-2">New Draft</span>
-            </button>
-
-            <EmptyDraft />
-          </div> */}
         </div>
       </div>
     </div>
