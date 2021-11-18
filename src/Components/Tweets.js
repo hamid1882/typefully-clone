@@ -1,4 +1,3 @@
-// import { useRef, useEffect } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import ScrollToBottom from "react-scroll-to-bottom";
 import ReactTooltip from "react-tooltip";
@@ -16,17 +15,13 @@ const Tweets = () => {
   const newStyle = useSelector(selectStyle);
   const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
   const darkStyle =
-    newStyle === true ? DarkMode.styleDark : lightMode.styleDark;
-
+  newStyle === true ? DarkMode.styleDark : lightMode.styleDark;
+  
   const textDirection = useSelector(selectTextDirection);
   const dispatch = useDispatch();
-
+  
   const addNewTweet = () => {
     dispatch(newTweet());
-  };
-
-  const handleTweetClick = (e) => {
-    console.log("select my tweet");
   };
 
   return (
@@ -35,7 +30,7 @@ const Tweets = () => {
         <div style={style} className="w-100 mb-5 position-relative">
           {renderValue.map((text) => {
             return (
-              <div className="cursor " onClick={handleTweetClick}>
+              <div className="cursor ">
                 <div
                   style={
                     text === ""
