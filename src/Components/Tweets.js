@@ -21,8 +21,7 @@ const Tweets = () => {
   const textDirection = useSelector(selectTextDirection);
   const dispatch = useDispatch();
 
-  const setInputFocus = useSelector(selectFocus)
-
+  const setInputFocus = useSelector(selectFocus);
 
   const addNewTweet = () => {
     dispatch(newTweet());
@@ -78,10 +77,10 @@ const Tweets = () => {
                     <div>
                       <TextareaAutosize
                         readOnly
+                        value={text}
                         style={darkStyle}
                         minRows={1}
                         maxRows={15}
-                        value={text}
                         placeholder="Your Tweet will appear here..."
                         className={`cursor bg-transparent tweet-text-area overflow-hidden resize-0 py-2 shadow-none form-control ${
                           text.length >= 280

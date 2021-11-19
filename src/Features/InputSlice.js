@@ -1,8 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const currentDraft = 0;
-let htmlElRef;
-let setFocus;
 
 export const initialState = {
   currentDraft,

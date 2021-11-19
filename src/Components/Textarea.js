@@ -17,23 +17,20 @@ import { DarkMode, lightMode } from "../Features/Styles";
 const Textarea = () => {
   const dispatch = useDispatch();
   const [inputRef, setInputFocus] = useFocus();
-
-  
-  useEffect(() => {
-    dispatch(instantFocus({
-      newRef: inputRef,
-      focusRef: setInputFocus
-    }))
-  }, [])
-
+  const newStyle = useSelector(selectStyle);
   const selectedDraft = useSelector(selectCurrentDraft);
 
   // eslint-disable-next-line
-  useEffect(setInputFocus, []);
+  useEffect(() => {
+    dispatch(
+      instantFocus({
+        focusRef: setInputFocus,
+      })
+    );
+    // eslint-disable-next-line
+  }, []);
   // eslint-disable-next-line
   useEffect(setInputFocus, [selectedDraft]);
-
-  const newStyle = useSelector(selectStyle);
 
   const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
   const darkStyle =
@@ -48,11 +45,12 @@ const Textarea = () => {
     );
   };
 
-
   const input = useSelector(selectInput);
   const collapse = useSelector(selectNavCollapsed);
   const scroll = useSelector(selectScrollBar);
   const text = useSelector(selectTextDirection);
+
+
 
   return (
     <div
