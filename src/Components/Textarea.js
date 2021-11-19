@@ -8,16 +8,23 @@ import {
   selectTextDirection,
   selectNavCollapsed,
   selectCurrentDraft,
+  instantFocus,
 } from "../Features/InputSlice";
 import Floatingicons from "./Floatingicons";
+import useFocus from "./UseFocus";
 import { DarkMode, lightMode } from "../Features/Styles";
-import useFocus from "./UseFocus"
 
-
-const Textarea = ({ inputRef, setInputFocus }) => {
+const Textarea = () => {
   const dispatch = useDispatch();
-  // const [inputRef, setInputFocus] = useFocus();
+  const [inputRef, setInputFocus] = useFocus();
+
   
+  useEffect(() => {
+    dispatch(instantFocus({
+      newRef: inputRef,
+      focusRef: setInputFocus
+    }))
+  }, [])
 
   const selectedDraft = useSelector(selectCurrentDraft);
 
@@ -40,6 +47,7 @@ const Textarea = ({ inputRef, setInputFocus }) => {
       })
     );
   };
+
 
   const input = useSelector(selectInput);
   const collapse = useSelector(selectNavCollapsed);
@@ -77,7 +85,7 @@ const Textarea = ({ inputRef, setInputFocus }) => {
         </div>
       </div>
       <div style={{ width: "100%" }} className="d-flex justify-content-end">
-        <Floatingicons setInputFocus={setInputFocus} />
+        <Floatingicons />
       </div>
     </div>
   );

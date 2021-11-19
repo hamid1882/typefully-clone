@@ -6,15 +6,11 @@ import Draft from "./Draft";
 import TextareaMini from "./TextareaMini";
 import Schedule from "./Schedule";
 import { selectNavCollapsed, selectStyle } from "../Features/InputSlice";
-import "../App.scss"
-import useFocus from "./UseFocus";
+import "../App.scss";
 
 const Home = () => {
-  const navCollapsed = useSelector(selectNavCollapsed)
+  const navCollapsed = useSelector(selectNavCollapsed);
   const newStyle = useSelector(selectStyle);
-  const [inputRef, setInputFocus] = useFocus();
-
-
   const style = newStyle === false ? "styleLight" : "styleLightDark";
 
   return (
@@ -28,9 +24,9 @@ const Home = () => {
           gutterAlign="start"
           className={`d-none d-md-flex gutterNew ${style}`}
         >
-          <Textarea inputRef={inputRef} setInputFocus={setInputFocus}/>
+          <Textarea />
           <div style={{ width: "300px", marginLeft: "-20px" }}>
-            <RightSideBar setInputFocus={setInputFocus}>
+            <RightSideBar>
               <ScheduleButton />
               <Schedule />
               <TweetButton />

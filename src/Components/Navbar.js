@@ -6,6 +6,7 @@ import {
   selectStyle,
   collapseDraft,
   selectDraftCollapse,
+  selectFocus,
 } from "../Features/InputSlice";
 
 const Navbar = () => {
@@ -20,6 +21,12 @@ const Navbar = () => {
   const handleDraftCollapse = () => {
     dispatch(collapseDraft(!selectCollapse));
   };
+
+  const newFocus = useSelector(selectFocus);
+  const handleAddFocus = () => {
+    newFocus.focusRef();
+  };
+
 
   return (
     <nav className={`${style} navbar navbar-expand-lg navBorder p-1`}>
@@ -64,6 +71,7 @@ const Navbar = () => {
         </div>
         <div className="d-flex justify-content-center align-items-center">
           <button
+            onClick={handleAddFocus}
             className={`${darkStyle} fs-6 mx-2 rounded-3 px-2 py-2 border-0 d-flex justify-content-center align-items-center`}
           >
             <i className="fas fa-bolt"></i>

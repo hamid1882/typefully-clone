@@ -3,11 +3,11 @@ import { useSelector } from "react-redux";
 import {
   selectStyle,
   selectInput,
-  selectNavCollapsed
+  selectNavCollapsed,
 } from "../Features/InputSlice";
 import { DarkMode, lightMode } from "../Features/Styles";
 
-const RightSideBar = ({ children, setInputFocus }) => {
+const RightSideBar = ({ children }) => {
   const newStyle = useSelector(selectStyle);
   const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
   const collapse = useSelector(selectNavCollapsed);
@@ -23,7 +23,7 @@ const RightSideBar = ({ children, setInputFocus }) => {
         id="tweet-div"
         className={`${collapse ? "tweetBtnAfter" : "none"}`}
       >
-        <Tweets setInputFocus={setInputFocus}/>
+        <Tweets />
       </div>
       <div
         style={style}
@@ -40,9 +40,7 @@ export const TweetButton = () => {
 
   return (
     <button
-      disabled={
-        renderValue === "" || renderValue.length >= 280
-      }
+      disabled={renderValue === "" || renderValue.length >= 280}
       className="btn btn-primary rounded-pill mx-2 col text-white"
     >
       <div className="d-flex justify-content-center align-items-center">

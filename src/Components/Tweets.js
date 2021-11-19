@@ -4,13 +4,14 @@ import ReactTooltip from "react-tooltip";
 import { useSelector, useDispatch } from "react-redux";
 import {
   newTweet,
+  selectFocus,
   selectStyle,
   selectTextDirection,
   selectTweetThread,
 } from "../Features/InputSlice";
 import { DarkMode, lightMode } from "../Features/Styles";
 
-const Tweets = ({ setInputFocus }) => {
+const Tweets = () => {
   const renderValue = useSelector(selectTweetThread);
   const newStyle = useSelector(selectStyle);
   const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
@@ -20,9 +21,12 @@ const Tweets = ({ setInputFocus }) => {
   const textDirection = useSelector(selectTextDirection);
   const dispatch = useDispatch();
 
+  const setInputFocus = useSelector(selectFocus)
+
+
   const addNewTweet = () => {
     dispatch(newTweet());
-    setInputFocus();
+    setInputFocus.focusRef();
   };
 
   return (

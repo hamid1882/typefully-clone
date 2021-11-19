@@ -8,10 +8,11 @@ import {
   newTweet,
   collapseNav,
   selectNavCollapsed,
+  selectFocus,
 } from "../Features/InputSlice";
 import { DarkMode, lightMode } from "../Features/Styles";
 
-const Floatingicons = ( { setInputFocus }) => {
+const Floatingicons = () => {
   const dispatch = useDispatch();
   const renderValue = useSelector(selectInput);
   const newStyle = useSelector(selectStyle);
@@ -24,9 +25,11 @@ const Floatingicons = ( { setInputFocus }) => {
     dispatch(collapseDraft(false));
   };
 
+  const setInputFocus = useSelector(selectFocus)
+
   const addTweet = () => {
     dispatch(newTweet());
-    setInputFocus();
+    setInputFocus.focusRef();
   };
 
   const collapseNavbar = useSelector(selectNavCollapsed);

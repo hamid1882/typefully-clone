@@ -1,6 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const currentDraft = 0;
+let htmlElRef;
+let setFocus;
+
 export const initialState = {
   currentDraft,
   draftList: { [currentDraft]: "" },
@@ -10,6 +13,7 @@ export const initialState = {
   navCollapsed: false,
   scroll: false,
   text: true,
+  focus: {},
 };
 
 const InputSlice = createSlice({
@@ -41,7 +45,7 @@ const InputSlice = createSlice({
     },
     newTweet: (state, action) => {
       const key = state.currentDraft;
-      const [,item] = Object.entries(state.draftList)[key];
+      const [, item] = Object.entries(state.draftList)[key];
       state.draftList[key] = item + "\n\n\nNew Tweet...";
     },
     addStyle: (state) => {
@@ -62,10 +66,14 @@ const InputSlice = createSlice({
     textDirection: (state) => {
       state.text = !state.text;
     },
+    instantFocus: (state, action) => {
+      state.focus = action.payload;
+    },
   },
 });
 
 export const {
+  instantFocus,
   saveDraft,
   newDraft,
   changeCurrentDraft,
@@ -96,5 +104,6 @@ export const selectDraftView = (state) => state.draft.draftView;
 export const selectScrollBar = (state) => state.draft.scroll;
 export const selectTextDirection = (state) => state.draft.text;
 export const selectNavCollapsed = (state) => state.draft.navCollapsed;
+export const selectFocus = (state) => state.draft.focus;
 
 export default InputSlice.reducer;
