@@ -41,8 +41,8 @@ const InputSlice = createSlice({
     },
     newTweet: (state, action) => {
       const key = state.currentDraft;
-      const [id, item] = Object.entries(state.draftList)[key]||[0];
-      state.draftList[id] = item + "\n\n\nNew Tweet...";
+      const [,item] = Object.entries(state.draftList)[key];
+      state.draftList[key] = item + "\n\n\nNew Tweet...";
     },
     addStyle: (state) => {
       state.isDarkMode = !state.isDarkMode;

@@ -10,27 +10,28 @@ import {
 } from "../Features/InputSlice";
 import { DarkMode, lightMode } from "../Features/Styles";
 
-const Tweets = () => {
+const Tweets = ({ setInputFocus }) => {
   const renderValue = useSelector(selectTweetThread);
   const newStyle = useSelector(selectStyle);
   const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
   const darkStyle =
-  newStyle === true ? DarkMode.styleDark : lightMode.styleDark;
-  
+    newStyle === true ? DarkMode.styleDark : lightMode.styleDark;
+
   const textDirection = useSelector(selectTextDirection);
   const dispatch = useDispatch();
-  
+
   const addNewTweet = () => {
     dispatch(newTweet());
+    setInputFocus();
   };
 
   return (
     <ScrollToBottom className="h-100 w-100">
       <div className="d-flex">
         <div style={style} className="w-100 mb-5 position-relative">
-          {renderValue.map((text) => {
+          {renderValue.map((text, i) => {
             return (
-              <div className="cursor ">
+              <div key={i} className="cursor ">
                 <div
                   style={
                     text === ""

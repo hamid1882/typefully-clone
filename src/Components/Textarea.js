@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   inputChange,
@@ -7,23 +7,24 @@ import {
   selectScrollBar,
   selectTextDirection,
   selectNavCollapsed,
-  selectNewTweet,
+  selectCurrentDraft,
 } from "../Features/InputSlice";
 import Floatingicons from "./Floatingicons";
 import { DarkMode, lightMode } from "../Features/Styles";
+import useFocus from "./UseFocus"
 
-const Textarea = () => {
-  const inputRef = useRef();
+
+const Textarea = ({ inputRef, setInputFocus }) => {
   const dispatch = useDispatch();
+  // const [inputRef, setInputFocus] = useFocus();
+  
 
-  const focusInput = () => {
-    inputRef.current.focus();
-  };
+  const selectedDraft = useSelector(selectCurrentDraft);
 
-  const selectTweet = useSelector(selectNewTweet);
-
-  useEffect(focusInput, []);
-  useEffect(focusInput, [selectTweet]);
+  // eslint-disable-next-line
+  useEffect(setInputFocus, []);
+  // eslint-disable-next-line
+  useEffect(setInputFocus, [selectedDraft]);
 
   const newStyle = useSelector(selectStyle);
 
@@ -76,7 +77,7 @@ const Textarea = () => {
         </div>
       </div>
       <div style={{ width: "100%" }} className="d-flex justify-content-end">
-        <Floatingicons />
+        <Floatingicons setInputFocus={setInputFocus} />
       </div>
     </div>
   );

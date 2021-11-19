@@ -11,7 +11,7 @@ import {
 } from "../Features/InputSlice";
 import { DarkMode, lightMode } from "../Features/Styles";
 
-const Floatingicons = () => {
+const Floatingicons = ( { setInputFocus }) => {
   const dispatch = useDispatch();
   const renderValue = useSelector(selectInput);
   const newStyle = useSelector(selectStyle);
@@ -26,6 +26,7 @@ const Floatingicons = () => {
 
   const addTweet = () => {
     dispatch(newTweet());
+    setInputFocus();
   };
 
   const collapseNavbar = useSelector(selectNavCollapsed);
@@ -82,7 +83,9 @@ const Floatingicons = () => {
             style={style}
             data-tip="Zen Mode"
             onClick={handleViewDraft}
-            className={`border-0  p-2 mx-1 ${collapseNavbar ? "zen-resize" : "none"}`}
+            className={`border-0  p-2 mx-1 ${
+              collapseNavbar ? "zen-resize" : "none"
+            }`}
           >
             {collapseNavbar === false ? (
               <i className={`fa fa-expand-alt float-hover `}></i>

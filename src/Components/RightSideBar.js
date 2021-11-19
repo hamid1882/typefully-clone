@@ -7,7 +7,7 @@ import {
 } from "../Features/InputSlice";
 import { DarkMode, lightMode } from "../Features/Styles";
 
-const RightSideBar = ({ children }) => {
+const RightSideBar = ({ children, setInputFocus }) => {
   const newStyle = useSelector(selectStyle);
   const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
   const collapse = useSelector(selectNavCollapsed);
@@ -23,7 +23,7 @@ const RightSideBar = ({ children }) => {
         id="tweet-div"
         className={`${collapse ? "tweetBtnAfter" : "none"}`}
       >
-        <Tweets />
+        <Tweets setInputFocus={setInputFocus}/>
       </div>
       <div
         style={style}
