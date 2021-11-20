@@ -50,8 +50,6 @@ const Textarea = () => {
   const scroll = useSelector(selectScrollBar);
   const text = useSelector(selectTextDirection);
 
-
-
   return (
     <div
       style={

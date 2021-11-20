@@ -37,8 +37,8 @@ const RightSideBar = ({ children }) => {
         className={`${collapse ? "tweetBtnAfter" : "none"}`}
       >
         <ScrollToBottom className="h-100">
-          {renderValue.map((value) => (
-            <Tweets text={value} />
+          {renderValue.map((value, i) => (
+            <Tweets text={value} id={i} />
           ))}
           <div
             className={`flex text-center align-items-center justify-content-center ${
