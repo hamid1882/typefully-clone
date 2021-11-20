@@ -4,9 +4,9 @@ import {
   selectStyle,
   selectInput,
   inputChange,
-  selectDraftView,
   selectTextDirection,
   collapseDraft,
+  selectNavCollapsed,
 } from "../Features/InputSlice";
 import Floatingicons from "./Floatingicons";
 import { DarkMode, lightMode } from "../Features/Styles";
@@ -45,7 +45,7 @@ const TextareaMini = () => {
     );
   };
 
-  const collapse = useSelector(selectDraftView);
+  const collapse = useSelector(selectNavCollapsed);
   const text = useSelector(selectTextDirection);
 
   return (
@@ -53,8 +53,8 @@ const TextareaMini = () => {
       <div
         className="container px-0"
         style={
-          collapse === "d-block"
-            ? { height: "calc(100vh - 10rem)" }
+          collapse === true
+            ? { height: "calc(100vh - 4rem)" }
             : { height: "calc(100vh - 7.5rem)" }
         }
       >

@@ -6,7 +6,6 @@ import Draft from "./Draft";
 import TextareaMini from "./TextareaMini";
 import Schedule from "./Schedule";
 import { selectNavCollapsed, selectStyle } from "../Features/InputSlice";
-import "../App.scss";
 
 const Home = () => {
   const navCollapsed = useSelector(selectNavCollapsed);

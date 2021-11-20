@@ -42,7 +42,7 @@ const Draft = () => {
         id="tweet-div"
       >
         <div
-          className={`font h-100  ${
+          className={`font h-100 border-end ${
             scroll ? "border-end shadow scroll tweet-overflow" : "scroll"
           } ${style}`}
         >
