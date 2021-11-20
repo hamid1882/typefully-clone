@@ -54,8 +54,8 @@ const TextareaMini = () => {
         className="container px-0"
         style={
           collapse === true
-            ? { height: "calc(100vh - 4rem)" }
-            : { height: "calc(100vh - 7.5rem)" }
+            ? { height: "calc(100vh - 5rem)" }
+            : { height: "calc(100vh - 10rem)" }
         }
       >
         <textarea
@@ -75,7 +75,7 @@ const TextareaMini = () => {
           id="floatingTextarea"
         ></textarea>
       </div>
-      <div className="d-md-none d-flex justify-content-center py-3">
+      <div className="d-md-none d-flex justify-content-center py-3 my-3">
         <Floatingicons />
       </div>
     </div>
