@@ -1,9 +1,13 @@
 import Tweets from "./Tweets";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import ScrollToBottom from "react-scroll-to-bottom";
 import {
   selectStyle,
   selectInput,
   selectNavCollapsed,
+  selectTweetThread,
+  newTweet,
+  selectFocus,
 } from "../Features/InputSlice";
 import { DarkMode, lightMode } from "../Features/Styles";
 
@@ -11,6 +15,15 @@ const RightSideBar = ({ children }) => {
   const newStyle = useSelector(selectStyle);
   const style = newStyle === true ? DarkMode.styleLight : lightMode.styleLight;
   const collapse = useSelector(selectNavCollapsed);
+  const renderValue = useSelector(selectTweetThread);
+  const dispatch = useDispatch();
+
+  const setInputFocus = useSelector(selectFocus);
+
+  const addNewTweet = () => {
+    dispatch(newTweet());
+    setInputFocus.focusRef();
+  };
 
   return (
     <div style={style} className="font-style">
@@ -23,7 +36,27 @@ const RightSideBar = ({ children }) => {
         id="tweet-div"
         className={`${collapse ? "tweetBtnAfter" : "none"}`}
       >
-        <Tweets />
+        <ScrollToBottom className="h-100">
+          {renderValue.map((value) => (
+            <Tweets text={value} />
+          ))}
+          <div
+            className={`flex text-center align-items-center justify-content-center ${
+              renderValue.toString() === "" ? "invisible" : "visible"
+            }`}
+          >
+            <button
+              onClick={addNewTweet}
+              data-tip="Add tweet or Just add two new lines to break the tweet "
+              className="btn shadow-none"
+            >
+              <i className="fa fa-plus text-secondary fs-5 float-hover"></i>
+            </button>
+            <button data-tip="Spread the Word" className="btn">
+              <i className="fa fa-star text-secondary fs-5"></i>
+            </button>
+          </div>
+        </ScrollToBottom>
       </div>
       <div
         style={style}

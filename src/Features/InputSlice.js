@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const currentDraft = 0;
+const currentTweet = 0;
 
 export const initialState = {
   currentDraft,
+  currentTweet,
   draftList: { [currentDraft]: "" },
   draftView: "d-block",
   isDarkMode: false,
@@ -12,6 +14,7 @@ export const initialState = {
   scroll: false,
   text: true,
   focus: {},
+  isFocus: false,
 };
 
 const InputSlice = createSlice({
@@ -67,10 +70,14 @@ const InputSlice = createSlice({
     instantFocus: (state, action) => {
       state.focus = action.payload;
     },
+    focusOn: (state, action) => {
+      state.isFocus = !state.isFocus;
+    },
   },
 });
 
 export const {
+  focusOn,
   instantFocus,
   saveDraft,
   newDraft,
@@ -103,5 +110,6 @@ export const selectScrollBar = (state) => state.draft.scroll;
 export const selectTextDirection = (state) => state.draft.text;
 export const selectNavCollapsed = (state) => state.draft.navCollapsed;
 export const selectFocus = (state) => state.draft.focus;
+export const selectIsFocus = (state) => state.draft.isFocus;
 
 export default InputSlice.reducer;
