@@ -50,6 +50,8 @@ const Textarea = () => {
   const scroll = useSelector(selectScrollBar);
   const text = useSelector(selectTextDirection);
 
+  console.log([input])
+
   return (
     <div
       style={
@@ -71,7 +73,7 @@ const Textarea = () => {
             <div className="container h-25 border">
               <textarea
                 ref={inputRef}
-                value={input[i]}
+                value={input}
                 onChange={handleChange}
                 style={darkStyle}
                 className={`textarea-style form-control overflow-scroll tweet-overflow outline-0 shadow-none border-0 w-100 h-100 p-5 bg-transparent ${
