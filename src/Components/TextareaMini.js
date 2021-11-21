@@ -49,13 +49,13 @@ const TextareaMini = () => {
   const text = useSelector(selectTextDirection);
 
   return (
-    <div>
+    <div className="vh-100">
       <div
         className="container px-0"
         style={
           collapse === true
-            ? { height: "calc(100vh - 5rem)" }
-            : { height: "calc(100vh - 10rem)" }
+            ? { height: "calc(100% - 10rem)" }
+            : { height: "calc(100% - 10.5rem)" }
         }
       >
         <textarea

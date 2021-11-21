@@ -103,11 +103,11 @@ const Floatingicons = () => {
         </div>
         <div
           style={{ right: "20px", bottom: "35px" }}
-          className="d-md-none mx-2 position-absolute"
+          className="d-md-none m-2 my-5 position-absolute"
         >
           <button
             disabled={renderValue === ""}
-            className="border-0 btn btn-primary rounded-circle"
+            className="border-0 btn btn-primary rounded-circle "
           >
             <i className="fa fa-paper-plane p-1 py-2 text-light"></i>
           </button>
