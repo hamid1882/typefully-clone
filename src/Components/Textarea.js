@@ -66,19 +66,23 @@ const Textarea = () => {
         style={{ height: "calc(100% - 11.5%)" }}
         className="container-fluid p-0"
       >
-        <div className="container h-100">
-          <textarea
-            ref={inputRef}
-            value={input}
-            onChange={handleChange}
-            style={darkStyle}
-            className={`textarea-style form-control overflow-scroll tweet-overflow outline-0 shadow-none border-0 w-100 h-100 p-5 bg-transparent ${
-              text ? "textDirectionLeft" : "textDirectionRight"
-            }`}
-            placeholder="Write here."
-            id="floatingTextarea"
-          ></textarea>
-        </div>
+        {input.split("\n\n\n").map((item, i) => {
+          return (
+            <div className="container h-25 border">
+              <textarea
+                ref={inputRef}
+                value={input[i]}
+                onChange={handleChange}
+                style={darkStyle}
+                className={`textarea-style form-control overflow-scroll tweet-overflow outline-0 shadow-none border-0 w-100 h-100 p-5 bg-transparent ${
+                  text ? "textDirectionLeft" : "textDirectionRight"
+                }`}
+                placeholder="Write here."
+                id="floatingTextarea"
+              ></textarea>
+            </div>
+          );
+        })}
       </div>
       <div style={{ width: "100%" }} className="d-flex justify-content-end">
         <Floatingicons />

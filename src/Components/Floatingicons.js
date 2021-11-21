@@ -102,8 +102,8 @@ const Floatingicons = () => {
           </button>
         </div>
         <div
-          style={{ right: "20px", bottom: "35px" }}
-          className="d-md-none m-2 my-5 position-absolute"
+          style={{ right: "20px", bottom: "90px" }}
+          className="d-md-none position-absolute"
         >
           <button
             disabled={renderValue === ""}
