@@ -71,7 +71,7 @@ const InputSlice = createSlice({
       state.focus = action.payload;
     },
     focusOn: (state, action) => {
-      state.isFocus = !state.isFocus;
+      state.isFocus = action.payload;
     },
   },
 });

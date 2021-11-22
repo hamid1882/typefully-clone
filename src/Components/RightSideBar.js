@@ -25,6 +25,7 @@ const RightSideBar = ({ children }) => {
     setInputFocus.focusRef();
   };
 
+
   return (
     <div style={style} className="font-style">
       <div

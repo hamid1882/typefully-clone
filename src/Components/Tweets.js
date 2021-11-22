@@ -17,16 +17,13 @@ const Tweets = ({ text, id }) => {
 
   const textDirection = useSelector(selectTextDirection);
 
-
   return (
     <div className="d-flex">
       <div style={style} className="w-100 position-relative">
         <div
           className="cursor"
           style={
-            text === ""
-              ? null
-              : { backgroundColor: "rgba(29, 161, 242, 0.2)" }
+            text !== "" ? { backgroundColor: "rgba(29, 161, 242, 0.2)" } : null
           }
         >
           <div className="d-flex px-2 ">
