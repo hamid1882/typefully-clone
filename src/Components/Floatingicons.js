@@ -104,7 +104,7 @@ const Floatingicons = () => {
         <div
           style={{
             right: "20px",
-            bottom: collapseNavbar === false ? "110px" : "70px",
+            bottom: collapseNavbar === false ? "110px" : "65px",
           }}
           className="d-md-none position-absolute"
         >

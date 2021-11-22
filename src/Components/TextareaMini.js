@@ -54,7 +54,7 @@ const TextareaMini = () => {
         className="container px-0"
         style={
           collapse === true
-            ? { height: "calc(100% - 9.7rem)" }
+            ? { height: "calc(100% - 9.3rem)" }
             : { height: "calc(100% - 12rem)" }
         }
       >
@@ -64,13 +64,10 @@ const TextareaMini = () => {
           style={darkStyle}
           value={renderValue}
           onChange={handleChange}
-          className={`textarea-style bg-transparent form-control outline-0 overflow-scroll tweet-overflow ${
+          className={`textarea-style bg-transparent form-control outline-0 overflow-scroll tweet-overflow border-0 w-100 h-100 p-5 ${
             darkStyle.color === "white" ? "shadow-none" : "shadow"
           }
-          ${text ? "textDirectionLeft" : "textDirectionRight"}
-          border-0 w-100 h-100 p-5
-          
-          `}
+          ${text ? "textDirectionLeft" : "textDirectionRight"} `}
           placeholder="Write here."
           id="floatingTextarea"
         ></textarea>
