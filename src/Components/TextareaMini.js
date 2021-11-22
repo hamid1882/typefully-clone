@@ -49,12 +49,12 @@ const TextareaMini = () => {
   const text = useSelector(selectTextDirection);
 
   return (
-    <div className="vh-100">
+    <div className="vh-100 border-0">
       <div
-        className="container px-0"
+        className="container px-0 border-0"
         style={
           collapse === true
-            ? { height: "calc(100% - 9.3rem)" }
+            ? { height: "calc(100% - 9rem)" }
             : { height: "calc(100% - 12rem)" }
         }
       >
@@ -72,7 +72,7 @@ const TextareaMini = () => {
           id="floatingTextarea"
         ></textarea>
       </div>
-      <div className="d-md-none d-flex justify-content-center py-3 my-3">
+      <div className="d-md-none d-flex justify-content-center py-3 my-3 border-0">
         <Floatingicons />
       </div>
     </div>
