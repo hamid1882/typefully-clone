@@ -25,7 +25,7 @@ const Floatingicons = () => {
     dispatch(collapseDraft(false));
   };
 
-  const setInputFocus = useSelector(selectFocus)
+  const setInputFocus = useSelector(selectFocus);
 
   const addTweet = () => {
     dispatch(newTweet());
@@ -102,7 +102,10 @@ const Floatingicons = () => {
           </button>
         </div>
         <div
-          style={{ right: "20px", bottom: "110px" }}
+          style={{
+            right: "20px",
+            bottom: collapseNavbar === false ? "110px" : "90px",
+          }}
           className="d-md-none position-absolute"
         >
           <button
