@@ -54,7 +54,7 @@ const TextareaMini = () => {
         className="container px-0"
         style={
           collapse === true
-            ? { height: "calc(100% - 10rem)" }
+            ? { height: "calc(100% - 9.7rem)" }
             : { height: "calc(100% - 12rem)" }
         }
       >
