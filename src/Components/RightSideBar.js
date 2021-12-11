@@ -73,6 +73,10 @@ export const TweetButton = () => {
   const renderValue = useSelector(selectInput);
 
   return (
+  <>
+   <a href="twitter.com/intent/tweet" id="tweet-quote" >
+     <img src="https://img.icons8.com/fluency/48/000000/twitter.png" id="tweet-quote-img" alt="twitter icon"/>
+   </a>
     <button
       disabled={renderValue === "" || renderValue.length >= 280}
       className="btn btn-primary rounded-pill mx-2 col text-white"
@@ -84,6 +88,7 @@ export const TweetButton = () => {
         </span>
       </div>
     </button>
+    </>
   );
 };
 
