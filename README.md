@@ -1,4 +1,4 @@
-Deploy : https://protected-chamber-21419.herokuapp.com/
+Deploy : https://typefully.herokuapp.com/
 
 # Getting Started with Create React App
 
